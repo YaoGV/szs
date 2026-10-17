@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>实中杀 · 校园策略卡牌</title>
+<style>
+:root{--bg:#111a25;--panel:#1c2a38;--panel2:#243748;--ink:#e9e2ce;--muted:#a8b7bf;--gold:#e7bd68;--red:#e36c68;--green:#86c99b;--blue:#8dbbe4;--line:#425565;--shadow:#080d12}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:ui-monospace,SFMono-Regular,Consolas,"Noto Sans SC",monospace}body{background-image:linear-gradient(#ffffff04 1px,transparent 1px),linear-gradient(90deg,#ffffff04 1px,transparent 1px);background-size:4px 4px}button{font:inherit;cursor:pointer;color:inherit;border:2px solid var(--line);background:var(--panel2);padding:10px 14px;box-shadow:0 3px 0 var(--shadow);transition:transform .12s,filter .12s}button:hover:not(:disabled){filter:brightness(1.18);transform:translateY(-1px)}button:active:not(:disabled){transform:translateY(2px);box-shadow:none}button:disabled{opacity:.4;cursor:not-allowed}.primary{background:var(--gold);color:#17212a;border-color:#ffdc8b;font-weight:900}.danger{border-color:#a94c4a;background:#6c3437}.good{border-color:#4b8b68;background:#244c3a}.hidden{display:none!important}.screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:18px}.menu{width:min(760px,100%);text-align:center;border:4px solid #60717c;background:#182431eF;box-shadow:9px 9px 0 #070b10;padding:clamp(22px,5vw,48px);position:relative;overflow:hidden}.menu:before{content:"";position:absolute;inset:10px;border:1px dashed #647985;pointer-events:none}.pixel-mark{font-size:12px;letter-spacing:5px;color:var(--blue);margin-bottom:16px}.title{font-size:clamp(44px,10vw,84px);line-height:1.1;letter-spacing:7px;font-weight:1000;color:var(--gold);text-shadow:4px 4px 0 #6d4530,7px 7px 0 #090f16;margin:12px 0}.subtitle{color:#b7c6cb;letter-spacing:2px;margin:14px 0 28px}.menu-buttons{display:grid;gap:12px;width:min(340px,100%);margin:28px auto 18px}.menu-buttons button{padding:15px;font-size:17px}.byline{margin-top:35px;font-size:12px;letter-spacing:2px;color:#8da0aa}.campus-art{display:flex;align-items:end;justify-content:center;gap:10px;margin:22px auto 10px;height:105px;opacity:.9}.building{background:#526574;border:3px solid #9ba9a5;width:92px;height:68px;position:relative;image-rendering:pixelated}.building:before{content:"";position:absolute;top:-20px;left:-5px;width:96px;height:18px;background:#8e6f52;border:3px solid #d4b77c}.building:after{content:"";position:absolute;left:9px;right:9px;top:12px;height:38px;background:repeating-linear-gradient(90deg,#182a38 0 9px,#7f9aa1 9px 14px);border-top:3px solid #c7c2a4}.tree{width:30px;height:40px;background:#497a63;clip-path:polygon(50% 0,100% 35%,80% 35%,100% 70%,65% 70%,65% 100%,35% 100%,35% 70%,0 70%,20% 35%,0 35%)}.tutorial{width:min(780px,100%);background:var(--panel);border:3px solid var(--line);padding:24px;box-shadow:8px 8px 0 #080d12}.tutorial h2{color:var(--gold);margin-top:0}.tutorial li{margin:10px 0;line-height:1.6}.game{max-width:1200px;margin:auto;padding:12px}.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:2px solid var(--line);padding:8px 4px 14px;margin-bottom:12px}.brand{font-weight:1000;color:var(--gold);letter-spacing:2px;font-size:20px}.top-actions{display:flex;gap:8px;flex-wrap:wrap}.statusbar{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:12px}.status-pill{border:1px solid var(--line);padding:5px 8px;background:#17222c}.table{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:stretch}.player{position:relative;border:2px solid var(--line);background:linear-gradient(135deg,#263a49,#1b2936);padding:12px;min-height:138px;box-shadow:3px 3px 0 #080d12;transition:border-color .2s,transform .2s}.player.current{border-color:var(--gold);transform:translateY(-2px)}.player.targetable{cursor:pointer;border-color:var(--red);animation:pulse 1.2s infinite}.player.dead{opacity:.42;filter:grayscale(1)}.player.you{background:linear-gradient(135deg,#354451,#1b2936)}@keyframes pulse{50%{box-shadow:0 0 0 3px #e36c6840}}.pname{display:flex;justify-content:space-between;gap:6px;font-weight:900;font-size:15px}.role{font-size:11px;color:var(--gold);margin:6px 0}.role.unknown{color:var(--muted)}.ink-row{display:flex;gap:5px;margin:9px 0}.ink{width:23px;height:12px;border:2px solid #b5c4c7;background:#18232d;transform:skew(-18deg)}.ink.full{background:var(--blue);border-color:#d7f0ff;box-shadow:0 0 5px #8dbbe455}.pmeta{font-size:11px;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap}.seat{font-size:10px;color:#90a6b4}.board-bottom{display:grid;grid-template-columns:1.25fr .75fr;gap:10px;margin-top:12px}.section{background:#192632;border:2px solid var(--line);padding:12px;min-width:0}.section-title{font-size:12px;letter-spacing:2px;color:var(--gold);margin-bottom:10px;display:flex;justify-content:space-between;gap:8px}.hand{display:flex;gap:8px;overflow-x:auto;padding:3px 3px 10px;min-height:160px;align-items:stretch}.card{flex:0 0 104px;min-height:145px;background:#d9d0b5;color:#1b2730;border:3px solid #f4e8c9;box-shadow:3px 4px 0 #080d12;padding:8px 7px;display:flex;flex-direction:column;position:relative;text-align:left;transition:transform .12s;overflow:hidden}.card:hover:not(:disabled){transform:translateY(-5px)}.card:disabled{opacity:.48;filter:grayscale(.7)}.card .ctype{font-size:9px;color:#52616b;font-weight:900;letter-spacing:1px}.card .cname{font-size:15px;font-weight:1000;margin:8px 0;line-height:1.25}.card .desc{font-size:10px;line-height:1.45;margin-top:auto}.card .pip{position:absolute;right:5px;top:5px;border:1px solid #56616a;border-radius:50%;width:19px;height:19px;text-align:center;line-height:17px;font-size:10px}.card.attack{border-color:#e6a19a;background:#f0d0c4}.card.heal{border-color:#95caa1;background:#d3e5c9}.card.trick{border-color:#a9bce0;background:#d4dced}.card.equip{border-color:#e6c47b;background:#efe1b9}.card.event{border-color:#c4a1db;background:#e1d2eb}.card.selected{outline:3px solid var(--gold);transform:translateY(-7px)}.log{height:195px;overflow:auto;font-size:11px;line-height:1.6;color:#b8c6cc}.log p{margin:0 0 6px;padding-bottom:5px;border-bottom:1px dotted #3a4b58}.log .highlight{color:var(--gold)}.controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.hint{font-size:11px;color:var(--muted);line-height:1.5;margin-top:8px}.toast{position:fixed;left:50%;top:16px;transform:translateX(-50%);background:#e7bd68;color:#17212a;padding:10px 16px;font-weight:900;z-index:20;box-shadow:4px 4px #080d12;animation:toastin .2s ease-out;max-width:90vw;text-align:center}@keyframes toastin{from{opacity:0;top:0}to{opacity:1;top:16px}}.modalback{position:fixed;inset:0;background:#05090dcc;display:flex;align-items:center;justify-content:center;padding:16px;z-index:30}.modal{width:min(560px,100%);background:var(--panel);border:3px solid var(--gold);padding:22px;box-shadow:8px 8px #05090d}.modal h2{margin-top:0;color:var(--gold)}.modal-buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.turn-banner{text-align:center;color:var(--gold);font-size:12px;margin:8px 0;letter-spacing:2px}.footer{text-align:center;color:#6f828d;font-size:10px;margin:18px 0 8px;letter-spacing:2px}.overlaytext{font-size:13px;color:var(--muted);line-height:1.7}.empty{text-align:center;color:var(--muted);padding:30px 10px}@media(max-width:700px){.table{grid-template-columns:repeat(2,minmax(0,1fr))}.board-bottom{grid-template-columns:1fr}.player{min-height:128px}.card{flex-basis:94px;min-height:138px}.topbar{align-items:flex-start;flex-direction:column}.game{padding:8px}.section{padding:9px}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.opponent-fan{display:flex;justify-content:center;height:23px;margin-top:6px;position:relative}.opponent-fan i{display:block;width:14px;height:20px;margin-left:-5px;border:1px solid #d4b46b;background:repeating-linear-gradient(45deg,#51331f 0 3px,#8a6435 3px 5px);box-shadow:1px 1px #110b06;transform:rotate(calc((var(--n) - 2) * 8deg));border-radius:2px}.opponent-fan i:first-child{margin-left:0}
+/* ===== 古风像素棋盘重制：像素木纹、金漆边框、四方座次 ===== */
+:root{--bg:#17140f;--panel:#292116;--panel2:#3a2c1b;--ink:#f1e3bd;--muted:#c0ad84;--gold:#e8c778;--red:#b94e43;--green:#83a76b;--blue:#8ea9bd;--line:#8a6b3e;--shadow:#090805}
+html,body{background:#17140f;color:var(--ink)}body{background-image:radial-gradient(ellipse at 50% 40%,#403321 0%,#211b13 58%,#110f0c 100%),linear-gradient(#e7c77809 1px,transparent 1px),linear-gradient(90deg,#e7c77809 1px,transparent 1px);background-size:auto,4px 4px,4px 4px}
+button{border:2px solid #a9854d;background:linear-gradient(#4a3822,#2b2116);box-shadow:0 3px 0 #100b07, inset 0 0 0 1px #d5b56b24;color:#f2e4c2}
+.primary{background:linear-gradient(#f3d990,#b98b43);border-color:#ffe5a0;color:#291c10;text-shadow:0 1px #fff2c8}.danger{background:#6b2e26}.good{background:#2d4a2b}
+.screen{background:radial-gradient(ellipse at center,#6b51231c,transparent 70%)}.menu,.tutorial{background:linear-gradient(135deg,#302517f5,#1d1811f5);border:4px solid #b28a4b;box-shadow:0 0 0 4px #24190f,8px 9px 0 #090705, inset 0 0 0 2px #6b512d}
+.menu:before{border:1px dashed #b18b4f}.pixel-mark{color:#c5a15d}.title{font-family:Georgia,"Noto Serif SC",serif;color:#f4d98d;text-shadow:3px 3px 0 #6a3424,6px 6px 0 #100b07;letter-spacing:10px}.subtitle{color:#d0bc91}.byline{color:#b39a6d}.building{background:#6b5940;border-color:#c4a86d}.building:before{background:#75422c;border-color:#d8bc76}.building:after{background:repeating-linear-gradient(90deg,#241b12 0 9px,#a58a55 9px 14px);border-color:#e1c47b}
+.game{max-width:1500px;padding:14px 18px 20px}.topbar{border-bottom:2px solid #8c6b39}.brand{font-family:Georgia,"Noto Serif SC",serif;color:#f0d58e;text-shadow:2px 2px #5b3021;letter-spacing:4px}.status-pill{background:#20180f;border-color:#80623a;color:#d7c18e}.turn-banner{font-family:Georgia,"Noto Serif SC",serif;color:#f4d58a;text-shadow:1px 2px #140c05;margin:8px 0 12px}
+/* The board is deliberately arranged like a four-seat tabletop: north, west, east, south. */
+.table{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(175px,1fr) minmax(180px,.9fr) minmax(175px,1fr);grid-template-rows:minmax(132px,auto) minmax(140px,auto) minmax(132px,auto);grid-template-areas:". north ." "west seal east" ". south .";gap:12px;align-items:stretch;padding:18px;min-height:440px;border:4px solid #6e4d2b;outline:2px solid #b18a4d;outline-offset:-9px;background:repeating-linear-gradient(0deg,#342617 0 22px,#38291a 22px 24px),linear-gradient(135deg,#4b3821,#241a11);box-shadow:inset 0 0 0 3px #1a110a,inset 0 0 30px #090704,0 6px 0 #090705;}
+.table:before{content:"實 · 中";grid-area:seal;align-self:center;justify-self:center;display:flex;align-items:center;justify-content:center;width:min(24vw,155px);aspect-ratio:1;border:4px double #a78242;border-radius:50%;color:#c7a45e;font-family:serif;font-weight:900;font-size:clamp(28px,4vw,46px);letter-spacing:6px;text-shadow:2px 2px #1b1008;background:radial-gradient(circle,#514027aa,#25190f55 68%,transparent 70%);box-shadow:inset 0 0 0 7px #21170c44;pointer-events:none;z-index:0;opacity:.8}
+.player{min-width:0;min-height:128px;padding:12px;background:linear-gradient(145deg,#433321f2,#21180ff5);border:3px solid #9a7741;outline:1px solid #d2b16b55;outline-offset:-7px;box-shadow:4px 5px 0 #100b07,inset 0 0 18px #09070555;transition:transform .22s,border-color .22s,filter .22s;overflow:hidden}
+.player[data-player="1"]{grid-area:north;max-width:420px;width:100%;justify-self:center}.player[data-player="2"]{grid-area:west;align-self:center}.player[data-player="3"]{grid-area:east;align-self:center}.player[data-player="0"]{grid-area:south;max-width:540px;width:100%;justify-self:center;background:linear-gradient(145deg,#50402a,#2a1d11);border-color:#d3ad5c}
+.player:before{content:"✦";position:absolute;right:12px;top:8px;color:#d8b969;font-size:14px;opacity:.65}.player.current{border-color:#ffe08b;transform:translateY(-3px);box-shadow:0 0 0 2px #b8873b,0 0 20px #e4bd5b44,4px 7px 0 #100b07}.player.targetable{border-color:#f27d61;animation:targetPulse .8s infinite;cursor:crosshair}.player.dead{filter:grayscale(.9) brightness(.6)}@keyframes targetPulse{50%{box-shadow:0 0 0 3px #d55b4655,0 0 18px #d55b4655}}
+.pname{font-family:Georgia,"Noto Serif SC",serif;color:#f2d995;font-size:16px}.seat{color:#c5ab79}.role{color:#d5ad60;font-size:12px}.role.unknown{color:#b5a78b}.ink-row{gap:7px}.ink{width:27px;height:14px;border:2px solid #b59a64;background:#17120c;transform:skew(-14deg);box-shadow:inset 0 0 0 2px #100b07}.ink.full{background:linear-gradient(90deg,#79a8ba,#b5d5d6);border-color:#e3d5a5;box-shadow:0 0 8px #8ec2d266,inset 0 0 0 2px #47707a}
+.pmeta{color:#c4b18b}.board-bottom{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(250px,.8fr);gap:12px;margin-top:14px}.section{background:linear-gradient(145deg,#322719,#21180f);border:3px solid #89683b;outline:1px solid #c4a15c55;outline-offset:-7px;padding:15px;box-shadow:4px 5px 0 #100b07,inset 0 0 20px #0d0905}.section-title{color:#e6c879;font-family:Georgia,"Noto Serif SC",serif;font-size:14px;border-bottom:1px solid #765a33;padding-bottom:8px;margin-bottom:12px}.hand{gap:10px;min-height:190px;align-items:flex-end;padding:10px 6px 15px;perspective:900px;overflow-x:auto;scrollbar-color:#9b7944 #21170d}
+.card{flex:0 0 112px;min-height:164px;border:3px solid #b58d4b;outline:1px solid #4d351c;outline-offset:-7px;padding:10px 8px;background:linear-gradient(135deg,#e9d8aa,#c4ad78);color:#302313;box-shadow:3px 5px 0 #100b07, inset 0 0 0 2px #f8edc9;transform-origin:50% 100%;transition:transform .2s cubic-bezier(.2,.8,.2,1),filter .2s,box-shadow .2s;cursor:grab;user-select:none;touch-action:pan-x;position:relative}
+.card:before{content:"";position:absolute;inset:5px;border:1px solid #927044;pointer-events:none;opacity:.85}.card:after{content:"";position:absolute;left:50%;top:39px;transform:translateX(-50%);width:48px;height:48px;border:2px solid #9b7944;border-radius:50%;opacity:.25;background:radial-gradient(circle,transparent 40%,#8a693333 42% 45%,transparent 48%)}
+.card:hover:not(:disabled){transform:translateY(-12px) rotate(-1deg);filter:brightness(1.08);box-shadow:5px 10px 0 #100b07,0 0 15px #e6c77833,inset 0 0 0 2px #fff5d7}.card:active{cursor:grabbing}.card.selected{transform:translateY(-18px) rotate(0deg) scale(1.035);outline:3px solid #f9dc85;box-shadow:0 0 0 4px #7d5425,0 0 24px #e7bd68aa,4px 9px 0 #100b07}.card .ctype{font-size:9px;letter-spacing:2px;color:#70512a;z-index:1}.card .cname{font-family:Georgia,"Noto Serif SC",serif;font-size:16px;color:#2a1a0d;text-align:center;margin:14px 0 7px;z-index:1;text-shadow:0 1px #fff0c5}.card .desc{font-family:"Noto Serif SC",serif;font-size:10px;line-height:1.5;z-index:1;background:#e8d7adbb;padding:4px;margin-top:auto}.card .pip{z-index:1;color:#6c3427;border-color:#a17b43}.card.attack{background:linear-gradient(135deg,#f1d0b3,#c98f76);border-color:#c77b57}.card.heal{background:linear-gradient(135deg,#e6e2b7,#b8c58a);border-color:#9ea85d}.card.trick{background:linear-gradient(135deg,#d9dfd1,#a6b6a0);border-color:#8a9b7a}.card.equip{background:linear-gradient(135deg,#f0e0a7,#c7a95d);border-color:#d0ad52}.card.event{background:linear-gradient(135deg,#e6d1e3,#b99ac3);border-color:#a07bb1}.card.fly-in{animation:cardDeal .38s cubic-bezier(.2,.8,.2,1) both}@keyframes cardDeal{from{opacity:0;transform:translateY(36px) rotate(7deg) scale(.8)}to{opacity:1;transform:translateY(0) rotate(0) scale(1)}}.card.dragging{opacity:.45;transform:rotate(6deg) scale(.96)}.card-flip{animation:flipOpen .42s ease-out}@keyframes flipOpen{0%{transform:rotateY(90deg) translateY(10px);opacity:.4}65%{transform:rotateY(-10deg) translateY(-8px)}100%{transform:rotateY(0) translateY(-5px);opacity:1}}
+.log{background:#17110988;border:1px solid #6b4d2a;padding:9px;height:220px;color:#d4c09a}.log p{border-bottom:1px dotted #604729}.log .highlight{color:#f0d27f}.hint{color:#c7b18a}.footer{color:#9a8156}.modal{background:linear-gradient(145deg,#3b2b1a,#21170f);border:4px double #d1ad60;box-shadow:0 0 0 4px #1a1008,8px 8px #080604}.modal h2{font-family:Georgia,"Noto Serif SC",serif;color:#f1d58a}.toast{background:#e9cb7e;color:#2c1c0c;border:2px solid #fff0b7;box-shadow:4px 4px #100b07}
+.card-preview{display:grid;grid-template-columns:125px 1fr;gap:18px;align-items:center}.preview-card{min-height:190px;padding:14px 10px;border:4px double #c8a25a;background:linear-gradient(145deg,#ead9ab,#c8b17b);color:#2b1b0c;box-shadow:5px 6px #100b07;text-align:center;display:flex;flex-direction:column;justify-content:space-around;animation:flipOpen .38s ease-out}.preview-card .preview-name{font:900 23px Georgia,"Noto Serif SC",serif}.preview-card .preview-seal{font-size:36px;color:#8e392d}.preview-text{line-height:1.8;color:#e8d9b8}
+@media(max-width:760px){.game{padding:7px}.table{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto auto;grid-template-areas:"north north" "west east" "south south";gap:8px;padding:12px;min-height:0}.table:before{display:none}.player[data-player="1"]{max-width:none}.player[data-player="2"],.player[data-player="3"]{align-self:stretch}.player[data-player="0"]{max-width:none}.player{min-height:125px;padding:10px}.board-bottom{grid-template-columns:1fr}.card{flex-basis:99px;min-height:154px}.hand{min-height:180px}.card-preview{grid-template-columns:105px 1fr;gap:12px}.preview-card{min-height:175px}.preview-card .preview-name{font-size:18px}}
+@media(max-width:390px){.table{padding:9px;gap:6px}.player{padding:8px}.pname{font-size:13px}.pmeta{gap:6px}.card{flex-basis:91px;padding:8px 6px}.card .cname{font-size:14px}.card .desc{font-size:9px}.card-preview{grid-template-columns:1fr}.preview-card{width:125px;margin:auto;min-height:160px}}
+@media(prefers-reduced-motion:reduce){.card,.player{transition:none!important}}
+
+
+/* Smooth tabletop motion, pointer-based drag-and-drop, and card-specific combat effects. */
+.card{will-change:transform;transition:transform .42s cubic-bezier(.22,.8,.22,1),filter .32s,box-shadow .32s;touch-action:pan-y;}
+.card-inspect-lift{animation:inspectLift .34s cubic-bezier(.16,1,.3,1) both;z-index:8;}
+@keyframes inspectLift{0%{transform:translateY(0) scale(1)}55%{transform:translateY(-25px) rotate(-2deg) scale(1.08);filter:brightness(1.16)}100%{transform:translateY(-17px) rotate(0) scale(1.04);filter:brightness(1.04)}}
+.card.dragging{opacity:.2;transform:scale(.96);}
+.drag-ghost{position:fixed!important;z-index:1000!important;pointer-events:none!important;opacity:.96!important;transform:rotate(-4deg) scale(1.08)!important;filter:brightness(1.12) drop-shadow(0 14px 15px #0009);transition:none!important;}
+.player.drop-hover{border-color:#ffe08b!important;box-shadow:0 0 0 4px #f2ce6b55,0 0 28px #e7bd6877!important;transform:scale(1.025);}
+.combat-fx{position:fixed;inset:0;width:100vw;height:100vh;z-index:80;pointer-events:none;overflow:visible;}
+.fx-trail{animation:trailFade .55s ease-out forwards;filter:drop-shadow(0 0 5px currentColor)}
+.fx-glyph{animation:glyphBurst .72s cubic-bezier(.16,1,.3,1) both;}
+.fx-impact{transform-origin:center;animation:impactRing .72s cubic-bezier(.16,1,.3,1) both;}
+@keyframes trailFade{0%{stroke-dashoffset:90;opacity:0}20%{opacity:1}100%{stroke-dashoffset:0;opacity:.2}}
+@keyframes glyphBurst{0%{opacity:0;transform:translateY(12px) scale(.3)}45%{opacity:1}100%{opacity:0;transform:translateY(-24px) scale(1.45)}}
+@keyframes impactRing{0%{opacity:0;transform:scale(.3)}40%{opacity:1}100%{opacity:0;transform:scale(3.2)}}
+.player.hit-flash{animation:hitFlash .7s cubic-bezier(.2,.8,.2,1);}
+@keyframes hitFlash{0%,100%{filter:none}20%{filter:brightness(1.8) sepia(.35);transform:translateY(-3px) scale(1.015)}45%{filter:brightness(1.2)}}
+.hand{scroll-behavior:smooth;overscroll-behavior-x:contain;}
+#turnBanner.thinking:after{content:' ···';display:inline-block;animation:thinkingPulse 1.15s ease-in-out infinite;letter-spacing:3px}@keyframes thinkingPulse{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-2px)}}
+.section-title #handCount{font-variant-numeric:tabular-nums;}
+@media(max-width:760px){.drag-ghost{width:99px}.combat-fx{z-index:85}}
+@media(prefers-reduced-motion:reduce){.card-inspect-lift,.fx-trail,.fx-glyph,.fx-impact,.player.hit-flash{animation:none!important}}
+
+
+/* 极简对局界面：只保留四名选手与底部手牌，移除拖拽模块和战况面板 */
+#gameScreen{height:100dvh;min-height:100dvh;overflow:hidden;align-items:stretch;justify-content:stretch;padding:0;background:radial-gradient(ellipse at 50% 38%,#584226 0%,#2b2115 58%,#15110c 100%)}
+#gameScreen .game{width:100%;max-width:none;height:100dvh;min-height:0;margin:0;padding:10px 12px 0;display:flex;flex-direction:column;gap:0;overflow:hidden}
+#gameScreen .table{flex:1 1 auto;min-height:0;width:100%;margin:0;border:0;outline:0;box-shadow:none;background:transparent;padding:10px 10px 4px;gap:clamp(5px,1.1vw,14px);grid-template-rows:minmax(92px,1fr) minmax(80px,.9fr) minmax(92px,1fr);}
+#gameScreen .table:before{width:min(17vw,118px);font-size:clamp(22px,3vw,38px);opacity:.5}
+#gameScreen .player{min-height:0;padding:clamp(7px,1.1vw,13px);display:flex;flex-direction:column;justify-content:center}
+#gameScreen .player[data-player="1"]{max-width:350px}
+#gameScreen .player[data-player="0"]{max-width:420px}
+#gameScreen .pname{font-size:clamp(12px,1.4vw,16px)}
+#gameScreen .role{font-size:clamp(9px,1vw,12px);margin:4px 0}
+#gameScreen .ink-row{margin:5px 0;gap:4px}
+#gameScreen .ink{width:clamp(16px,2.1vw,25px);height:10px}
+#gameScreen .pmeta{font-size:clamp(9px,.95vw,11px);gap:6px}
+#gameScreen .opponent-fan{height:16px;margin-top:3px}
+#gameScreen .opponent-fan i{height:14px;width:10px}
+.hand-dock{position:relative;z-index:5;flex:0 0 auto;width:100%;padding:7px 0 max(5px,env(safe-area-inset-bottom));background:linear-gradient(180deg,#21180fe8,#17110cf7);border-top:2px solid #8d6a38;box-shadow:0 -8px 22px #08060466}
+#gameScreen .hand{width:100%;min-height:0;height:clamp(145px,23vh,190px);padding:14px 8px 8px;gap:clamp(5px,.8vw,10px);align-items:flex-end;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:#9b7944 #21170d}
+#gameScreen .card{flex:0 0 clamp(88px,8.2vw,112px);min-height:0;height:100%;max-height:164px;padding:8px 7px;cursor:pointer;touch-action:pan-x;}
+#gameScreen .card .cname{font-size:clamp(12px,1.2vw,16px);margin:11px 0 5px}
+#gameScreen .card .desc{font-size:clamp(8px,.78vw,10px);line-height:1.35;padding:3px}
+#gameScreen .card .ctype{font-size:8px;letter-spacing:1px}
+.end-turn-float{position:absolute;right:12px;top:-39px;z-index:6;padding:7px 12px;font-size:12px;box-shadow:0 3px 0 #100b07;border-radius:3px}
+#gameScreen .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.drag-ghost,.dragging,.drop-hover{display:none!important}
+@media(max-width:760px){
+ #gameScreen .game{padding:5px 5px 0}
+ #gameScreen .table{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(95px,1fr) minmax(95px,1fr) minmax(95px,1fr);grid-template-areas:"north north" "west east" "south south";padding:6px 4px 5px;gap:6px}
+ #gameScreen .table:before{display:none}
+ #gameScreen .player[data-player="1"],#gameScreen .player[data-player="0"]{max-width:none}
+ #gameScreen .player{padding:7px;outline-offset:-5px}
+ #gameScreen .player[data-player="2"],#gameScreen .player[data-player="3"]{align-self:stretch}
+ #gameScreen .pname{font-size:12px}
+ #gameScreen .role{font-size:9px}
+ #gameScreen .pmeta{font-size:9px;gap:4px}
+ #gameScreen .hand{height:clamp(140px,22vh,175px);padding:12px 5px 7px;gap:5px}
+ #gameScreen .card{flex-basis:clamp(83px,23vw,99px);padding:7px 5px}
+ #gameScreen .card .cname{font-size:13px}
+ #gameScreen .card .desc{font-size:8px}
+ .end-turn-float{right:8px;top:-36px;padding:6px 9px;font-size:11px}
+}
+@media(max-height:650px){#gameScreen .table{grid-template-rows:minmax(75px,1fr) minmax(65px,.8fr) minmax(75px,1fr)}#gameScreen .hand{height:clamp(118px,22vh,145px)}#gameScreen .player{padding:5px}#gameScreen .role{margin:2px 0}#gameScreen .ink-row{margin:3px 0}}
+
+/* 选牌、摸牌、恢复、弃牌与装备均有轻量动画 */
+#gameScreen .card{transition:transform .32s cubic-bezier(.2,.85,.2,1),margin .32s,filter .25s,box-shadow .32s;transform-origin:center bottom}
+#gameScreen .card.fan-left{transform:translateX(-11px) scale(.96);filter:saturate(.88)}
+#gameScreen .card.fan-right{transform:translateX(11px) scale(.96);filter:saturate(.88)}
+#gameScreen .card.selected{position:relative;z-index:9;transform:translateY(-20px) scale(1.1);filter:brightness(1.08);box-shadow:0 0 0 4px #7d5425,0 0 26px #e7bd68bb,4px 9px 0 #100b07;animation:selectedCardPop .32s cubic-bezier(.2,.85,.2,1) both}
+@keyframes selectedCardPop{0%{transform:translateY(0) scale(1)}60%{transform:translateY(-24px) scale(1.14)}100%{transform:translateY(-20px) scale(1.1)}}
+#gameScreen .card.fan-left{animation:fanLeftIn .3s ease-out both}
+#gameScreen .card.fan-right{animation:fanRightIn .3s ease-out both}
+@keyframes fanLeftIn{from{transform:translateX(0) scale(1)}to{transform:translateX(-11px) scale(.96)}}
+@keyframes fanRightIn{from{transform:translateX(0) scale(1)}to{transform:translateX(11px) scale(.96)}}
+#gameScreen .hand.has-selection .card:not(.selected){transition-delay:.015s}
+.player.action-pulse{animation:actionPulse .48s ease-out}
+@keyframes actionPulse{0%{filter:brightness(1);transform:scale(1)}35%{filter:brightness(1.5);transform:scale(1.025)}100%{filter:brightness(1);transform:scale(1)}}
+.action-float{position:fixed;z-index:60;pointer-events:none;font:900 15px/1 ui-monospace,monospace;text-shadow:0 2px 0 #160e07,0 0 12px currentColor;animation:actionFloat .78s cubic-bezier(.2,.75,.25,1) forwards;white-space:nowrap}
+@keyframes actionFloat{0%{opacity:0;transform:translate(-50%,0) scale(.7)}18%{opacity:1;transform:translate(-50%,-8px) scale(1.12)}100%{opacity:0;transform:translate(-50%,-42px) scale(.92)}}
+.draw-fly-card{position:fixed;z-index:59;width:25px;height:36px;border:2px solid #f0d18b;border-radius:3px;background:repeating-linear-gradient(45deg,#53371d 0 4px,#a87a3c 4px 7px);box-shadow:2px 3px 0 #090705;pointer-events:none;left:var(--to-x);top:var(--to-y);animation:drawFly .46s cubic-bezier(.2,.8,.2,1) both}
+@keyframes drawFly{from{opacity:.1;transform:translate(calc(-50% - var(--from-x)),calc(-50% - var(--from-y))) rotate(-18deg) scale(.65)}65%{opacity:1;transform:translate(-50%,-50%) rotate(8deg) scale(1.08)}to{opacity:0;transform:translate(-50%,-50%) rotate(0) scale(.9)}}
+.player.draw-glow{box-shadow:0 0 0 2px #e8c778,0 0 22px #e8c77877}
+#gameScreen .player.targetable{animation:targetPulse .8s infinite, targetArrival .25s ease-out}
+@keyframes targetArrival{from{transform:scale(.96);opacity:.75}to{transform:scale(1);opacity:1}}
+/* 音效与更丰富的像素战斗反馈 */
+.fx-spark{position:fixed;z-index:86;pointer-events:none;width:7px;height:7px;background:var(--spark,#ffe39a);box-shadow:0 0 8px var(--spark,#ffe39a);animation:sparkBurst .58s ease-out forwards}
+@keyframes sparkBurst{from{opacity:1;transform:translate(0,0) scale(1.2)}to{opacity:0;transform:translate(var(--sx),var(--sy)) scale(.15)}}
+.screen-shake{animation:screenShake .28s linear}
+@keyframes screenShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-4px)}40%{transform:translateX(4px)}60%{transform:translateX(-2px)}80%{transform:translateX(2px)}}
+.player.heal-flash{animation:healFlash .55s ease-out}
+@keyframes healFlash{0%{filter:brightness(1)}35%{filter:brightness(1.65) sepia(.35) hue-rotate(65deg)}100%{filter:brightness(1)}}
+.player.draw-glow{animation:drawGlow .5s ease-out}
+@keyframes drawGlow{0%{filter:brightness(1)}45%{filter:brightness(1.5)}100%{filter:brightness(1)}}
+/* 启动页保险样式：即使移动端 WebView 对部分新 CSS 支持不完整，也保证主菜单可见 */
+#app{min-height:100vh;min-height:100dvh}
+#home:not(.hidden){display:flex!important;visibility:visible!important;opacity:1!important;min-height:100vh;min-height:100dvh}
+#home:not(.hidden) .menu{display:block;visibility:visible;opacity:1;position:relative;z-index:1}
+#home .menu-buttons{display:grid}
+#home .menu-buttons button{min-height:48px;visibility:visible;opacity:1}
+
+
+/* 横屏手机优化：压缩底部手牌栏，四名角色分布在左右两侧，避免纵向布局挤压 */
+@media (orientation: landscape) and (max-height: 560px) {
+  #gameScreen { height: 100vh; height: 100dvh; min-height: 0; }
+  #gameScreen .game { height: 100vh; height: 100dvh; padding: 3px 7px 0; }
+  #gameScreen .table {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "north north east east" "west west south south";
+    gap: 5px;
+    padding: 4px 3px 3px;
+  }
+  #gameScreen .table:before { display: none; }
+  #gameScreen .player,
+  #gameScreen .player[data-player="1"],
+  #gameScreen .player[data-player="0"] {
+    width: 100%; max-width: none; min-width: 0; min-height: 0;
+    padding: 4px 6px; align-self: stretch; justify-self: stretch;
+  }
+  #gameScreen .pname { font-size: clamp(10px, 1.8vw, 13px); margin-bottom: 1px; }
+  #gameScreen .role { font-size: 8px; margin: 1px 0; }
+  #gameScreen .ink-row { margin: 2px 0; gap: 3px; }
+  #gameScreen .ink { width: 14px; height: 7px; }
+  #gameScreen .pmeta { font-size: 8px; gap: 4px; }
+  #gameScreen .opponent-fan { height: 10px; margin-top: 1px; }
+  #gameScreen .opponent-fan i { height: 9px; width: 7px; }
+  .hand-dock { padding: 4px 0 max(3px, env(safe-area-inset-bottom)); }
+  #gameScreen .hand {
+    height: clamp(88px, 25vh, 116px); padding: 10px 5px 4px;
+    gap: 5px; align-items: stretch;
+  }
+  #gameScreen .card {
+    flex-basis: clamp(62px, 9.5vw, 82px); height: 100%; max-height: 108px;
+    padding: 4px 4px;
+  }
+  #gameScreen .card .cname { font-size: clamp(9px, 1.4vw, 12px); margin: 5px 0 2px; }
+  #gameScreen .card .desc { font-size: 7px; line-height: 1.15; padding: 2px; }
+  #gameScreen .card .ctype { font-size: 6px; letter-spacing: .4px; }
+  #gameScreen .card.selected { transform: translateY(-9px) scale(1.06); }
+  @keyframes selectedCardPop { 0% { transform: translateY(0) scale(1); } 60% { transform: translateY(-12px) scale(1.08); } 100% { transform: translateY(-9px) scale(1.06); } }
+  .end-turn-float { top: -29px; right: 7px; padding: 4px 8px; font-size: 10px; }
+}
+@media (orientation: landscape) and (max-height: 390px) {
+  #gameScreen .hand { height: 82px; }
+  #gameScreen .card { flex-basis: clamp(56px, 8vw, 70px); }
+  #gameScreen .player { padding: 2px 4px; }
+  #gameScreen .pmeta { font-size: 7px; }
+  .end-turn-float { top: -27px; }
+}
+
+
+/* v1.0.0 Beta · 横屏布局精修：四角方形角色牌，中间校徽不再挤占自动网格 */
+@media (orientation: landscape) and (max-height: 560px) {
+  #gameScreen .table {
+    grid-template-columns: minmax(0,1fr) minmax(62px,.42fr) minmax(0,1fr);
+    grid-template-rows: minmax(0,1fr) minmax(0,1fr);
+    grid-template-areas: "north seal east" "west seal south";
+    align-items: center;
+    justify-items: center;
+    gap: 4px 2px;
+    padding: 3px 2px;
+  }
+  #gameScreen .table:before {
+    grid-area: seal;
+    width: clamp(54px, 17vh, 76px);
+    max-width: 100%;
+    font-size: clamp(15px, 2.4vh, 23px);
+    letter-spacing: 1px;
+    border-width: 3px;
+    align-self: center;
+    justify-self: center;
+    opacity: .78;
+  }
+  #gameScreen .player,
+  #gameScreen .player[data-player="0"],
+  #gameScreen .player[data-player="1"],
+  #gameScreen .player[data-player="2"],
+  #gameScreen .player[data-player="3"] {
+    width: clamp(72px, 24vh, 108px);
+    height: clamp(72px, 24vh, 108px);
+    max-width: 100%; max-height: 100%; min-width: 0; min-height: 0;
+    aspect-ratio: 1 / 1;
+    padding: 4px;
+    justify-self: center; align-self: center;
+    overflow: hidden;
+    display: flex; flex-direction: column; justify-content: center; align-items: stretch;
+  }
+  #gameScreen .pname { font-size: clamp(9px, 1.55vw, 12px); line-height: 1.1; gap: 2px; }
+  #gameScreen .role { font-size: clamp(7px, 1.15vw, 9px); line-height: 1.1; margin: 2px 0; }
+  #gameScreen .ink-row { margin: 2px 0; gap: 2px; justify-content: center; }
+  #gameScreen .ink { width: clamp(9px, 1.6vh, 13px); height: 6px; border-width: 1px; }
+  #gameScreen .pmeta { font-size: clamp(7px, 1.1vw, 8px); line-height: 1.1; gap: 2px; justify-content: center; }
+  #gameScreen .opponent-fan { height: 8px; margin-top: 1px; }
+  #gameScreen .opponent-fan i { height: 7px; width: 5px; }
+  #gameScreen .hand { height: clamp(88px, 22vh, 106px); padding: 9px 4px 4px; gap: 4px; }
+  #gameScreen .card { flex: 0 0 clamp(56px, 7.3vw, 72px); height: 100%; max-height: 100px; padding: 4px 3px; }
+  #gameScreen .card .ctype { font-size: 6px; letter-spacing: 0; }
+  #gameScreen .card .pip { width: 13px; height: 13px; line-height: 11px; font-size: 8px; right: 2px; top: 2px; }
+  #gameScreen .card .cname { font-size: clamp(9px, 1.15vw, 11px); line-height: 1.12; margin: 5px 0 2px; overflow-wrap: anywhere; }
+  #gameScreen .card .desc { font-size: 6px; line-height: 1.08; padding: 1px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  #gameScreen .card.selected { transform: translateY(-7px) scale(1.05); }
+  @keyframes selectedCardPop { 0% { transform: translateY(0) scale(1); } 60% { transform: translateY(-9px) scale(1.07); } 100% { transform: translateY(-7px) scale(1.05); } }
+}
+@media (orientation: landscape) and (max-height: 390px) {
+  #gameScreen .player,
+  #gameScreen .player[data-player="0"], #gameScreen .player[data-player="1"],
+  #gameScreen .player[data-player="2"], #gameScreen .player[data-player="3"] {
+    width: clamp(64px, 22vh, 84px); height: clamp(64px, 22vh, 84px); padding: 3px;
+  }
+  #gameScreen .table:before { width: 48px; font-size: 14px; }
+  #gameScreen .hand { height: 78px; }
+  #gameScreen .card { flex-basis: clamp(52px, 6.8vw, 64px); }
+}
+.version-stamp{display:inline-flex;gap:8px;align-items:center;border:1px solid #b18a4d;background:#21170d;padding:7px 10px;margin:0 0 10px;color:#c0ad84;font-size:11px;letter-spacing:1px}.version-stamp strong{color:#ffe29a;font-size:14px}
+/* 超级爆裂：击杀冲击波、闪屏、碎片与巨型爆字 */
+.mega-explosion { position:fixed; z-index:95; pointer-events:none; left:var(--boom-x); top:var(--boom-y); width:1px; height:1px; }
+.mega-explosion .boom-ring { position:absolute; left:0; top:0; width:20px; height:20px; border:7px solid #fff0a2; border-radius:50%; box-shadow:0 0 16px #ffb52e,0 0 36px #ff4b22; transform:translate(-50%,-50%); animation:boomRing .72s cubic-bezier(.08,.75,.16,1) forwards; }
+.mega-explosion .boom-core { position:absolute; left:0; top:0; width:34px; height:34px; border-radius:50%; background:radial-gradient(circle,#fff9d9 0 12%,#ffe56b 20%,#ff782a 48%,#e52620 70%,transparent 72%); transform:translate(-50%,-50%); animation:boomCore .42s ease-out forwards; filter:drop-shadow(0 0 15px #ff9e29); }
+.mega-explosion .boom-word { position:absolute; left:0; top:-12px; color:#fff0a2; font:1000 clamp(24px,6vw,54px)/1 ui-monospace,monospace; white-space:nowrap; text-shadow:3px 3px #b3291d,0 0 14px #ff6d27,0 0 28px #ffce53; transform:translate(-50%,-50%) scale(.25) rotate(-8deg); animation:boomWord .85s cubic-bezier(.12,.8,.16,1) forwards; }
+@keyframes boomRing { 0%{opacity:1;transform:translate(-50%,-50%) scale(.2)} 100%{opacity:0;transform:translate(-50%,-50%) scale(9);border-width:1px} }
+@keyframes boomCore { 0%{opacity:1;transform:translate(-50%,-50%) scale(.2)} 35%{opacity:1;transform:translate(-50%,-50%) scale(2.8)} 100%{opacity:0;transform:translate(-50%,-50%) scale(.2)} }
+@keyframes boomWord { 0%{opacity:0;transform:translate(-50%,-50%) scale(.25) rotate(-8deg)} 20%{opacity:1;transform:translate(-50%,-50%) scale(1.15) rotate(4deg)} 68%{opacity:1;transform:translate(-50%,-80%) scale(1) rotate(-2deg)} 100%{opacity:0;transform:translate(-50%,-135%) scale(.88) rotate(0)} }
+
+
+/* 横屏修正版：角色固定为紧凑方牌，中央校徽独立居中，手牌加大 */
+@media (orientation: landscape) and (max-height: 620px) {
+  #gameScreen .game { padding: 3px 10px 0 !important; }
+  #gameScreen .table {
+    position:relative;
+    flex:1 1 auto;
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) clamp(64px,12vh,96px) minmax(0,1fr) !important;
+    grid-template-rows:minmax(0,1fr) minmax(0,1fr) !important;
+    grid-template-areas:"north seal east" "west seal south" !important;
+    gap:4px 5px !important;
+    align-items:center !important; justify-items:center !important;
+    padding:4px 6px 2px !important;
+  }
+  #gameScreen .table:before { grid-area:seal !important; width:clamp(58px,10vh,82px) !important; height:clamp(58px,10vh,82px) !important; aspect-ratio:1 !important; display:flex !important; align-items:center; justify-content:center; font-size:clamp(13px,2.2vh,20px) !important; line-height:1.15; letter-spacing:0 !important; writing-mode:horizontal-tb !important; word-break:keep-all !important; white-space:nowrap !important; overflow:hidden; }
+  #gameScreen .player,
+  #gameScreen .player[data-player="0"],#gameScreen .player[data-player="1"],
+  #gameScreen .player[data-player="2"],#gameScreen .player[data-player="3"] {
+    box-sizing:border-box !important;
+    width:clamp(96px,25vh,150px) !important;
+    height:clamp(96px,25vh,150px) !important;
+    min-width:0 !important; min-height:0 !important;
+    max-width:100% !important; max-height:100% !important;
+    aspect-ratio:1 / 1 !important;
+    padding:clamp(5px,.9vh,9px) !important;
+    display:flex !important; flex-direction:column !important;
+    justify-content:center !important; align-items:stretch !important;
+    overflow:hidden !important; justify-self:center !important; align-self:center !important;
+  }
+  #gameScreen .pname { font-size:clamp(10px,1.7vh,14px) !important; line-height:1.15; gap:3px; }
+  #gameScreen .role { font-size:clamp(8px,1.3vh,11px) !important; margin:3px 0 !important; line-height:1.2; }
+  #gameScreen .ink-row { margin:3px 0 !important; gap:3px !important; }
+  #gameScreen .ink { width:clamp(12px,2vh,19px) !important; height:8px !important; }
+  #gameScreen .pmeta { font-size:clamp(8px,1.25vh,10px) !important; line-height:1.2; gap:3px !important; }
+  #gameScreen .opponent-fan { height:10px !important; margin-top:3px !important; }
+  #gameScreen .opponent-fan i { width:7px !important; height:9px !important; }
+  .hand-dock { flex:0 0 auto !important; padding:4px 0 max(4px,env(safe-area-inset-bottom)) !important; }
+  #gameScreen .hand { height:clamp(145px,27vh,190px) !important; padding:15px 8px 5px !important; gap:clamp(7px,1vw,14px) !important; align-items:stretch !important; }
+  #gameScreen .card { flex:0 0 clamp(112px,10.5vw,158px) !important; height:100% !important; max-height:185px !important; padding:7px 7px !important; }
+  #gameScreen .card .ctype { font-size:clamp(7px,.9vh,10px) !important; letter-spacing:.3px !important; }
+  #gameScreen .card .cname { font-size:clamp(12px,1.6vh,17px) !important; line-height:1.18 !important; margin:8px 0 5px !important; }
+  #gameScreen .card .desc { font-size:clamp(8px,1.1vh,11px) !important; line-height:1.25 !important; padding:2px !important; -webkit-line-clamp:3 !important; }
+  #gameScreen .card .pip { width:17px !important; height:17px !important; line-height:15px !important; font-size:9px !important; }
+  .end-turn-float { top:-30px !important; right:8px !important; padding:5px 9px !important; font-size:11px !important; }
+}
+@media (orientation: landscape) and (max-height: 420px) {
+  #gameScreen .player,#gameScreen .player[data-player="0"],#gameScreen .player[data-player="1"],#gameScreen .player[data-player="2"],#gameScreen .player[data-player="3"] { width:clamp(82px,22vh,108px) !important; height:clamp(82px,22vh,108px) !important; }
+  #gameScreen .table:before { width:clamp(48px,9vh,60px) !important; height:clamp(48px,9vh,60px) !important; }
+  #gameScreen .hand { height:clamp(125px,30vh,145px) !important; }
+  #gameScreen .card { flex-basis:clamp(100px,10vw,130px) !important; }
+}
+/* 更夸张的爆裂层：扩大冲击波与火花，不遮挡点击 */
+.mega-explosion { z-index:999 !important; }
+.mega-explosion .boom-ring { border-width:10px !important; box-shadow:0 0 24px #fff0a2,0 0 52px #ff8c21,0 0 84px #ff2b1b !important; animation-duration:1s !important; }
+.mega-explosion .boom-core { width:58px !important; height:58px !important; filter:drop-shadow(0 0 25px #ff9e29) !important; }
+.mega-explosion .boom-word { font-size:clamp(32px,8vw,76px) !important; text-shadow:4px 4px #b3291d,0 0 20px #ff6d27,0 0 42px #ffce53 !important; animation-duration:1.05s !important; }
+@keyframes screenShake { 0%,100%{transform:translate(0,0) rotate(0)} 10%{transform:translate(-7px,3px) rotate(-.25deg)} 20%{transform:translate(8px,-3px) rotate(.3deg)} 30%{transform:translate(-9px,-2px)} 40%{transform:translate(8px,4px)} 50%{transform:translate(-6px,2px)} 60%{transform:translate(6px,-3px)} 70%{transform:translate(-4px,1px)} 80%{transform:translate(3px,2px)} 90%{transform:translate(-2px,-1px)} }
+
+
+/* 实机横屏修正 v1.0.0b：不再依赖 max-height，适配平板/手机浏览器横屏 */
+@media (orientation: landscape) and (min-width: 761px) {
+  #gameScreen .game { height:100dvh !important; padding:4px 12px 0 !important; }
+  #gameScreen .table {
+    grid-template-columns:minmax(0,1fr) clamp(76px,10vh,108px) minmax(0,1fr) !important;
+    grid-template-rows:minmax(0,1fr) minmax(0,1fr) !important;
+    grid-template-areas:"north seal east" "west seal south" !important;
+    align-items:center !important; justify-items:center !important;
+    gap:6px 8px !important; padding:6px 8px 3px !important;
+  }
+  #gameScreen .table:before {
+    content:"实中" !important; grid-area:seal !important;
+    width:clamp(64px,9vh,92px) !important; height:clamp(64px,9vh,92px) !important;
+    aspect-ratio:1 / 1 !important; display:flex !important;
+    align-items:center !important; justify-content:center !important;
+    white-space:nowrap !important; word-break:keep-all !important;
+    writing-mode:horizontal-tb !important; letter-spacing:0 !important;
+    font-size:clamp(19px,2.5vh,29px) !important; line-height:1 !important;
+  }
+  #gameScreen .player,
+  #gameScreen .player[data-player="0"],#gameScreen .player[data-player="1"],
+  #gameScreen .player[data-player="2"],#gameScreen .player[data-player="3"] {
+    width:clamp(118px,22vh,178px) !important;
+    height:clamp(118px,22vh,178px) !important;
+    min-width:0 !important; min-height:0 !important; max-width:100% !important; max-height:100% !important;
+    aspect-ratio:1 / 1 !important; padding:clamp(7px,1.1vh,12px) !important;
+    display:flex !important; flex-direction:column !important; justify-content:center !important;
+    overflow:hidden !important; align-self:center !important; justify-self:center !important;
+  }
+  #gameScreen .pname {font-size:clamp(12px,1.55vh,16px) !important; line-height:1.2 !important;}
+  #gameScreen .role {font-size:clamp(9px,1.2vh,12px) !important; margin:4px 0 !important;}
+  #gameScreen .ink-row {gap:4px !important; margin:5px 0 !important;}
+  #gameScreen .ink {width:clamp(13px,1.8vh,20px) !important; height:8px !important;}
+  #gameScreen .pmeta {font-size:clamp(9px,1.15vh,11px) !important; gap:4px !important;}
+  #gameScreen .hand {height:clamp(165px,24vh,205px) !important; padding:16px 10px 8px !important; gap:clamp(8px,.9vw,15px) !important;}
+  #gameScreen .card {flex:0 0 clamp(118px,9.2vw,150px) !important; max-height:198px !important; padding:8px 7px !important;}
+  #gameScreen .card .cname {font-size:clamp(13px,1.4vw,17px) !important; margin:9px 0 5px !important;}
+  #gameScreen .card .desc {font-size:clamp(9px,.82vw,11px) !important; line-height:1.25 !important;}
+  #gameScreen .card .ctype {font-size:clamp(8px,.65vw,10px) !important;}
+  .end-turn-float {top:-32px !important; right:10px !important;}
+}
+
+
+/* 角色选择与金币系统 */
+.hero-select{width:min(100%,1000px);margin:auto;padding:24px 18px;text-align:center;max-height:100dvh;overflow:auto}.hero-select h2{color:var(--gold,#f0d58e);margin:10px 0 8px;font-size:clamp(24px,4vw,38px)}.gold-wallet{display:inline-block;margin:8px auto 18px;padding:8px 18px;border:1px solid #d9b66b;background:#332519;color:#f4d98d;font-size:18px}.hero-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:850px;margin:0 auto 18px}.hero-card{position:relative;text-align:left;padding:16px;border:2px solid #b9944f;background:linear-gradient(145deg,#3b2a1c,#211810);color:#f3e3b3;min-height:150px;box-shadow:4px 4px 0 #100b07}.hero-card h3{font-size:22px;margin:0 0 8px;color:#ffe49b}.hero-card p{font-size:14px;line-height:1.55;margin:6px 0}.hero-card .hero-cost{color:#e9c46e;font-weight:bold}.hero-card button{margin-top:8px;width:100%}.hero-card.locked{opacity:.9;border-color:#80643c}.hero-card.selected-hero{border-color:#ffe38a;box-shadow:0 0 0 2px #eac66b,5px 5px 0 #100b07}.hero-card .hero-status{position:absolute;right:12px;top:12px;font-size:11px;color:#c8b17a}.hero-select .controls{justify-content:center}.hero-select .overlaytext{max-width:700px;margin:12px auto}.hero-skill-tag{display:inline-block;padding:3px 7px;margin:0 0 5px;border:1px solid #987744;color:#f3d98e;font-size:12px}
+@media(max-width:600px){.hero-cards{gap:8px}.hero-card{padding:11px;min-height:170px}.hero-card h3{font-size:18px}.hero-card p{font-size:12px}}
+</style></head>
+<body>
+<div id="app">
+<section id="home" class="screen"><div class="menu"><div class="pixel-mark">SHIZHONG CAMPUS · CARD BATTLE</div><div class="title">实中杀</div><div class="subtitle">实验中学校园策略卡牌 · 像素版</div><div class="campus-art"><div class="tree"></div><div class="building"></div><div class="building" style="height:83px;width:110px"><span></span></div><div class="tree"></div></div><div class="menu-buttons"><button class="primary" id="startBtn">▶ 直接开始游戏</button><button id="tutorialBtn">▣ 查看新手教程</button></div><div class="overlaytext">1 名玩家 · 3 名高难度机器人<br>角色技能可选 · 金币自动保存</div><div class="byline">by s1rius and GPT</div></div></section>
+<section id="tutorialScreen" class="screen hidden"><div class="tutorial"><h2>▣ 实中杀 · 新手教程</h2><ol><li><b>目标：</b>你将与 3 个机器人进行四人身份局。主公、忠臣要合作；反贼要击败主公；内奸要争取最后独自获胜。</li><li><b>墨水就是生命：</b>每名角色最多有 3 段墨水。受到伤害失去 1 段，降到 0 就退场。「下课」等恢复牌可以补回墨水，但不能超过 3。</li><li><b>你的回合：</b>摸 2 张牌，然后使用手牌。普通「作业」每回合限用 1 次；「作业检查」等锦囊有额外效果。结束回合会自动轮到机器人。</li><li><b>卡牌：</b>作业是攻击；下课、课间操可以恢复；翻开课本可抵消攻击；考试、临时调座位、老师拖堂等会改变局势；文具装备提供持续效果。</li><li><b>机器人：</b>会评估墨水、身份线索、威胁、手牌和卡牌组合，尝试优先处理危险目标。机器人只依据公开信息推理，不读取你的隐藏手牌。</li><li><b>选择目标与攻防：</b>点击手牌后卡牌会放大、周围手牌会让位；需要指定目标的卡牌，再点击高亮角色即可使用，无需打开规则详情。机器人攻击你时，若你有防御牌，会出现响应窗口，可选择防御或承受效果；机器人也会根据局势决定是否防御。</li></ol><p class="overlaytext">提示：本版本是可玩的原型，后续可以继续扩充卡牌数量、角色技能和更深入的 AI 搜索。</p><div class="controls"><button class="primary" id="tutorialStart">明白了，开始游戏</button><button id="backHome">返回主菜单</button></div></div></section>
+<section id="heroSelectScreen" class="screen hidden"><div class="hero-select"><div class="pixel-mark">SHIZHONG CAMPUS · HERO SELECT</div><h2>选择你的校园角色</h2><div class="gold-wallet">金币：<strong id="goldBalance">0</strong> <span>◈</span></div><div id="heroCards" class="hero-cards"></div><div class="controls"><button id="heroBackBtn">返回主菜单</button></div><p class="overlaytext">角色技能只影响本局；金币会保存在此浏览器中。清除浏览器数据可能导致金币丢失。</p></div></section>
+<section id="gameScreen" class="hidden"><div class="game"><div id="table" class="table"></div><div class="hand-dock"><div id="hand" class="hand"></div><button class="primary end-turn-float" id="endTurnBtn" aria-label="结束回合">结束回合 ↦</button><button id="cancelTargetBtn" class="hidden">取消选目标</button></div><div class="sr-only" aria-hidden="true"><span id="roundText">第 1 轮</span><span id="deckText">牌堆 0</span><span id="turnBanner">你的回合</span><span id="handCount">0 张</span><div id="log"></div><button id="helpBtn" type="button">教程</button><button id="restartBtn" type="button">重新开始</button><button id="menuBtn" type="button">主菜单</button></div></div></section>
+</div><div id="modalRoot"></div><div id="toastRoot"></div>
+<script>
+(()=>{'use strict';
+window.addEventListener('error',function(ev){try{var box=document.getElementById('runtimeError');if(!box){box=document.createElement('div');box.id='runtimeError';box.style.cssText='position:fixed;z-index:99999;left:8px;right:8px;bottom:8px;padding:12px;background:#351b18;color:#fff0d0;border:2px solid #e8c778;font:12px/1.5 monospace;white-space:pre-wrap;overflow-wrap:anywhere';document.body.appendChild(box)}box.textContent='游戏遇到一个运行错误，请把这段提示发给我：\n'+(ev.message||'未知错误')+'\n'+(ev.filename||'')+':'+(ev.lineno||'')}catch(_){}});
+
+const $=id=>document.getElementById(id);const rand=n=>Math.floor(Math.random()*n);const pick=a=>a[rand(a.length)];const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const CARD_DEFS=[
+// attack
+['作业','攻击','attack','对一名其他角色造成 1 点伤害。','damage'],['作业','攻击','attack','对一名其他角色造成 1 点伤害。','damage'],['突击作业','攻击','attack','攻击。若目标没有应对，额外弃置其 1 张手牌。','assault'],['小测验','攻击','attack','目标若手牌少于 2 张，造成伤害；否则弃 1 张牌。','quiz'],['点名回答','攻击','attack','目标需要弃 1 张牌，否则失去 1 段墨水。','rollcall'],['作业检查','锦囊','trick','目标弃置 1 张手牌；若无手牌则失去 1 段墨水。','inspect'],['粉笔头','攻击','attack','造成 1 点伤害；若你装备了黑板擦，可再抽 1 张牌。','chalk'],['临时测验','锦囊','trick','所有其他角色展示一张手牌，手牌最多者弃 1 张。','popquiz'],['课代表催交','锦囊','trick','指定目标弃 2 张牌；不足则失去 1 段墨水。','collect'],['老师提问','攻击','attack','目标可以弃一张功能牌来躲过伤害。','question'],['周测卷','攻击','attack','造成 1 点伤害。若目标墨水为 1，额外弃 1 张牌。','test'],['错题本','锦囊','trick','目标弃 1 张牌；若弃的是攻击牌，你摸 1 张牌。','wrongbook'],
+// defense/heal
+['翻开课本','防御','trick','抵消一次对你的普通攻击。','dodge'],['翻开课本','防御','trick','抵消一次对你的普通攻击。','dodge'],['下课','恢复','heal','恢复自己 1 段墨水，最多恢复到 3。','heal'],['下课','恢复','heal','恢复自己 1 段墨水，最多恢复到 3。','heal'],['课间操','恢复','heal','恢复 1 段墨水；若墨水已满，改为摸 1 张牌。','recess'],['医务室','恢复','heal','恢复 1 段墨水并摸 1 张牌。','nurse'],['请假条','防御','heal','受到伤害时可使用，防止 1 点伤害；也可在自己回合恢复 1 段墨水。','pass'],['认真听讲','防御','trick','本回合获得“专注”：下一次受到伤害时摸 1 张牌并减少伤害 1 点。','focus'],['订正作业','恢复','heal','弃 1 张牌，恢复 1 段墨水；若没有可弃的牌则只恢复。','correct'],['课间聊天','恢复','heal','你与一名其他角色各摸 1 张牌。','chat'],
+// utility
+['早读','锦囊','trick','摸 2 张牌。','draw2'],['图书馆自习','锦囊','trick','摸 3 张牌，然后弃 1 张牌。','study'],['临时调座位','锦囊','trick','与一名其他角色交换各 1 张随机手牌。','swap'],['老师拖堂','锦囊','trick','目标下回合开始时少摸 1 张牌。','detain'],['突击听写','锦囊','trick','目标随机弃 1 张牌；若无牌，你摸 1 张。','dictation'],['班级通知','锦囊','trick','所有存活角色各摸 1 张牌。','notice'],['运动会','锦囊','trick','所有其他角色弃 1 张牌，若不愿或无牌则失去 1 段墨水。','sports'],['停电了','锦囊','trick','所有角色本轮装备失效，并各弃 1 张牌（你除外）。','blackout'],['突发检查','锦囊','trick','目标展示手牌，你选择其中一张令其弃掉。','search'],['小组合作','锦囊','trick','选择一名角色，你们各摸 2 张牌。','team'],['班会发言','锦囊','trick','所有其他角色按顺序选择：摸 1 张牌或弃 1 张牌。','meeting'],['借支笔','锦囊','trick','从一名手牌多于你的角色处随机获得 1 张牌。','borrow'],['收作业','锦囊','trick','所有手牌数多于你的角色弃 1 张牌。','collectAll'],['课表调整','锦囊','trick','跳过目标下回合的额外摸牌效果。','schedule'],['广播操','锦囊','trick','摸 1 张牌并获得 1 点临时护盾。','exercise'],['期中考试','锦囊','trick','目标判定：红色则弃 2 张牌，黑色则失去 1 段墨水。','midterm'],
+// equipment
+['黑板擦','装备','equip','装备后，使用“粉笔头”额外摸 1 张牌；受到锦囊伤害时有概率抵消。','eraser'],['备用水笔','装备','equip','装备后，最大墨水仍为 3；每回合第一次造成伤害时摸 1 张牌。','pen'],['错题整理夹','装备','equip','装备后，每回合第一次弃牌后摸 1 张牌。','folder'],['课代表袖标','装备','equip','装备后，使用“作业检查”时可额外摸 1 张牌。','badge'],['保温杯','装备','equip','装备后，回合开始时若墨水不满，有 25% 概率恢复 1 段。','cup'],['运动鞋','装备','equip','装备后，每轮第一次成为攻击目标时有机会闪避。','shoes'],['荧光笔','装备','equip','装备后，摸牌类卡牌额外摸 1 张（每回合一次）。','marker'],['笔记本','装备','equip','装备后，回合结束时若手牌少于 2 张，摸 1 张牌。','notebook'],['校园卡','装备','equip','装备后，第一次被迫弃牌时可以免除。','campuscard'],['耳塞','装备','equip','装备后，抵消一次“老师拖堂”或“老师提问”。','earplugs'],
+// special
+['临时加分','锦囊','trick','你摸 1 张牌；下一次造成伤害时额外造成 1 点伤害。','bonus'],['年级大会','锦囊','trick','所有其他角色展示身份线索：手牌最多者弃 1 张牌。','assembly'],['空白草稿纸','锦囊','trick','弃掉此牌并选择一张弃牌堆里的非装备牌加入手牌。','draft'],['免作业券','防御','heal','取消一张对你的“作业”或“突击作业”，并摸 1 张牌。','coupon'],['下周再说','锦囊','trick','目标跳过下回合的第一次出牌阶段。','later'],['临时换教室','锦囊','trick','你摸 2 张牌，目标随机弃 1 张牌。','roomchange'],['学霸笔记','锦囊','trick','摸 2 张牌；若你墨水不满，改为摸 1 张并恢复 1 段墨水。','topnotes'],['老师表扬','恢复','heal','恢复 1 段墨水并获得 1 张牌。','praise'],['迟到登记','锦囊','trick','目标下回合少摸 1 张牌，并弃置一张随机手牌。','late'],['值日生','锦囊','trick','清除自己一个负面状态，并摸 1 张牌。','duty'],
+// 额外加入攻击牌，让抽牌和初始手牌中更容易出现进攻选择
+['作业','攻击','attack','对一名其他角色造成 1 点伤害。','damage'],['作业','攻击','attack','对一名其他角色造成 1 点伤害。','damage'],['作业','攻击','attack','对一名其他角色造成 1 点伤害。','damage'],['突击作业','攻击','attack','攻击。若目标没有应对，额外弃置其 1 张手牌。','assault'],['粉笔头','攻击','attack','造成 1 点伤害；若你装备了黑板擦，可再抽 1 张牌。','chalk'],['周测卷','攻击','attack','造成 1 点伤害。若目标墨水为 1，额外弃 1 张牌。','test'],['点名回答','攻击','attack','目标需要弃 1 张牌，否则失去 1 段墨水。','rollcall']
+];
+const NAMES=['你','机器人 A','机器人 B','机器人 C'];const ARCH=['战术计算型','谋略推理型','激进压制型'];const ROLE_NAMES={lord:'主公',loyal:'忠臣',rebel:'反贼',spy:'内奸'};const ROLE_GOAL={lord:'与忠臣合作，击败反贼和内奸',loyal:'保护主公，击败反贼和内奸',rebel:'击败主公',spy:'先消灭其他势力，争取最后存活'};
+let S=null,selectedCard=null,targetMode=null,waiting=false,logLines=[],renderedHandIds=new Set();
+const HEROES={
+ sports:{name:'体育委员',cost:0,unlocked:true,skill:'运动冲锋',desc:'每回合第一次使用攻击牌时，有 35% 概率额外摸 1 张牌。',skillKey:'sports'},
+ teacher:{name:'老师',cost:0,unlocked:true,skill:'临场点拨',desc:'每回合第一次受到伤害时，有 25% 概率将伤害减少 1 点。',skillKey:'teacher'},
+ monitor:{name:'班长',cost:200,unlocked:false,skill:'班级统筹',desc:'每回合第一次使用锦囊牌后摸 1 张牌。',skillKey:'monitor'},
+ tech:{name:'电教委员',cost:400,unlocked:false,skill:'设备支援',desc:'回合开始时若手牌少于 4 张，额外摸 1 张牌（每回合一次）。',skillKey:'tech'}
+};
+function readCookie(name){try{const m=document.cookie.match(new RegExp('(?:^|; )'+name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'=([^;]*)'));if(m)return decodeURIComponent(m[1])}catch(_){}try{return localStorage.getItem(name)||''}catch(_){}return ''}
+function writeCookie(name,value,days=3650){let ok=false;try{document.cookie=name+'='+encodeURIComponent(value)+'; max-age='+(days*86400)+'; path=/; SameSite=Lax';ok=document.cookie.indexOf(name+'=')>=0}catch(_){}try{localStorage.setItem(name,String(value))}catch(_){}return ok}
+function loadProfile(){let gold=parseInt(readCookie('shizhong_gold'),10);if(!Number.isFinite(gold)||gold<0)gold=0;let unlocked=readCookie('shizhong_heroes').split(',').filter(Boolean);if(!unlocked.length)unlocked=['sports','teacher'];unlocked.forEach(k=>{if(HEROES[k])HEROES[k].unlocked=true});HEROES.sports.unlocked=true;HEROES.teacher.unlocked=true;return {gold,unlocked}}
+let profile=loadProfile(),chosenHero='sports';
+function saveProfile(){writeCookie('shizhong_gold',String(profile.gold));writeCookie('shizhong_heroes',Object.keys(HEROES).filter(k=>HEROES[k].unlocked).join(','));}
+function renderHeroSelect(){profile=loadProfile();$('goldBalance').textContent=profile.gold;$('heroCards').innerHTML=Object.entries(HEROES).map(([key,h])=>`<article class="hero-card ${h.unlocked?'':'locked'} ${chosenHero===key?'selected-hero':''}"><span class="hero-status">${h.unlocked?'已解锁':'未解锁'}</span><h3>${h.name}</h3><span class="hero-skill-tag">技能：${h.skill}</span><p>${h.desc}</p>${h.unlocked?`<button class="primary" data-choose-hero="${key}">${chosenHero===key?'当前选择':'选择角色'}</button>`:`<p class="hero-cost">价格：${h.cost} 金币</p><button data-buy-hero="${key}" ${profile.gold<h.cost?'disabled':''}>购买解锁</button>`}</article>`).join('');$('heroCards').querySelectorAll('[data-choose-hero]').forEach(b=>b.onclick=()=>{chosenHero=b.dataset.chooseHero;renderHeroSelect()});$('heroCards').querySelectorAll('[data-buy-hero]').forEach(b=>b.onclick=()=>{const key=b.dataset.buyHero,h=HEROES[key];if(!h||h.unlocked||profile.gold<h.cost)return;profile.gold-=h.cost;h.unlocked=true;saveProfile();chosenHero=key;renderHeroSelect();toast('解锁角色：'+h.name)});}
+function openHeroSelect(){profile=loadProfile();renderHeroSelect();$('home').classList.add('hidden');$('tutorialScreen').classList.add('hidden');$('gameScreen').classList.add('hidden');$('heroSelectScreen').classList.remove('hidden')}
+function startSelectedGame(){if(!HEROES[chosenHero]||!HEROES[chosenHero].unlocked)chosenHero='sports';$('heroSelectScreen').classList.add('hidden');$('gameScreen').classList.remove('hidden');newGame();}
+
+// Web Audio 合成短音效，不加载外部资源；首次点击后解锁，适配手机浏览器。
+let audioCtx=null,audioReady=false;
+function unlockAudio(){try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;audioCtx=audioCtx||new AC();if(audioCtx.state==='suspended')audioCtx.resume();audioReady=true;}catch(_){}}
+function sfx(kind='tap'){if(!audioReady||!audioCtx)return;try{const now=audioCtx.currentTime;const seq={tap:[[540,.045,'square',.025]],select:[[420,.05,'triangle',.035],[680,.07,'triangle',.025]],draw:[[440,.06,'triangle',.03],[620,.08,'triangle',.025]],attack:[[190,.11,'sawtooth',.045],[110,.16,'square',.035],[520,.08,'triangle',.025]],hit:[[95,.13,'sawtooth',.05],[155,.09,'square',.025]],heal:[[523,.08,'sine',.035],[659,.1,'sine',.03],[784,.14,'sine',.025]],discard:[[320,.07,'square',.025],[210,.09,'triangle',.02]],equip:[[440,.07,'triangle',.025],[554,.07,'triangle',.025],[740,.12,'sine',.025]],death:[[260,.12,'sawtooth',.035],[180,.15,'sawtooth',.03],[90,.2,'triangle',.025]],kill:[[90,.18,'sawtooth',.065],[145,.22,'square',.05],[58,.28,'sawtooth',.07],[680,.08,'triangle',.035],[420,.12,'sawtooth',.04]],turn:[[330,.06,'square',.02],[494,.09,'triangle',.025]],defend:[[740,.07,'square',.025],[590,.1,'triangle',.03]]};for(const [f,d,w,v] of (seq[kind]||seq.tap)){const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=w;o.frequency.setValueAtTime(f,now);g.gain.setValueAtTime(Math.min(.22,v*2.8),now);g.gain.exponentialRampToValueAtTime(.001,now+d);o.connect(g);g.connect(audioCtx.destination);o.start(now);o.stop(now+d+.015)}}catch(_){}}
+window.addEventListener('pointerdown',unlockAudio,{once:true,passive:true});
+function cardObj(def){return {name:def[0],type:def[1],style:def[2],desc:def[3],effect:def[4],id:Math.random().toString(36).slice(2,10),suit:pick(['♥','♦','♣','♠']),rank:1+rand(13)}}
+function buildDeck(){let d=CARD_DEFS.map(cardObj);while(d.length<100)d.push(cardObj(pick(CARD_DEFS)));return d.sort(()=>Math.random()-.5)}
+function newGame(){S={players:[],deck:buildDeck(),discard:[],turn:0,round:1,phase:'start',over:false,processing:false,turnCount:0,history:[],pending:null};selectedCard=null;targetMode=null;waiting=false;logLines=[];renderedHandIds=new Set();
+ let roles=['lord','loyal','rebel','spy'].sort(()=>Math.random()-.5);const heroNames=[HEROES[chosenHero]?.name||'体育委员','战术计算型','谋略推理型','激进压制型'];
+ for(let i=0;i<4;i++){let p={id:i,name:NAMES[i],hero:heroNames[i],heroKey:i===0?chosenHero:['sports','teacher','monitor','tech'][rand(4)],role:roles[i],hp:3,maxHp:3,hand:[],alive:true,equip:{},shield:0,bonusDamage:0,focus:false,skipDraw:0,skipPlay:0,turns:0,usedAttack:false,usedDrawBonus:false,usedDiscardBonus:false,usedEquipBonus:false,usedCoupon:false,damageDealt:0,damageTaken:0,knownRole:i===0,brain:i===0?'human':ARCH[i-1],lastActions:[],threat:0};if(i>0)p.hero=HEROES[p.heroKey].name;S.players.push(p)}
+ // deal 4 each then starting hand cap is intentional
+ for(let p of S.players)for(let j=0;j<4;j++)p.hand.push(drawRaw());S.turn=0;S.players[0].turns=1;S.phase='play';log('铃声响起！四人牌局开始。你的身份是「'+ROLE_NAMES[S.players[0].role]+'」。目标：'+ROLE_GOAL[S.players[0].role]+'。','highlight');log('机器人启用高难度策略：局势评估、记牌、身份推理与多步候选行动评分。');render();startHumanTurn(true)}
+function drawRaw(){if(!S.deck.length){if(S.discard.length){S.deck=S.discard.splice(0).sort(()=>Math.random()-.5);log('弃牌堆洗回牌堆。')}else return cardObj(pick(CARD_DEFS))}return S.deck.pop()}
+function draw(p,n=1,reason='摸牌'){if(!p||!p.alive||!S||!S.players.includes(p)||S.over)return;for(let i=0;i<n;i++)p.hand.push(drawRaw());if(n>0){sfx('draw');animateDraw(p,Math.min(n,3));log(p.name+' '+reason+' '+n+' 张牌。')}}
+function playerNode(p){return $('table').querySelector(`[data-player="${p.id}"]`)}
+function animateAction(p,label,color='#f0d58e'){const node=playerNode(p);if(!node)return;if(/恢复|墨水已满/.test(label)){sfx('heal');node.classList.add('heal-flash');setTimeout(()=>node.classList.remove('heal-flash'),600)}else if(/弃牌/.test(label)){sfx('discard')}else if(/装备/.test(label)){sfx('equip')}else if(/出牌/.test(label)){sfx('tap')}node.classList.remove('action-pulse');void node.offsetWidth;node.classList.add('action-pulse');setTimeout(()=>node.classList.remove('action-pulse'),520);const r=node.getBoundingClientRect(),el=document.createElement('div');el.className='action-float';el.textContent=label;el.style.color=color;el.style.left=(r.left+r.width/2)+'px';el.style.top=(r.top+r.height*.36)+'px';document.body.appendChild(el);setTimeout(()=>el.remove(),850)}
+function spawnSparks(node,color='#ffe39a',count=10){if(!node)return;const r=node.getBoundingClientRect();for(let i=0;i<count;i++){const el=document.createElement('i');el.className='fx-spark';el.style.setProperty('--spark',color);el.style.left=(r.left+r.width/2)+'px';el.style.top=(r.top+r.height/2)+'px';const a=Math.PI*2*i/count+(Math.random()-.5)*.35,dist=18+Math.random()*48;el.style.setProperty('--sx',(Math.cos(a)*dist)+'px');el.style.setProperty('--sy',(Math.sin(a)*dist)+'px');document.body.appendChild(el);setTimeout(()=>el.remove(),620)}}
+function megaExplosion(node,label='击杀！'){if(!node)return;const r=node.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2;const boom=document.createElement('div');boom.className='mega-explosion';boom.style.setProperty('--boom-x',x+'px');boom.style.setProperty('--boom-y',y+'px');boom.innerHTML='<i class="boom-ring"></i><i class="boom-core"></i><b class="boom-word">'+label+'</b>';document.body.appendChild(boom);spawnSparks(node,'#fff2a1',64);spawnSparks(node,'#ffcf4d',54);spawnSparks(node,'#ff5735',42);spawnSparks(node,'#ffffff',24);const game=document.querySelector('#gameScreen .game');if(game){game.classList.remove('screen-shake');void game.offsetWidth;game.classList.add('screen-shake');setTimeout(()=>game.classList.remove('screen-shake'),420)}setTimeout(()=>boom.remove(),950)}
+function animateDraw(p,n=1){const node=playerNode(p);if(!node)return;const r=node.getBoundingClientRect();node.classList.add('draw-glow');setTimeout(()=>node.classList.remove('draw-glow'),520);const dest=p.id===0?$('hand').getBoundingClientRect():r;for(let i=0;i<n;i++){const el=document.createElement('i');el.className='draw-fly-card';const sx=innerWidth*.5+(i-(n-1)/2)*18,sy=Math.max(40,innerHeight*.24);const tx=dest.left+dest.width/2+(i-(n-1)/2)*12,ty=dest.top+dest.height*.55;el.style.setProperty('--from-x',(tx-sx)+'px');el.style.setProperty('--from-y',(ty-sy)+'px');el.style.setProperty('--to-x',tx+'px');el.style.setProperty('--to-y',ty+'px');document.body.appendChild(el);setTimeout(()=>el.remove(),520)}}
+function discardCard(p,index,reason='弃牌'){if(index<0||index>=p.hand.length)return null;let c=p.hand.splice(index,1)[0];S.discard.push(c);animateAction(p,'弃牌 −1','#e99a77');log(p.name+' '+reason+'「'+c.name+'」。');if(p.equip.folder&&!p.usedDiscardBonus&&p.alive){p.usedDiscardBonus=true;draw(p,1,'错题整理夹效果：摸到');}return c}
+function alive(){return S.players.filter(p=>p.alive)}function me(){return S.players[0]}function byId(id){return S.players.find(p=>p.id===id)}function log(msg,cls=''){logLines.push({msg,cls});if(logLines.length>100)logLines.shift();renderLog()}
+function toast(msg){const el=document.createElement('div');el.className='toast';el.textContent=msg;$('toastRoot').appendChild(el);setTimeout(()=>el.remove(),1700)}
+function renderLog(){const el=$('log');if(!el)return;el.innerHTML=logLines.slice(-30).map(x=>`<p class="${x.cls}">${escapeHtml(x.msg)}</p>`).join('');el.scrollTop=el.scrollHeight}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function render(){if(!S)return;$('roundText').textContent='第 '+S.round+' 轮';$('deckText').textContent='牌堆 '+S.deck.length;$('turnBanner').textContent=S.over?'对局结束':S.turn===0?'你的回合 · 出牌或调整手牌':'轮到 '+S.players[S.turn].name+' · '+S.players[S.turn].brain;$('turnBanner').classList.toggle('thinking',!!S.processing&&S.turn!==0);
+const seatClass={0:'south',1:'north',2:'west',3:'east'};
+$('table').innerHTML=S.players.map(p=>{let current=!S.over&&S.turn===p.id;let target=targetMode&&p.alive&&p.id!==0&&p.id!==targetMode.source;let roleVisible=p.id===0||p.role==='lord'&&S.players[0].role==='lord'||!p.alive;let backs=p.id===0?'':`<div class="opponent-fan" aria-label="${p.hand.length} 张隐藏手牌">${Array.from({length:Math.min(5,p.hand.length)},(_,i)=>`<i style="--n:${i}"></i>`).join('')}</div>`;return `<div class="player ${seatClass[p.id]} ${current?'current':''} ${!p.alive?'dead':''} ${p.id===0?'you':''} ${target?'targetable':''}" data-player="${p.id}" data-seat="${seatClass[p.id]}"><div class="pname"><span>${escapeHtml(p.name)} ${p.id===0?'(你)':''}</span><span class="seat">${p.id===0?'玩家':p.brain||'角色'}</span></div><div class="role ${roleVisible?'':'unknown'}">${roleVisible?ROLE_NAMES[p.role]:(p.alive?'身份未知':'身份：'+ROLE_NAMES[p.role])} · ${p.hero}</div><div class="ink-row">${Array.from({length:3},(_,i)=>`<span class="ink ${i<p.hp?'full':''}"></span>`).join('')}</div><div class="pmeta"><span>手牌 ${p.hand.length}</span><span>${Object.keys(p.equip).length?'装备 '+Object.keys(p.equip).length:'无装备'}</span>${p.shield?`<span>护盾 ${p.shield}</span>`:''}${p.focus?'<span>专注</span>':''}${p.skipDraw?'<span>拖堂</span>':''}</div>${backs}</div>`}).join('');
+$('handCount').textContent=me().hand.length+' 张';const currentHandIds=new Set(me().hand.map(c=>c.id));$('hand').classList.toggle('has-selection',selectedCard!==null);$('hand').innerHTML=me().hand.map((c,i)=>`<button class="card ${c.style} ${selectedCard===i?'selected':''} ${selectedCard!==null&&i<selectedCard?'fan-left':''} ${selectedCard!==null&&i>selectedCard?'fan-right':''}" data-card="${i}" data-card-id="${c.id}" draggable="false" ${S.over||S.turn!==0||S.processing?'disabled':''}><span class="ctype">${c.type} · ${String(c.rank).padStart(2,'0')}</span><span class="pip">${c.suit}</span><span class="cname">${escapeHtml(c.name)}</span><span class="desc">${escapeHtml(c.desc)}</span></button>`).join('')||'<div class="empty">手牌空空如也。</div>';[...$('hand').querySelectorAll('.card')].forEach((el,i)=>{if(!renderedHandIds.has(el.dataset.cardId)){el.style.animationDelay=(Math.min(i,10)*24)+'ms';el.classList.add('fly-in')}});renderedHandIds=currentHandIds;$('endTurnBtn').disabled=S.over||S.turn!==0||S.processing||!!targetMode;$('restartBtn').disabled=false;$('cancelTargetBtn').classList.toggle('hidden',!targetMode);renderLog()}
+function relation(a,b){if(a.role==='spy'||b.role==='spy')return a.id===b.id?'self':'unknown';if(a.role==='lord'||a.role==='loyal')return (b.role==='lord'||b.role==='loyal')?'ally':'enemy';if(a.role==='rebel')return b.role==='rebel'?'ally':b.role==='lord'||b.role==='loyal'?'enemy':'unknown';return 'unknown'}
+function aliveRole(role){return alive().filter(p=>p.role===role)}
+function damage(target,source,amount=1,kind='普通攻击'){if(!target.alive||S.over)return false;let src=source||null;if(target.heroKey==='teacher'&&!target.heroUsedThisTurn&&amount>0&&Math.random()<.25){target.heroUsedThisTurn=true;amount=Math.max(0,amount-1);animateAction(target,'老师技能：减伤','#9edbff');if(amount===0){log(target.name+' 触发「临场点拨」，抵消了这次伤害！','highlight');return false}}if(target.equip.shoes&&Math.random()<.22){log(target.name+' 的运动鞋触发，闪避了攻击！','highlight');return false}if(target.focus){target.focus=false;draw(target,1,'专注效果摸到');log(target.name+' 专注状态抵消了 1 点伤害。');return false}if(target.shield>0){target.shield--;log(target.name+' 的临时护盾抵消了伤害。');return false}if(target.equip.eraser&&Math.random()<.25&&kind!=='普通攻击'){log(target.name+' 的黑板擦抵消了锦囊效果！');return false}if(target.equip.campuscard&&!target.usedCoupon){target.usedCoupon=true;log(target.name+' 的校园卡免除了一次负面效果。');return false}animateAction(target,'墨水 −'+amount,'#ff8871');target.hp-=amount;target.damageTaken+=amount;if(src){src.damageDealt+=amount;if(src.equip.pen&&!src.usedEquipBonus){src.usedEquipBonus=true;draw(src,1,'备用水笔效果摸到')}}log((src?src.name:'效果')+' 对 '+target.name+' 造成 '+amount+' 点伤害。','highlight');if(target.hp<=0){target.hp=0;target.alive=false;sfx('kill');const deadNode=playerNode(target);if(deadNode){deadNode.classList.add('death-burst');megaExplosion(deadNode,'击 破！');deadNode.classList.add('hit-flash');setTimeout(()=>deadNode.classList.remove('hit-flash'),650)}S.discard.push(...target.hand);target.hand=[];for(const c of Object.values(target.equip))S.discard.push(c);target.equip={};log(target.name+' 墨水耗尽，退场！','highlight');if(target.role==='rebel'&&src&&src.alive&&src.id!==target.id){draw(src,3,'击败反贼奖励摸到')}if(src&&src.role==='lord'&&target.role==='loyal'){src.hand=[];log('主公误伤忠臣，弃置全部手牌！')}}checkVictory();return true}
+function heal(p,n=1){if(!p.alive)return;let before=p.hp;p.hp=clamp(p.hp+n,0,p.maxHp);if(p.hp>before){animateAction(p,'恢复 +'+(p.hp-before),'#9de2a3');log(p.name+' 恢复 '+(p.hp-before)+' 段墨水。','highlight')}else draw(p,1,'墨水已满，改为摸到')}
+function discardRandom(p,n=1){if(!p||!p.alive||S.over)return;for(let i=0;i<n&&p.alive&&p.hand.length;i++)discardCard(p,rand(p.hand.length),'弃置')}
+function takeRandom(from,to){if(!from||!to||!from.alive||!to.alive||S.over||!from.hand.length)return false;let c=from.hand.splice(rand(from.hand.length),1)[0];to.hand.push(c);animateAction(from,'手牌 −1','#e6c47b');animateAction(to,'获得手牌 +1','#9edbff');sfx('draw');const toNode=playerNode(to);if(toNode){spawnSparks(toNode,'#9edbff',14)}log(to.name+' 从 '+from.name+' 处获得一张手牌。');return true}
+function checkVictory(){if(S.over)return;const ps=alive();if(!ps.length){finish('无人获胜，校园陷入混乱！');return}const lordAlive=ps.some(p=>p.role==='lord');const rebelsAlive=ps.some(p=>p.role==='rebel');const spies=ps.filter(p=>p.role==='spy');if(!lordAlive){if(ps.length===1&&ps[0].role==='spy')finish('内奸独自存活，获得胜利！');else finish('主公退场！反贼阵营获胜。');return}if(!rebelsAlive&&spies.length===0){finish('反贼与内奸均已退场！主公与忠臣获胜。');return}if(ps.length===1){let p=ps[0];if(p.role==='spy')finish('内奸独自存活，获得胜利！');else if(p.role==='rebel')finish('反贼存活至最后，获得胜利！');else finish('主公阵营获胜！');}}
+function finish(message){if(S.over)return;S.over=true;S.processing=false;const won=(message.includes('获胜')&&((me().role==='lord'||me().role==='loyal')&&message.includes('主公'))||(me().role==='rebel'&&message.includes('反贼'))||(me().role==='spy'&&message.includes('内奸独自存活')));const reward=won?60:20;profile=loadProfile();profile.gold+=reward;saveProfile();log('本局奖励：+'+reward+' 金币。','highlight');log('—— '+message+' ——','highlight');render();setTimeout(()=>showModal('本局结束',message+'<br><br>你的身份是：'+ROLE_NAMES[me().role]+'。<br>本局获得 <b>'+reward+' 金币</b>。'+(me().alive?'<br>你的墨水剩余 '+me().hp+' 段。':'<br>你已退场。'),[{text:'再来一局',primary:true,fn:()=>{closeModal();openHeroSelect()}},{text:'返回主菜单',fn:()=>{closeModal();showHome()}}]),250)}
+function isRed(c){return c.suit==='♥'||c.suit==='♦'}
+function cardPlayable(p,c){if(!p.alive||S.over)return false;if(c.effect==='damage'||c.effect==='assault'||c.effect==='chalk'||c.effect==='question'||c.effect==='test'||c.effect==='quiz'||c.effect==='rollcall')return !p.usedAttack||c.effect!=='damage';return true}
+function startHumanTurn(first=false){if(S.over)return;S.turn=0;S.processing=false;S.phase='play';const p=me();if(!first){p.turns++;p.usedAttack=false;p.usedDrawBonus=false;p.usedDiscardBonus=false;p.usedEquipBonus=false;p.usedCoupon=false;p.heroUsedThisTurn=false;}else {p.usedAttack=false;p.usedDrawBonus=false;p.usedDiscardBonus=false;p.usedEquipBonus=false;p.usedCoupon=false;p.heroUsedThisTurn=false;}if(p.skipDraw>0){p.skipDraw--;log('老师拖堂：你本回合少摸牌。');draw(p,1,'回合开始摸到')}else draw(p,2,first?'首回合摸到':'回合开始摸到');if(p.equip.cup&&p.hp<3&&Math.random()<.25)heal(p,1);if(p.equip.notebook&&p.hand.length<2)draw(p,1,'笔记本效果摸到');if(p.heroKey==='tech'&&p.hand.length<4&&!p.heroUsedThisTurn){p.heroUsedThisTurn=true;draw(p,1,'电教委员「设备支援」摸到')}selectedCard=null;targetMode=null;render()}
+function endHumanTurn(){sfx('turn');if(S.over||S.turn!==0||S.processing||targetMode)return;const p=me();while(p.hand.length>p.hp+2)discardCard(p,chooseHumanDiscard(),'手动弃置');p.focus=false;selectedCard=null;S.turn=1;S.processing=true;render();setTimeout(()=>runAITurn(),1100+rand(700))}
+function chooseHumanDiscard(){let i=0,best=-Infinity;me().hand.forEach((c,j)=>{let v=cardValue(c,me());if(v>best){best=v;i=j}});return i}
+function cardValue(c,p){const base={damage:7,assault:8,quiz:6,rollcall:6,inspect:7, chalk:6,test:8,question:6,dodge:8,heal:p.hp<3?10:2,recess:p.hp<3?9:4,nurse:p.hp<3?10:6,pass:6,focus:5,correct:p.hp<3?8:4,chat:5,draw2:7,study:8,swap:3,detain:5,dictation:5,notice:7,sports:6,blackout:4,search:7,team:7,meeting:5,borrow:7,collectAll:5,schedule:5,exercise:6,midterm:7,eraser:5,pen:7,folder:6,badge:6,cup:5,shoes:7,marker:6,notebook:6,campuscard:6,earplugs:4,bonus:7,assembly:5,draft:5,coupon:7,later:5,roomchange:6,topnotes:8,praise:9,late:6,duty:6};let v=base[c.effect]??4;if(c.style==='equip'&&!p.equip[c.effect])v+=2;if(c.style==='heal'&&p.hp===3)v-=4;return v}
+function scoreTarget(actor,target,effect){if(!target.alive||target.id===actor.id)return -999;let rel=relation(actor,target);let score=0;if(actor.role==='lord'||actor.role==='loyal'){score+=target.role==='rebel'?9:target.role==='spy'?4:target.role==='lord'?-12:target.role==='loyal'?-20:0}else if(actor.role==='rebel'){score+=target.role==='lord'?15:target.role==='loyal'?7:target.role==='rebel'?-18:0}else if(actor.role==='spy'){score+=target.role==='lord'?4:target.role==='rebel'?3:target.role==='loyal'?2:0}
+ score+=(3-target.hp)*2.8;score+=target.hand.length*.35;if(target.hp===1)score+=5;if(target.id===0)score+=actor.role==='rebel'?1:0;if(effect==='heal')score=-999;if(target.equip.eraser)score-=1;return score}
+function aiChooseTarget(actor,effect){let candidates=alive().filter(p=>p.id!==actor.id);if(!candidates.length)return null;return candidates.map(p=>({p,score:scoreTarget(actor,p,effect)+Math.random()*.6})).sort((a,b)=>b.score-a.score)[0].p}
+function aiChooseCard(actor){let best=null,bestScore=-Infinity;const cards=actor.hand;for(let i=0;i<cards.length;i++){let c=cards[i];let score=cardValue(c,actor);if(c.style==='equip'&&actor.equip[c.effect])score-=8;if(c.effect==='heal'&&actor.hp===3)score-=8;if(c.effect==='dodge'||c.effect==='pass'||c.effect==='coupon')score-=2;if(['damage','assault','chalk','question','test','quiz','rollcall'].includes(c.effect)&&actor.usedAttack)score-=12;if(c.effect==='draw2'||c.effect==='study'||c.effect==='notice')score+=actor.hand.length<3?3:0;if(c.effect==='bonus'&&actor.hand.some(x=>['damage','assault','chalk','test'].includes(x.effect)))score+=3;if(c.effect==='draft'&&!S.discard.some(x=>x.style!=='equip'))score-=8;if(c.effect==='swap'&&actor.hand.length>=3)score-=3;if(c.style==='equip'&&!actor.equip[c.effect])score+=2;
+ // risk-adjusted resource preservation
+ if(actor.hp===1&&['dodge','pass','coupon','heal','recess','nurse','praise'].includes(c.effect))score+=4;if(actor.hp<3&&['heal','recess','nurse','correct','praise','topnotes'].includes(c.effect))score+=4;
+ if(score>bestScore){bestScore=score;best={i,c,score}}}return best}
+function aiShouldPlay(actor,c){if(c.effect==='dodge'||c.effect==='pass'||c.effect==='coupon')return false;if(c.effect==='damage'&&actor.usedAttack)return false;if(c.effect==='heal'&&actor.hp===3)return false;if(c.effect==='correct'&&actor.hp===3)return false;if(c.style==='equip'&&actor.equip[c.effect])return false;return true}
+function aiPlayOne(actor,choice){if(!choice||!actor.alive||S.over)return false;let c=actor.hand[choice.i];if(!c||!aiShouldPlay(actor,c))return false;animateAction(actor,'出牌 '+c.name,'#f0d58e');actor.hand.splice(choice.i,1);S.discard.push(c);log(actor.name+' 使用「'+c.name+'」。');applyCard(actor,c,null,true);return true}
+function runAITurn(){if(S.over)return;let actor=S.players[S.turn];if(!actor||!actor.alive){advanceTurn();return}actor.turns++;actor.usedAttack=false;actor.usedDrawBonus=false;actor.usedDiscardBonus=false;actor.usedEquipBonus=false;actor.usedCoupon=false;actor.heroUsedThisTurn=false;actor.lastActions=[];if(actor.skipDraw>0){actor.skipDraw--;draw(actor,1,'拖堂影响下摸到')}else draw(actor,2,'回合开始摸到');if(actor.equip.cup&&actor.hp<3&&Math.random()<.25)heal(actor,1);if(actor.equip.notebook&&actor.hand.length<2)draw(actor,1,'笔记本效果摸到');if(actor.heroKey==='tech'&&actor.hand.length<4&&!actor.heroUsedThisTurn){actor.heroUsedThisTurn=true;draw(actor,1,'电教委员「设备支援」摸到')}render();let steps=0;const maxSteps=7;function step(){if(S.over)return;if(waiting){setTimeout(step,260);return}if(!actor.alive){advanceTurn();return}if(steps++>=maxSteps){aiEnd(actor);return}const choice=aiChooseCard(actor);if(!choice||choice.score<4){aiEnd(actor);return}if(!aiShouldPlay(actor,choice.c)){aiEnd(actor);return}const did=aiPlayOne(actor,choice);render();if(did)setTimeout(step,1150+rand(1000));else aiEnd(actor)}setTimeout(step,1450+rand(1100))}
+function aiEnd(actor){if(!actor||!actor.alive){advanceTurn();return}while(actor.hand.length>actor.hp+2){let idx=0,score=Infinity;actor.hand.forEach((c,i)=>{let v=cardValue(c,actor);if(v<score){score=v;idx=i}});discardCard(actor,idx,'回合结束弃置')}actor.focus=false;advanceTurn()}
+function advanceTurn(){if(S.over)return;const alivePlayers=alive();if(!alivePlayers.length){checkVictory();return}let next=S.turn;for(let i=0;i<4;i++){next=(next+1)%4;if(S.players[next].alive)break}if(next<=S.turn)S.round++;S.turn=next;S.processing=false;selectedCard=null;targetMode=null;if(next===0){startHumanTurn();render()}else{render();setTimeout(()=>runAITurn(),1050+rand(700))}}
+function askTarget(source,effect,callback,opts={}){targetMode={source:source.id,effect,callback,opts};render()}
+let previewTimer=null;function useSelected(i,confirmed=false){if(S.over||S.turn!==0||S.processing||targetMode)return;const p=me(),c=p.hand[i];if(!c)return;if(!cardPlayable(p,c)){toast('这张牌本回合暂时无法使用');return}selectedCard=i;sfx('select');const el=$('hand').querySelector(`[data-card="${i}"]`);if(el){$('hand').querySelectorAll('.card').forEach((x,j)=>{x.classList.remove('selected','card-inspect-lift','fan-left','fan-right');if(j<i)x.classList.add('fan-left');else if(j>i)x.classList.add('fan-right')});el.classList.add('selected','card-inspect-lift');$('hand').classList.add('has-selection')}const effect=c.effect;const targetEffects=['damage','assault','quiz','rollcall','inspect','chalk','question','test','wrongbook','collect','detain','dictation','search','team','borrow','schedule','midterm','later','roomchange','late','swap','chat'];if(targetEffects.includes(effect)){targetMode={source:p.id,effect,callback:target=>playCardAt(i,target),opts:{}};render();return}playCardAt(i,null)}
+function animateCardPlay(index,target,source=me()){const card=$('hand').querySelector(`[data-card="${index}"]`);const node=target?playerNode(target):playerNode(source);if(!card||!node)return;const a=card.getBoundingClientRect(),b=node.getBoundingClientRect(),ghost=card.cloneNode(true);ghost.removeAttribute('data-card');ghost.removeAttribute('data-card-id');ghost.disabled=true;ghost.style.cssText+=`;position:fixed!important;left:${a.left}px!important;top:${a.top}px!important;width:${a.width}px!important;height:${a.height}px!important;min-height:0!important;z-index:9999!important;margin:0!important;pointer-events:none!important;transform:none;` ;document.body.appendChild(ghost);const dx=b.left+b.width/2-(a.left+a.width/2),dy=b.top+b.height/2-(a.top+a.height/2);if(ghost.animate)ghost.animate([{transform:'translate(0,0) scale(1) rotate(0deg)',opacity:1},{transform:`translate(${dx}px,${dy}px) scale(.22) rotate(9deg)`,opacity:.05}],{duration:390,easing:'cubic-bezier(.2,.75,.25,1)',fill:'forwards'});setTimeout(()=>ghost.remove(),430)}
+function playCardAt(index,target){const p=me(),c=p.hand[index];if(!c||S.over)return;animateCardPlay(index,target,p);targetMode=null;selectedCard=null;p.hand.splice(index,1);S.discard.push(c);log(p.name+' 使用「'+c.name+'」。');applyCard(p,c,target,false);render()}
+function applyCard(p,c,target,ai=false){if(!p||!p.alive||S.over)return; if(target&&!target.alive){log('目标已退场，卡牌效果取消。');return}const eff=c.effect;if(p.heroKey==='monitor'&&c.style==='trick'&&!p.heroUsedThisTurn){p.heroUsedThisTurn=true;draw(p,1,'班长「班级统筹」摸到')}const choose=()=>target&&target.alive?target:aiChooseTarget(p,eff);switch(eff){case'damage':case'assault':case'chalk':case'question':case'test':case'quiz':case'rollcall':{let t=choose();if(!t)return;if(p.usedAttack&&eff==='damage'){log(p.name+' 本回合已使用过普通作业。');return}p.usedAttack=true;resolveAttack(p,c,t,eff,ai);if(p.heroKey==='sports'&&!p.heroUsedThisTurn){p.heroUsedThisTurn=true;if(Math.random()<.35)draw(p,1,'体育委员「运动冲锋」摸到')}break}
+ case'inspect':case'dictation':case'late':{let t=choose();if(!t)return;if(t.hand.length)discardRandom(t,1);else draw(p,1,'目标无手牌，额外摸到');if(eff==='late')t.skipDraw++;break}
+ case'wrongbook':{let t=choose();if(!t)return;if(t.hand.length){let ix=rand(t.hand.length);let dc=discardCard(t,ix,'被错题本迫使弃置');if(dc&&dc.style==='attack')draw(p,1,'错题本效果摸到')}break}
+ case'collect':{let t=choose();if(!t)return;let n=Math.min(2,t.hand.length);if(n)discardRandom(t,n);if(n<2)damage(t,p,1,'作业催交');break}
+ case'detain':case'schedule':case'later':{let t=choose();if(!t)return;if(eff==='detain')t.skipDraw++;else if(eff==='schedule')t.skipDraw++;else t.skipPlay++;log(t.name+' 被校园规则限制了下回合行动。');break}
+ case'sports':for(const t of alive().filter(x=>x.id!==p.id)){if(t.hand.length)discardRandom(t,1);else damage(t,p,1,'运动会');}break;
+ case'search':{let t=choose();if(!t)return;if(t.hand.length){const ix=rand(t.hand.length);discardCard(t,ix,'被突发检查没收')}else draw(p,1);break}
+ case'team':{let t=choose();if(!t)return;draw(p,2,'小组合作摸到');draw(t,2,'小组合作摸到');break}
+ case'borrow':{let t=choose();if(t&&t.hand.length>p.hand.length)takeRandom(t,p);else draw(p,1,'借支笔摸到');break}
+ case'swap':{let t=choose();if(t&&t.hand.length&&p.hand.length){let a=rand(p.hand.length),b=rand(t.hand.length),x=p.hand[a];p.hand[a]=t.hand[b];t.hand[b]=x;log(p.name+' 与 '+t.name+' 交换了一张随机手牌。')}break}
+ case'chat':{let t=choose();if(t){draw(p,1,'课间聊天摸到');draw(t,1,'课间聊天摸到')}break}
+ case'midterm':{let t=choose();if(!t)return;let red=Math.random()<.5;if(red){log('考试判定为红色！');if(t.hand.length)discardRandom(t,Math.min(2,t.hand.length))}else{log('考试判定为黑色！');damage(t,p,1,'期中考试')}break}
+ case'heal':heal(p,1);break;case'recess':if(p.hp<3)heal(p,1);else draw(p,1,'课间操摸到');break;case'nurse':heal(p,1);draw(p,1,'医务室摸到');break;case'correct':if(p.hand.length)discardRandom(p,1);heal(p,1);break;case'pass':case'coupon':if(p.hp<3)heal(p,1);else draw(p,1,'免作业券摸到');break;case'praise':heal(p,1);draw(p,1,'老师表扬摸到');break;case'topnotes':if(p.hp<3){draw(p,1,'学霸笔记摸到');heal(p,1)}else draw(p,2,'学霸笔记摸到');break;
+ case'draw2':draw(p,2,'早读摸到');break;case'study':draw(p,3,'图书馆自习摸到');if(p.hand.length>p.hp+3)discardRandom(p,1);break;case'notice':for(const t of alive())draw(t,1,'班级通知摸到');break;case'meeting':for(const t of alive().filter(x=>x.id!==p.id)){if(t.hand.length>1&&Math.random()<.5)discardRandom(t,1);else draw(t,1,'班会发言摸到')}break;case'blackout':for(const t of alive().filter(x=>x.id!==p.id))discardRandom(t,1);break;case'exercise':draw(p,1,'广播操摸到');p.shield++;break;case'bonus':draw(p,1,'临时加分摸到');p.bonusDamage++;break;case'assembly':{const max=Math.max(...alive().map(x=>x.hand.length));for(const t of alive().filter(x=>x.id!==p.id&&x.hand.length===max))discardRandom(t,1);break}
+ case'draft':{let ix=S.discard.findIndex(x=>x.style!=='equip');if(ix>=0)p.hand.push(S.discard.splice(ix,1)[0]);else draw(p,1,'草稿纸摸到');break}case'roomchange':draw(p,2,'临时换教室摸到');{let t=choose();if(t)discardRandom(t,1)}break;case'duty':p.focus=false;p.skipDraw=0;draw(p,1,'值日生摸到');break;
+ case'focus':p.focus=true;break;
+ case'eraser':case'pen':case'folder':case'badge':case'cup':case'shoes':case'marker':case'notebook':case'campuscard':case'earplugs':p.equip[eff]=c;animateAction(p,'装备 '+c.name,'#f0d58e');log(p.name+' 装备了「'+c.name+'」。');break;
+ case'collectAll':for(const t of alive().filter(x=>x.id!==p.id&&x.hand.length>p.hand.length))discardRandom(t,1);break;
+ case'popquiz':{let max=0;for(const t of alive().filter(x=>x.id!==p.id)){if(t.hand.length>max)max=t.hand.length}for(const t of alive().filter(x=>x.id!==p.id&&x.hand.length===max&&max>0))discardRandom(t,1);break}
+ default:draw(p,1,'卡牌效果摸到');}
+ if(p.bonusDamage>0&&['damage','assault','chalk','question','test','quiz','rollcall'].includes(eff)){p.bonusDamage--;let t=target||null;if(t&&t.alive)damage(t,p,1,'临时加分')}checkVictory();}
+const ATTACK_FX={damage:{color:'#ff5a45',glyph:'✦',label:'作业'},assault:{color:'#ff3f32',glyph:'⚔',label:'突击'},chalk:{color:'#f4f1d6',glyph:'●',label:'粉笔'},question:{color:'#8ad8ff',glyph:'?',label:'提问'},test:{color:'#c6a4ff',glyph:'✧',label:'周测'},quiz:{color:'#78cfff',glyph:'▣',label:'小测'},rollcall:{color:'#ffd56f',glyph:'!',label:'点名'}};
+function animateAttack(source,target,c){sfx('attack');const a=$('table').querySelector(`[data-player="${source.id}"]`),b=$('table').querySelector(`[data-player="${target.id}"]`);if(!a||!b)return;const r1=a.getBoundingClientRect(),r2=b.getBoundingClientRect(),x1=r1.left+r1.width/2,y1=r1.top+r1.height/2,x2=r2.left+r2.width/2,y2=r2.top+r2.height/2;const cfg=ATTACK_FX[c.effect]||ATTACK_FX.damage;const dx=x2-x1,dy=y2-y1,cx=(x1+x2)/2-dy*.12,cy=(y1+y2)/2+dx*.12;const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox',`0 0 ${innerWidth} ${innerHeight}`);svg.setAttribute('class','combat-fx');svg.setAttribute('aria-hidden','true');svg.innerHTML=`<defs><filter id="fxGlow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><path d="M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}" stroke="${cfg.color}" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="10 8" opacity=".9" class="fx-trail"/><circle r="9" fill="${cfg.color}" stroke="#fff2c9" stroke-width="2" filter="url(#fxGlow)"><animateMotion dur=".48s" fill="freeze" path="M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}"/></circle><text x="${x2}" y="${y2-18}" text-anchor="middle" fill="${cfg.color}" font-size="22" font-weight="900" filter="url(#fxGlow)" class="fx-glyph">${cfg.glyph}</text><circle cx="${x2}" cy="${y2}" r="12" fill="none" stroke="${cfg.color}" stroke-width="4" class="fx-impact"/>`;document.body.appendChild(svg);setTimeout(()=>{const fresh=$('table').querySelector(`[data-player="${target.id}"]`);if(fresh){fresh.classList.add('hit-flash');spawnSparks(fresh,cfg.color,16);if(target.hp<=1){document.querySelector('.game')?.classList.add('screen-shake');setTimeout(()=>document.querySelector('.game')?.classList.remove('screen-shake'),320)}sfx('hit')}setTimeout(()=>{svg.remove();if(fresh)fresh.classList.remove('hit-flash')},760)},45)}
+function shouldAiDefend(t,attacker,defense){const rel=relation(t,attacker),lethal=t.hp<=1,highThreat=attacker.role==='rebel'&&t.role==='lord';let need=lethal||highThreat||t.hp<=2||t.hand.length>3;if(rel==='ally'&&!lethal&&!highThreat)need=false;if(defense.effect==='coupon'&&attacker.role!=='rebel'&&!lethal&&t.hp===3)return false;const reserve=t.hand.filter(x=>['dodge','pass','coupon'].includes(x.effect)).length;return need&&(t.brain==='谋略推理型'||lethal||Math.random()<(t.brain==='战术计算型'?.82:.64))&&(reserve>1||lethal||t.hp<=2||highThreat)}
+function resolveAttack(p,c,t,eff,ai){animateAttack(p,t,c);const defenseIndex=()=>t.hand.findIndex(x=>['dodge','pass','coupon'].includes(x.effect));const applyDamageEffect=()=>{if(eff==='assault'&&t.hand.length>0)discardRandom(t,1);if(eff==='quiz'){if(t.hand.length<2)damage(t,p,1,c.name);else discardRandom(t,1)}else if(eff==='rollcall'){if(t.hand.length)discardRandom(t,1);else damage(t,p,1,c.name)}else if(eff==='question'){const ix=t.hand.findIndex(x=>x.style==='trick');if(ix>=0&&Math.random()<.65)discardCard(t,ix,'弃牌应对老师提问');else damage(t,p,1,c.name)}else{damage(t,p,1,c.name);if(eff==='chalk'&&p.equip.eraser)draw(p,1,'黑板擦效果摸到');if(eff==='test'&&t.hp===1)discardRandom(t,1)}};
+const ix=defenseIndex();if(ix<0){applyDamageEffect();return}const dc=t.hand[ix];if(t.id===0&&p.id!==0){waiting=true;render();showModal('受到攻击：'+c.name,`<p>${escapeHtml(p.name)} 对你使用了「${escapeHtml(c.name)}」。</p><p>你可以打出「${escapeHtml(dc.name)}」抵消攻击，也可以选择承受效果。</p>`,[{text:'承受攻击',fn:()=>{closeModal();waiting=false;log('你选择承受「'+c.name+'」的效果。');applyDamageEffect();render()}},{text:'打出「'+dc.name+'」防御',primary:true,fn:()=>{const idx=defenseIndex();if(idx>=0){const used=t.hand.splice(idx,1)[0];S.discard.push(used);sfx('defend');animateAction(t,'防御成功','#a6ddff');log('你打出「'+used.name+'」，成功防御「'+c.name+'」。','highlight')}closeModal();waiting=false;render()}}]);return}
+if(t.id!==0&&shouldAiDefend(t,p,dc)){const used=t.hand.splice(ix,1)[0];S.discard.push(used);sfx('defend');animateAction(t,'防御成功','#a6ddff');log(t.name+' 判断威胁后打出「'+used.name+'」防御。','highlight');return}applyDamageEffect()}
+function aiDefenseChance(t,attacker){let chance=.3;if(t.brain==='谋略推理型')chance=.78;else if(t.brain==='战术计算型')chance=.7;else if(t.brain==='激进压制型')chance=.56;if(t.hp===1)chance+=.18;if(t.hand.length<=1)chance-=.25;const rel=relation(t,attacker);if(rel==='ally')chance+=.1;return clamp(chance,.05,.95)}
+function showModal(title,html,buttons){$('modalRoot').innerHTML=`<div class="modalback"><div class="modal"><h2>${title}</h2><div class="overlaytext">${html}</div><div class="modal-buttons">${buttons.map((b,i)=>`<button data-modal="${i}" class="${b.primary?'primary':''}">${b.text}</button>`).join('')}</div></div></div>`;$('modalRoot').querySelectorAll('[data-modal]').forEach(el=>el.onclick=()=>buttons[+el.dataset.modal].fn())}
+function closeModal(){$('modalRoot').innerHTML=''}function showHome(){S=null;selectedCard=null;targetMode=null;$('gameScreen').classList.add('hidden');$('tutorialScreen').classList.add('hidden');$('heroSelectScreen').classList.add('hidden');$('home').classList.remove('hidden');closeModal()}
+function showTutorial(){ $('home').classList.add('hidden');$('gameScreen').classList.add('hidden');$('tutorialScreen').classList.remove('hidden') }
+$('startBtn').onclick=()=>{unlockAudio();sfx('turn');openHeroSelect()};$('tutorialBtn').onclick=showTutorial;$('tutorialStart').onclick=()=>{unlockAudio();sfx('turn');openHeroSelect()};$('backHome').onclick=showHome;$('heroBackBtn').onclick=showHome;$('helpBtn').onclick=()=>showModal('新手教程','<b>作业</b>可以攻击；<b>下课</b>可以恢复墨水；<b>翻开课本</b>可应对攻击。每回合摸 2 张牌，使用卡牌并在结束时弃至合理数量。身份与胜利目标见主菜单教程。',[{text:'知道了',primary:true,fn:closeModal}]);$('restartBtn').onclick=()=>showModal('重新开始？','当前对局将被清空，重新随机分配身份和手牌。此游戏不会保存进度。',[{text:'继续当前对局',fn:closeModal},{text:'重新开始',primary:true,fn:()=>{closeModal();newGame()}}]);$('menuBtn').onclick=()=>showModal('返回主菜单？','返回主菜单会结束当前对局；进度不会保存。',[{text:'继续游戏',fn:closeModal},{text:'返回主菜单',primary:true,fn:()=>{showHome()}}]);$('endTurnBtn').onclick=endHumanTurn;$('cancelTargetBtn').onclick=()=>{targetMode=null;selectedCard=null;render()};$('hand').addEventListener('click',e=>{const b=e.target.closest('[data-card]');if(!b)return;useSelected(+b.dataset.card,false)});$('table').addEventListener('click',e=>{const el=e.target.closest('[data-player]');if(!el)return;const id=+el.dataset.player;if(targetMode){const p=byId(id);if(p&&p.alive&&p.id!==targetMode.source){const cb=targetMode.callback;targetMode=null;cb(p);render()}return}if(S&&S.turn===0&&id!==0)toast('先选中一张需要指定目标的卡牌。')});
+// 每次打开单文件游戏都会展示版本公告，不依赖本地存储。
+setTimeout(()=>showModal('📣 开屏公告 · 1.0.0 Beta','<div class="version-stamp">VERSION <strong>1.0.0 Beta</strong></div><p><b>欢迎来到《实中杀》！</b></p><p>本次版本重点更新：</p><ul><li>横屏角色布局与手牌空间优化</li><li>击杀超级爆裂特效与动作音效增强</li><li>摸牌、获得手牌等动作反馈升级</li></ul><p>当前版本：<b>1.0.0 Beta（测试版）</b></p>',[{text:'进入游戏',primary:true,fn:closeModal}]),180);
+// Prevent any hidden information from leaking into AI decisions: candidate choice uses visible public state only.
+// Lightweight heuristic search: evaluate candidate action sequences up to a shallow horizon without mutating live state.
+function evaluateState(actor){let val=actor.hp*5+actor.hand.length*1.15+Object.keys(actor.equip).length*2+actor.shield*1.5;if(actor.hp===1)val-=4;for(const p of alive())if(p.id!==actor.id){const rel=relation(actor,p);val+=rel==='enemy'?(3-p.hp)*1.2:rel==='ally'?p.hp*.4:0}return val}
+function shallowSearch(actor){const candidates=actor.hand.map((c,i)=>({i,c,score:cardValue(c,actor)}));for(const item of candidates){let target=aiChooseTarget(actor,item.c.effect);if(target){item.score+=scoreTarget(actor,target,item.c.effect)*.12}if(item.c.style==='equip'&&!actor.equip[item.c.effect])item.score+=1.5;if(actor.hp===1&&['dodge','pass','coupon','heal','nurse','praise'].includes(item.c.effect))item.score+=4;if(item.c.effect==='damage'&&actor.usedAttack)item.score-=20;item.score+=evaluateState(actor)*.015}return candidates.sort((a,b)=>b.score-a.score)[0]||null}
+// Upgrade the default selection to a search-informed choice; each AI profile has its own evaluation bias.
+const originalAiChooseCard=aiChooseCard;
+aiChooseCard=function(actor){const c=shallowSearch(actor);if(!c)return originalAiChooseCard(actor);if(actor.brain==='激进压制型'){for(const x of actor.hand){if(['damage','assault','test','chalk','collect'].includes(x.effect)&&x!==c.c&&cardValue(x,actor)>=5)return {i:actor.hand.indexOf(x),c:x,score:cardValue(x,actor)+1.2}}}if(actor.brain==='谋略推理型'&&actor.hp<=1){const safe=actor.hand.map((x,i)=>({i,c:x,score:cardValue(x,actor)+(['heal','nurse','praise','recess','dodge','pass','coupon'].includes(x.effect)?5:0)})).sort((a,b)=>b.score-a.score)[0];if(safe)return safe}return c};
+// expose clean UI state only; no localStorage/sessionStorage is used.
+})();
+</script></body></html>
