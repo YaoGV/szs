@@ -78,7 +78,7 @@ button{border:2px solid #a9854d;background:linear-gradient(#4a3822,#2b2116);box-
 #gameScreen .card .cname{font-size:clamp(12px,1.2vw,16px);margin:11px 0 5px}
 #gameScreen .card .desc{font-size:clamp(8px,.78vw,10px);line-height:1.35;padding:3px}
 #gameScreen .card .ctype{font-size:8px;letter-spacing:1px}
-.end-turn-float{position:absolute;right:12px;top:-39px;z-index:6;padding:7px 12px;font-size:12px;box-shadow:0 3px 0 #100b07;border-radius:3px}
+.end-turn-float{position:absolute;right:16px;top:-54px;z-index:6;padding:12px 24px;font-size:16px;font-weight:900;box-shadow:0 4px 0 #100b07;border-radius:6px;border:2px solid #ffe5a0;background:linear-gradient(#f3d990,#b98b43);color:#291c10;letter-spacing:1px;}
 #gameScreen .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .drag-ghost,.dragging,.drop-hover{display:none!important}
 @media(max-width:760px){
@@ -95,7 +95,7 @@ button{border:2px solid #a9854d;background:linear-gradient(#4a3822,#2b2116);box-
  #gameScreen .card{flex-basis:clamp(83px,23vw,99px);padding:7px 5px}
  #gameScreen .card .cname{font-size:13px}
  #gameScreen .card .desc{font-size:8px}
- .end-turn-float{right:8px;top:-36px;padding:6px 9px;font-size:11px}
+ .end-turn-float{right:10px;top:-46px;padding:8px 16px;font-size:14px;}
 }
 @media(max-height:650px){#gameScreen .table{grid-template-rows:minmax(75px,1fr) minmax(65px,.8fr) minmax(75px,1fr)}#gameScreen .hand{height:clamp(118px,22vh,145px)}#gameScreen .player{padding:5px}#gameScreen .role{margin:2px 0}#gameScreen .ink-row{margin:3px 0}}
 
@@ -175,14 +175,14 @@ button{border:2px solid #a9854d;background:linear-gradient(#4a3822,#2b2116);box-
   #gameScreen .card .ctype { font-size: 6px; letter-spacing: .4px; }
   #gameScreen .card.selected { transform: translateY(-9px) scale(1.06); }
   @keyframes selectedCardPop { 0% { transform: translateY(0) scale(1); } 60% { transform: translateY(-12px) scale(1.08); } 100% { transform: translateY(-9px) scale(1.06); } }
-  .end-turn-float { top: -29px; right: 7px; padding: 4px 8px; font-size: 10px; }
+  .end-turn-float { top: -40px; right: 7px; padding: 6px 12px; font-size: 12px; }
 }
 @media (orientation: landscape) and (max-height: 390px) {
   #gameScreen .hand { height: 82px; }
   #gameScreen .card { flex-basis: clamp(56px, 8vw, 70px); }
   #gameScreen .player { padding: 2px 4px; }
   #gameScreen .pmeta { font-size: 7px; }
-  .end-turn-float { top: -27px; }
+  .end-turn-float { top: -36px; padding: 5px 10px; font-size: 11px; }
 }
 
 
@@ -302,7 +302,7 @@ button{border:2px solid #a9854d;background:linear-gradient(#4a3822,#2b2116);box-
   #gameScreen .card .cname { font-size:clamp(12px,1.6vh,17px) !important; line-height:1.18 !important; margin:8px 0 5px !important; }
   #gameScreen .card .desc { font-size:clamp(8px,1.1vh,11px) !important; line-height:1.25 !important; padding:2px !important; -webkit-line-clamp:3 !important; }
   #gameScreen .card .pip { width:17px !important; height:17px !important; line-height:15px !important; font-size:9px !important; }
-  .end-turn-float { top:-30px !important; right:8px !important; padding:5px 9px !important; font-size:11px !important; }
+  .end-turn-float { top:-42px !important; right:8px !important; padding:8px 14px !important; font-size:14px !important; }
 }
 @media (orientation: landscape) and (max-height: 420px) {
   #gameScreen .player,#gameScreen .player[data-player="0"],#gameScreen .player[data-player="1"],#gameScreen .player[data-player="2"],#gameScreen .player[data-player="3"] { width:clamp(82px,22vh,108px) !important; height:clamp(82px,22vh,108px) !important; }
@@ -357,7 +357,7 @@ button{border:2px solid #a9854d;background:linear-gradient(#4a3822,#2b2116);box-
   #gameScreen .card .cname {font-size:clamp(13px,1.4vw,17px) !important; margin:9px 0 5px !important;}
   #gameScreen .card .desc {font-size:clamp(9px,.82vw,11px) !important; line-height:1.25 !important;}
   #gameScreen .card .ctype {font-size:clamp(8px,.65vw,10px) !important;}
-  .end-turn-float {top:-32px !important; right:10px !important;}
+  .end-turn-float {top:-46px !important; right:10px !important; padding:10px 20px !important;}
 }
 
 
@@ -402,86 +402,80 @@ button{border:2px solid #a9854d;background:linear-gradient(#4a3822,#2b2116);box-
 </section>
 <section id="tutorialScreen" class="screen hidden"><div class="tutorial"><h2>▣ 实中杀 · 新手教程</h2><ol><li><b>目标：</b>你将与 3 个机器人进行四人身份局。主公、忠臣要合作；反贼要击败主公；内奸要争取最后独自获胜。</li><li><b>墨水就是生命：</b>每名角色最多有 3 段墨水。受到伤害失去 1 段，降到 0 就退场。「下课」等恢复牌可以补回墨水，但不能超过 3。</li><li><b>你的回合：</b>摸 2 张牌，然后使用手牌。普通「作业」每回合限用 1 次；「作业检查」等锦囊有额外效果。结束回合会自动轮到机器人。</li><li><b>卡牌：</b>作业是攻击；下课、课间操可以恢复；翻开课本可抵消攻击；考试、临时调座位、老师拖堂等会改变局势；文具装备提供持续效果。</li><li><b>机器人：</b>启用了高难度压迫感AI，会敏锐洞察身份并实施精准打击，甚至根据你的行动预判你的手牌。</li><li><b>选择目标与攻防：</b>点击手牌后卡牌会放大、周围手牌会让位；需要指定目标的卡牌，再点击高亮角色即可使用，无需打开规则详情。机器人攻击你时，若你有防御牌，会出现响应窗口，可选择防御或承受效果；机器人也会根据局势决定是否防御。</li></ol><p class="overlaytext">提示：本版本是可玩的原型，后续可以继续扩充卡牌数量、角色技能和更深入的 AI 搜索。</p><div class="controls"><button class="primary" id="tutorialStart">明白了，开始游戏</button><button id="backHome">返回主菜单</button></div></div></section>
 <section id="heroSelectScreen" class="screen hidden"><div class="hero-select"><div class="pixel-mark">SHIZHONG CAMPUS · HERO SELECT</div><h2>选择你的校园角色</h2><div class="gold-wallet">金币：<strong id="goldBalance">0</strong> <span>◈</span></div><div id="heroCards" class="hero-cards"></div><div class="controls"><button class="primary hero-enter-btn" id="heroStartBtn">选择完毕，进入游戏 ▶</button><button id="heroBackBtn">返回主菜单</button></div><p class="overlaytext">角色技能只影响本局；金币会保存在此浏览器中。清除浏览器数据可能导致金币丢失。</p></div></section>
-<section id="gameScreen" class="hidden"><div class="game"><div id="table" class="table"></div><div class="hand-dock"><div id="hand" class="hand"></div><button class="primary end-turn-float" id="endTurnBtn" aria-label="结束回合">结束回合 ↦</button><button id="cancelTargetBtn" class="hidden">取消选目标</button></div><div class="sr-only" aria-hidden="true"><span id="roundText">第 1 轮</span><span id="deckText">牌堆 0</span><span id="turnBanner">你的回合</span><span id="handCount">0 张</span><div id="log"></div><button id="helpBtn" type="button">教程</button><button id="restartBtn" type="button">重新开始</button><button id="menuBtn" type="button">主菜单</button></div></div></section>
+<section id="gameScreen" class="hidden"><div class="game"><div id="table" class="table"></div><div class="hand-dock"><div id="hand" class="hand"></div><button class="primary end-turn-float" id="endTurnBtn" aria-label="结束回合">打铃下课 ↦</button><button id="cancelTargetBtn" class="hidden">取消选目标</button></div><div class="sr-only" aria-hidden="true"><span id="roundText">第 1 轮</span><span id="deckText">牌堆 0</span><span id="turnBanner">你的回合</span><span id="handCount">0 张</span><div id="log"></div><button id="helpBtn" type="button">教程</button><button id="restartBtn" type="button">重新开始</button><button id="menuBtn" type="button">主菜单</button></div></div></section>
 </div><div id="modalRoot"></div><div id="toastRoot"></div>
 <script>
 (()=>{'use strict';
 
-// 更友好的全局报错拦截
 window.addEventListener('error',function(ev){try{var box=document.getElementById('runtimeError');if(!box){box=document.createElement('div');box.id='runtimeError';box.style.cssText='position:fixed;z-index:99999;left:8px;right:8px;bottom:8px;padding:12px;background:#351b18;color:#fff0d0;border:2px solid #e8c778;font:12px/1.5 monospace;white-space:pre-wrap;overflow-wrap:anywhere';document.body.appendChild(box)}let msg = ev.message || '未知错误';if (msg === 'Script error.') {msg = '浏览器拦截了跨域脚本错误或存储访问。建议点击右上角，选择【在浏览器中打开】以获取完整体验。';}box.textContent='哎呀，游戏遇到一个小错误（这不影响你继续玩，但建议截图发给作者）：\n'+msg;}catch(_){}});
 
 const $=id=>document.getElementById(id);const rand=n=>Math.floor(Math.random()*n);const pick=a=>a[rand(a.length)];const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const CARD_DEFS=[
-// attack
 ['作业','攻击','attack','对一名其他角色造成 1 点伤害。','damage'],['作业','攻击','attack','对一名其他角色造成 1 点伤害。','damage'],['突击作业','攻击','attack','攻击。若目标没有应对，额外弃置其 1 张手牌。','assault'],['小测验','攻击','attack','目标若手牌少于 2 张，造成伤害；否则弃 1 张牌。','quiz'],['点名回答','攻击','attack','目标需要弃 1 张牌，否则失去 1 段墨水。','rollcall'],['作业检查','锦囊','trick','目标弃置 1 张手牌；若无手牌则失去 1 段墨水。','inspect'],['粉笔头','攻击','attack','造成 1 点伤害；若你装备了黑板擦，可再抽 1 张牌。','chalk'],['临时测验','锦囊','trick','所有其他角色展示一张手牌，手牌最多者弃 1 张。','popquiz'],['课代表催交','锦囊','trick','指定目标弃 2 张牌；不足则失去 1 段墨水。','collect'],['老师提问','攻击','attack','目标可以弃一张功能牌来躲过伤害。','question'],['周测卷','攻击','attack','造成 1 点伤害。若目标墨水为 1，额外弃 1 张牌。','test'],['错题本','锦囊','trick','目标弃 1 张牌；若弃的是攻击牌，你摸 1 张牌。','wrongbook'],
-// defense/heal
-['翻开课本','防御','trick','抵消一次对你的普通攻击。','dodge'],['翻开课本','防御','trick','抵消一次对你的普通攻击。','dodge'],['下课','恢复','heal','恢复自己 1 段墨水，最多恢复到 3。','heal'],['下课','恢复','heal','恢复自己 1 段墨水，最多恢复到 3。','heal'],['课间操','恢复','heal','恢复 1 段墨水；若墨水已满，改为摸 1 张牌。','recess'],['医务室','恢复','heal','恢复 1 段墨水并摸 1 张牌。','nurse'],['请假条','防御','heal','受到伤害时可使用，防止 1 点伤害；也可在自己回合恢复 1 段墨水。','pass'],['认真听讲','防御','trick','本回合获得“专注”：下一次受到伤害时摸 1 张牌并减少伤害 1 点。','focus'],['订正作业','恢复','heal','弃 1 张牌，恢复 1 段墨水；若没有可弃的牌则只恢复。','correct'],['课间聊天','恢复','heal','你与一名其他角色各摸 1 张牌。','chat'],
-// utility
+['翻开课本','防御','trick','抵消一次对你的普通攻击。','dodge'],['翻开课本','防御','trick','抵消一次对你的普通攻击。','dodge'],['下课','恢复','heal','恢复自己 1 段墨水，最多恢复到上限。','heal'],['下课','恢复','heal','恢复自己 1 段墨水，最多恢复到上限。','heal'],['课间操','恢复','heal','恢复 1 段墨水；若墨水已满，改为摸 1 张牌。','recess'],['医务室','恢复','heal','恢复 1 段墨水并摸 1 张牌。','nurse'],['请假条','防御','heal','受到伤害时可使用，防止 1 点伤害；也可在自己回合恢复 1 段墨水。','pass'],['认真听讲','防御','trick','本回合获得“专注”：下一次受到伤害时摸 1 张牌并减少伤害 1 点。','focus'],['订正作业','恢复','heal','弃 1 张牌，恢复 1 段墨水；若没有可弃的牌则只恢复。','correct'],['课间聊天','恢复','heal','你与一名其他角色各摸 1 张牌。','chat'],
 ['早读','锦囊','trick','摸 2 张牌。','draw2'],['图书馆自习','锦囊','trick','摸 3 张牌，然后弃 1 张牌。','study'],['临时调座位','锦囊','trick','与一名其他角色交换各 1 张随机手牌。','swap'],['老师拖堂','锦囊','trick','目标下回合开始时少摸 1 张牌。','detain'],['突击听写','锦囊','trick','目标随机弃 1 张牌；若无牌，你摸 1 张。','dictation'],['班级通知','锦囊','trick','所有存活角色各摸 1 张牌。','notice'],['运动会','锦囊','trick','所有其他角色弃 1 张牌，若不愿或无牌则失去 1 段墨水。','sports'],['停电了','锦囊','trick','所有角色本轮装备失效，并各弃 1 张牌（你除外）。','blackout'],['突发检查','锦囊','trick','目标展示手牌，你选择其中一张令其弃掉。','search'],['小组合作','锦囊','trick','选择一名角色，你们各摸 2 张牌。','team'],['班会发言','锦囊','trick','所有其他角色按顺序选择：摸 1 张牌或弃 1 张牌。','meeting'],['借支笔','锦囊','trick','从一名手牌多于你的角色处随机获得 1 张牌。','borrow'],['收作业','锦囊','trick','所有手牌数多于你的角色弃 1 张牌。','collectAll'],['课表调整','锦囊','trick','跳过目标下回合的额外摸牌效果。','schedule'],['广播操','锦囊','trick','摸 1 张牌并获得 1 点临时护盾。','exercise'],['期中考试','锦囊','trick','目标判定：红色则弃 2 张牌，黑色则失去 1 段墨水。','midterm'],
-// equipment
 ['黑板擦','装备','equip','装备后，使用“粉笔头”额外摸 1 张牌；受到锦囊伤害时有概率抵消。','eraser'],['备用水笔','装备','equip','装备后，最大墨水仍为 3；每回合第一次造成伤害时摸 1 张牌。','pen'],['错题整理夹','装备','equip','装备后，每回合第一次弃牌后摸 1 张牌。','folder'],['课代表袖标','装备','equip','装备后，使用“作业检查”时可额外摸 1 张牌。','badge'],['保温杯','装备','equip','装备后，回合开始时若墨水不满，有 25% 概率恢复 1 段。','cup'],['运动鞋','装备','equip','装备后，每轮第一次成为攻击目标时有机会闪避。','shoes'],['荧光笔','装备','equip','装备后，摸牌类卡牌额外摸 1 张（每回合一次）。','marker'],['笔记本','装备','equip','装备后，回合结束时若手牌少于 2 张，摸 1 张牌。','notebook'],['校园卡','装备','equip','装备后，第一次被迫弃牌时可以免除。','campuscard'],['耳塞','装备','equip','装备后，抵消一次“老师拖堂”或“老师提问”。','earplugs'],
-// special
 ['临时加分','锦囊','trick','你摸 1 张牌；下一次造成伤害时额外造成 1 点伤害。','bonus'],['年级大会','锦囊','trick','所有其他角色展示身份线索：手牌最多者弃 1 张牌。','assembly'],['空白草稿纸','锦囊','trick','弃掉此牌并选择一张弃牌堆里的非装备牌加入手牌。','draft'],['免作业券','防御','heal','取消一张对你的“作业”或“突击作业”，并摸 1 张牌。','coupon'],['下周再说','锦囊','trick','目标跳过下回合的第一次出牌阶段。','later'],['临时换教室','锦囊','trick','你摸 2 张牌，目标随机弃 1 张牌。','roomchange'],['学霸笔记','锦囊','trick','摸 2 张牌；若你墨水不满，改为摸 1 张并恢复 1 段墨水。','topnotes'],['老师表扬','恢复','heal','恢复 1 段墨水并获得 1 张牌。','praise'],['迟到登记','锦囊','trick','目标下回合少摸 1 张牌，并弃置一张随机手牌。','late'],['值日生','锦囊','trick','清除自己一个负面状态，并摸 1 张牌。','duty'],
-// 额外加入攻击牌，让抽牌和初始手牌中更容易出现进攻选择
 ['作业','攻击','attack','对一名其他角色造成 1 点伤害。','damage'],['作业','攻击','attack','对一名其他角色造成 1 点伤害。','damage'],['作业','攻击','attack','对一名其他角色造成 1 点伤害。','damage'],['突击作业','攻击','attack','攻击。若目标没有应对，额外弃置其 1 张手牌。','assault'],['粉笔头','攻击','attack','造成 1 点伤害；若你装备了黑板擦，可再抽 1 张牌。','chalk'],['周测卷','攻击','attack','造成 1 点伤害。若目标墨水为 1，额外弃 1 张牌。','test'],['点名回答','攻击','attack','目标需要弃 1 张牌，否则失去 1 段墨水。','rollcall']
 ];
 const NAMES=['你','机器人 A','机器人 B','机器人 C'];const ARCH=['战术计算型','谋略推理型','激进压制型'];const ROLE_NAMES={lord:'主公',loyal:'忠臣',rebel:'反贼',spy:'内奸'};const ROLE_GOAL={lord:'与忠臣合作，击败反贼和内奸',loyal:'保护主公，击败反贼和内奸',rebel:'击败主公',spy:'先消灭其他势力，争取最后存活'};
 let S=null,selectedCard=null,targetMode=null,waiting=false,logLines=[],renderedHandIds=new Set();
 const HEROES={
- sports:{name:'体育委员',cost:0,unlocked:true,skill:'运动冲锋',desc:'每回合第一次使用攻击牌时，有 35% 概率额外摸 1 张牌。',skillKey:'sports'},
- teacher:{name:'老师',cost:0,unlocked:true,skill:'临场点拨',desc:'每回合第一次受到伤害时，有 25% 概率将伤害减少 1 点。',skillKey:'teacher'},
- monitor:{name:'班长',cost:200,unlocked:false,skill:'班级统筹',desc:'每回合第一次使用锦囊牌后摸 1 张牌。',skillKey:'monitor'},
- tech:{name:'电教委员',cost:400,unlocked:false,skill:'设备支援',desc:'回合开始时若手牌少于 4 张，额外摸 1 张牌（每回合一次）。',skillKey:'tech'}
+ sports:{name:'体育委员',cost:0,unlocked:true,skill:'运动冲锋',desc:'每回合第一次使用攻击牌时，有 35% 概率额外摸 1 张牌。',skillKey:'sports', hp:4},
+ teacher:{name:'老师',cost:0,unlocked:true,skill:'临场点拨',desc:'每回合第一次受到伤害时，有 25% 概率将伤害减少 1 点。',skillKey:'teacher', hp:3},
+ monitor:{name:'班长',cost:200,unlocked:false,skill:'班级统筹',desc:'每回合第一次使用锦囊牌后摸 1 张牌。',skillKey:'monitor', hp:3},
+ tech:{name:'电教委员',cost:400,unlocked:false,skill:'设备支援',desc:'回合开始时若手牌少于 4 张，额外摸 1 张牌（每回合一次）。',skillKey:'tech', hp:3}
 };
 function readCookie(name){try{const m=document.cookie.match(new RegExp('(?:^|; )'+name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'=([^;]*)'));if(m)return decodeURIComponent(m[1])}catch(_){}try{return localStorage.getItem(name)||''}catch(_){}return ''}
 function writeCookie(name,value,days=3650){let ok=false;try{document.cookie=name+'='+encodeURIComponent(value)+'; max-age='+(days*86400)+'; path=/; SameSite=Lax';ok=document.cookie.indexOf(name+'=')>=0}catch(_){}try{localStorage.setItem(name,String(value))}catch(_){}return ok}
 function loadProfile(){let gold=parseInt(readCookie('shizhong_gold'),10);if(!Number.isFinite(gold)||gold<0)gold=0;let unlocked=readCookie('shizhong_heroes').split(',').filter(Boolean);if(!unlocked.length)unlocked=['sports','teacher'];unlocked.forEach(k=>{if(HEROES[k])HEROES[k].unlocked=true});HEROES.sports.unlocked=true;HEROES.teacher.unlocked=true;return {gold,unlocked}}
 let profile=loadProfile(),chosenHero='sports';
 function saveProfile(){writeCookie('shizhong_gold',String(profile.gold));writeCookie('shizhong_heroes',Object.keys(HEROES).filter(k=>HEROES[k].unlocked).join(','));}
-// 控制台金币指令：runGameCommand('<give money 500>')，也支持 runGameCommand('give money 500')。
 window.runGameCommand=function(command){try{const raw=String(command??'').trim();const m=raw.match(/^<?\s*give\s+money\s+(\d+)\s*>?$/i);if(!m){return {ok:false,message:"指令格式：runGameCommand(\'<give money x>\')，x 必须是非负整数。"};}const amount=Number(m[1]);if(!Number.isSafeInteger(amount)||amount<0||amount>1000000000)return {ok:false,message:'金币数量必须在 0 到 1000000000 之间。'};profile=loadProfile();profile.gold+=amount;saveProfile();const balance=profile.gold;const balanceNode=document.getElementById('goldBalance');if(balanceNode)balanceNode.textContent=balance;console.info('[实中杀] 获得 '+amount+' 金币，当前金币：'+balance);if(typeof toast==='function')toast('控制台奖励：+'+amount+' 金币');return {ok:true,added:amount,gold:balance};}catch(err){console.error('[实中杀] 金币指令执行失败',err);return {ok:false,message:'执行失败：'+String(err)};}};
-function renderHeroSelect(){profile=loadProfile();$('goldBalance').textContent=profile.gold;$('heroCards').innerHTML=Object.entries(HEROES).map(([key,h])=>`<article class="hero-card ${h.unlocked?'':'locked'} ${chosenHero===key?'selected-hero':''}"><span class="hero-status">${h.unlocked?'已解锁':'未解锁'}</span><div class="hero-portrait portrait-${key}" aria-label="${h.name}像素卡通画像"><span>${({sports:'🏃',teacher:'👨‍🏫',monitor:'🧑‍🎓',tech:'🧑‍💻'})[key]}</span></div><h3>${h.name}</h3><span class="hero-skill-tag">技能：${h.skill}</span><p>${h.desc}</p>${h.unlocked?`<button class="primary" data-choose-hero="${key}">${chosenHero===key?'当前选择':'选择角色'}</button>`:`<p class="hero-cost">价格：${h.cost} 金币</p><button data-buy-hero="${key}" ${profile.gold<h.cost?'disabled':''}>购买解锁</button>`}</article>`).join('');$('heroCards').querySelectorAll('[data-choose-hero]').forEach(b=>b.onclick=()=>{chosenHero=b.dataset.chooseHero;renderHeroSelect()});$('heroCards').querySelectorAll('[data-buy-hero]').forEach(b=>b.onclick=()=>{const key=b.dataset.buyHero,h=HEROES[key];if(!h||h.unlocked||profile.gold<h.cost)return;profile.gold-=h.cost;h.unlocked=true;saveProfile();chosenHero=key;renderHeroSelect();toast('解锁角色：'+h.name)});}
+function renderHeroSelect(){profile=loadProfile();$('goldBalance').textContent=profile.gold;$('heroCards').innerHTML=Object.entries(HEROES).map(([key,h])=>`<article class="hero-card ${h.unlocked?'':'locked'} ${chosenHero===key?'selected-hero':''}"><span class="hero-status">${h.unlocked?'已解锁':'未解锁'}</span><div class="hero-portrait portrait-${key}" aria-label="${h.name}像素卡通画像"><span>${({sports:'🏃',teacher:'👨‍🏫',monitor:'🧑‍🎓',tech:'🧑‍💻'})[key]}</span></div><h3>${h.name}</h3><span class="hero-skill-tag">技能：${h.skill} (${h.hp}血)</span><p>${h.desc}</p>${h.unlocked?`<button class="primary" data-choose-hero="${key}">${chosenHero===key?'当前选择':'选择角色'}</button>`:`<p class="hero-cost">价格：${h.cost} 金币</p><button data-buy-hero="${key}" ${profile.gold<h.cost?'disabled':''}>购买解锁</button>`}</article>`).join('');$('heroCards').querySelectorAll('[data-choose-hero]').forEach(b=>b.onclick=()=>{chosenHero=b.dataset.chooseHero;renderHeroSelect()});$('heroCards').querySelectorAll('[data-buy-hero]').forEach(b=>b.onclick=()=>{const key=b.dataset.buyHero,h=HEROES[key];if(!h||h.unlocked||profile.gold<h.cost)return;profile.gold-=h.cost;h.unlocked=true;saveProfile();chosenHero=key;renderHeroSelect();toast('解锁角色：'+h.name)});}
 function openHeroSelect(){profile=loadProfile();renderHeroSelect();$('home').classList.add('hidden');$('tutorialScreen').classList.add('hidden');$('gameScreen').classList.add('hidden');$('heroSelectScreen').classList.remove('hidden')}
 function startSelectedGame(){if(!HEROES[chosenHero]||!HEROES[chosenHero].unlocked)chosenHero='sports';$('heroSelectScreen').classList.add('hidden');$('gameScreen').classList.remove('hidden');newGame();}
 
-// Web Audio 合成短音效，不加载外部资源；首次点击后解锁，适配手机浏览器。
 let audioCtx=null,audioReady=false;
 let isMuted = readCookie('shizhong_mute') === '1';
-
-function updateMuteBtn() {
-  const btn = $('muteBtn');
-  if(btn) btn.textContent = isMuted ? '🔇 静音' : '🔊 音效';
-}
-function toggleMute() {
-  isMuted = !isMuted;
-  writeCookie('shizhong_mute', isMuted ? '1' : '0');
-  updateMuteBtn();
-  if(!isMuted) sfx('select'); 
-}
-
+function updateMuteBtn() { const btn = $('muteBtn'); if(btn) btn.textContent = isMuted ? '🔇 静音' : '🔊 音效'; }
+function toggleMute() { isMuted = !isMuted; writeCookie('shizhong_mute', isMuted ? '1' : '0'); updateMuteBtn(); if(!isMuted) sfx('select'); }
 function unlockAudio(){try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;audioCtx=audioCtx||new AC();if(audioCtx.state==='suspended')audioCtx.resume();audioReady=true;}catch(_){}}
 function sfx(kind='tap'){if(isMuted||!audioReady||!audioCtx)return;try{const now=audioCtx.currentTime;const seq={tap:[[540,.045,'square',.025]],select:[[420,.05,'triangle',.035],[680,.07,'triangle',.025]],draw:[[440,.06,'triangle',.03],[620,.08,'triangle',.025]],attack:[[190,.11,'sawtooth',.045],[110,.16,'square',.035],[520,.08,'triangle',.025]],hit:[[95,.13,'sawtooth',.05],[155,.09,'square',.025]],heal:[[523,.08,'sine',.035],[659,.1,'sine',.03],[784,.14,'sine',.025]],discard:[[320,.07,'square',.025],[210,.09,'triangle',.02]],equip:[[440,.07,'triangle',.025],[554,.07,'triangle',.025],[740,.12,'sine',.025]],death:[[260,.12,'sawtooth',.035],[180,.15,'sawtooth',.03],[90,.2,'triangle',.025]],kill:[[90,.18,'sawtooth',.065],[145,.22,'square',.05],[58,.28,'sawtooth',.07],[680,.08,'triangle',.035],[420,.12,'sawtooth',.04]],turn:[[330,.06,'square',.02],[494,.09,'triangle',.025]],defend:[[740,.07,'square',.025],[590,.1,'triangle',.03]]};for(const [f,d,w,v] of (seq[kind]||seq.tap)){const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=w;o.frequency.setValueAtTime(f,now);g.gain.setValueAtTime(Math.min(.72,v*8.0),now);g.gain.exponentialRampToValueAtTime(.001,now+d);o.connect(g);g.connect(audioCtx.destination);o.start(now);o.stop(now+d+.015)}}catch(_){}}
 window.addEventListener('pointerdown',unlockAudio,{once:true,passive:true});
 function cardObj(def){return {name:def[0],type:def[1],style:def[2],desc:def[3],effect:def[4],id:Math.random().toString(36).slice(2,10),suit:pick(['♥','♦','♣','♠']),rank:1+rand(13)}}
 function buildDeck(){let d=CARD_DEFS.map(cardObj);while(d.length<100)d.push(cardObj(pick(CARD_DEFS)));return d.sort(()=>Math.random()-.5)}
-function newGame(){S={players:[],deck:buildDeck(),discard:[],turn:0,round:1,phase:'start',over:false,processing:false,turnCount:0,history:[],pending:null};selectedCard=null;targetMode=null;waiting=false;logLines=[];renderedHandIds=new Set();
- let roles=['lord','loyal','rebel','spy'].sort(()=>Math.random()-.5);const heroNames=[HEROES[chosenHero]?.name||'体育委员','战术计算型','谋略推理型','激进压制型'];
- for(let i=0;i<4;i++){let p={id:i,name:NAMES[i],hero:heroNames[i],heroKey:i===0?chosenHero:['sports','teacher','monitor','tech'][rand(4)],role:roles[i],hp:3,maxHp:3,hand:[],alive:true,equip:{},shield:0,bonusDamage:0,focus:false,skipDraw:0,skipPlay:0,turns:0,usedAttack:false,usedDrawBonus:false,usedDiscardBonus:false,usedEquipBonus:false,usedCoupon:false,damageDealt:0,damageTaken:0,knownRole:i===0,brain:i===0?'human':ARCH[i-1],lastActions:[],threat:0};if(i>0)p.hero=HEROES[p.heroKey].name;S.players.push(p)}
- for(let p of S.players)for(let j=0;j<4;j++)p.hand.push(drawRaw());S.turn=0;S.players[0].turns=1;S.phase='play';log('铃声响起！四人牌局开始。你的身份是「'+ROLE_NAMES[S.players[0].role]+'」。目标：'+ROLE_GOAL[S.players[0].role]+'。','highlight');log('机器人启用高难度策略：局势评估、记牌、身份推理与多步候选行动评分。');render();startHumanTurn(true)}
+
+function newGame(){
+  S={players:[],deck:buildDeck(),discard:[],turn:0,round:1,phase:'start',over:false,processing:false,turnCount:0,history:[],pending:null};
+  selectedCard=null;targetMode=null;waiting=false;logLines=[];renderedHandIds=new Set();
+  let roles=['lord','loyal','rebel','spy'].sort(()=>Math.random()-.5);
+  for(let i=0;i<4;i++){
+    let hk = i===0 ? chosenHero : ['sports','teacher','monitor','tech'][rand(4)];
+    let hData = HEROES[hk];
+    let p={
+      id:i,name:NAMES[i],hero:hData.name,heroKey:hk,role:roles[i],hp:hData.hp,maxHp:hData.hp,
+      hand:[],alive:true,equip:{},shield:0,bonusDamage:0,focus:false,skipDraw:0,skipPlay:0,
+      turns:0,usedAttack:false,usedDrawBonus:false,usedDiscardBonus:false,usedEquipBonus:false,
+      usedCoupon:false,damageDealt:0,damageTaken:0,knownRole:i===0,brain:i===0?'human':ARCH[i-1],lastActions:[],threat:0
+    };
+    S.players.push(p)
+  }
+  for(let p of S.players)for(let j=0;j<4;j++)p.hand.push(drawRaw());
+  S.turn=0;S.players[0].turns=1;S.phase='play';
+  log('铃声响起！四人牌局开始。你的身份是「'+ROLE_NAMES[S.players[0].role]+'」。目标：'+ROLE_GOAL[S.players[0].role]+'。','highlight');
+  log('机器人启用高难度策略：局势评估、记牌、身份推理与多步候选行动评分。');
+  render();startHumanTurn(true)
+}
 function drawRaw(){if(!S.deck.length){if(S.discard.length){S.deck=S.discard.splice(0).sort(()=>Math.random()-.5);log('弃牌堆洗回牌堆。')}else return cardObj(pick(CARD_DEFS))}return S.deck.pop()}
 function draw(p,n=1,reason='摸牌'){if(!p||!p.alive||!S||!S.players.includes(p)||S.over)return;for(let i=0;i<n;i++)p.hand.push(drawRaw());if(n>0){sfx('draw');animateDraw(p,Math.min(n,3));log(p.name+' '+reason+' '+n+' 张牌。')}}
 function playerNode(p){return $('table').querySelector(`[data-player="${p.id}"]`)}
+
 function animateAction(p,label,color='#f0d58e'){const node=playerNode(p);if(!node)return;if(/恢复|墨水已满/.test(label)){sfx('heal');node.classList.add('heal-flash');setTimeout(()=>node.classList.remove('heal-flash'),600)}else if(/弃牌/.test(label)){sfx('discard')}else if(/装备/.test(label)){sfx('equip')}else if(/出牌/.test(label)){sfx('tap')}node.classList.remove('action-pulse');void node.offsetWidth;node.classList.add('action-pulse');setTimeout(()=>node.classList.remove('action-pulse'),520);const r=node.getBoundingClientRect(),el=document.createElement('div');el.className='action-float';el.textContent=label;el.style.color=color;el.style.left=(r.left+r.width/2)+'px';el.style.top=(r.top+r.height*.36)+'px';document.body.appendChild(el);setTimeout(()=>el.remove(),850)}
 
-// 新增：战斗浮动播报
 function combatToast(msg) {
   let root = document.getElementById('combatBannerRoot');
-  if (!root) {
-    root = document.createElement('div');
-    root.id = 'combatBannerRoot';
-    root.className = 'combat-banner';
-    document.body.appendChild(root);
-  }
+  if (!root) { root = document.createElement('div'); root.id = 'combatBannerRoot'; root.className = 'combat-banner'; document.body.appendChild(root); }
   const span = document.createElement('span');
   span.textContent = msg;
   root.appendChild(span);
@@ -489,74 +483,285 @@ function combatToast(msg) {
 }
 
 function spawnSparks(node,color='#ffe39a',count=10){if(!node)return;const r=node.getBoundingClientRect();for(let i=0;i<count;i++){const el=document.createElement('i');el.className='fx-spark';el.style.setProperty('--spark',color);el.style.left=(r.left+r.width/2)+'px';el.style.top=(r.top+r.height/2)+'px';const a=Math.PI*2*i/count+(Math.random()-.5)*.35,dist=18+Math.random()*48;el.style.setProperty('--sx',(Math.cos(a)*dist)+'px');el.style.setProperty('--sy',(Math.sin(a)*dist)+'px');document.body.appendChild(el);setTimeout(()=>el.remove(),620)}}
+
 function megaExplosion(node,label='击杀！'){if(!node)return;const r=node.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2;const boom=document.createElement('div');boom.className='mega-explosion';boom.style.setProperty('--boom-x',x+'px');boom.style.setProperty('--boom-y',y+'px');boom.innerHTML='<i class="boom-ring"></i><i class="boom-core"></i><b class="boom-word">'+label+'</b>';document.body.appendChild(boom);spawnSparks(node,'#fff2a1',64);spawnSparks(node,'#ffcf4d',54);spawnSparks(node,'#ff5735',42);spawnSparks(node,'#ffffff',24);const game=document.querySelector('#gameScreen .game');if(game){game.classList.remove('screen-shake');void game.offsetWidth;game.classList.add('screen-shake');setTimeout(()=>game.classList.remove('screen-shake'),420)}setTimeout(()=>boom.remove(),950)}
+
 function animateDraw(p,n=1){const node=playerNode(p);if(!node)return;const r=node.getBoundingClientRect();node.classList.add('draw-glow');setTimeout(()=>node.classList.remove('draw-glow'),520);const dest=p.id===0?$('hand').getBoundingClientRect():r;for(let i=0;i<n;i++){const el=document.createElement('i');el.className='draw-fly-card';const sx=innerWidth*.5+(i-(n-1)/2)*18,sy=Math.max(40,innerHeight*.24);const tx=dest.left+dest.width/2+(i-(n-1)/2)*12,ty=dest.top+dest.height*.55;el.style.setProperty('--from-x',(tx-sx)+'px');el.style.setProperty('--from-y',(ty-sy)+'px');el.style.setProperty('--to-x',tx+'px');el.style.setProperty('--to-y',ty+'px');document.body.appendChild(el);setTimeout(()=>el.remove(),520)}}
+
 function discardCard(p,index,reason='弃牌'){if(index<0||index>=p.hand.length)return null;let c=p.hand.splice(index,1)[0];S.discard.push(c);animateAction(p,'弃牌 −1','#e99a77');log(p.name+' '+reason+'「'+c.name+'」。');if(p.equip.folder&&!p.usedDiscardBonus&&p.alive){p.usedDiscardBonus=true;draw(p,1,'错题整理夹效果：摸到');}return c}
 function alive(){return S.players.filter(p=>p.alive)}function me(){return S.players[0]}function byId(id){return S.players.find(p=>p.id===id)}function log(msg,cls=''){logLines.push({msg,cls});if(logLines.length>100)logLines.shift();renderLog()}
 function toast(msg){const el=document.createElement('div');el.className='toast';el.textContent=msg;$('toastRoot').appendChild(el);setTimeout(()=>el.remove(),1700)}
 function renderLog(){const el=$('log');if(!el)return;el.innerHTML=logLines.slice(-30).map(x=>`<p class="${x.cls}">${escapeHtml(x.msg)}</p>`).join('');el.scrollTop=el.scrollHeight}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function render(){if(!S)return;$('roundText').textContent='第 '+S.round+' 轮';$('deckText').textContent='牌堆 '+S.deck.length;$('turnBanner').textContent=S.over?'对局结束':S.turn===0?'你的回合 · 出牌或调整手牌':'轮到 '+S.players[S.turn].name+' · '+S.players[S.turn].brain;$('turnBanner').classList.toggle('thinking',!!S.processing&&S.turn!==0);
-const seatClass={0:'south',1:'north',2:'west',3:'east'};
-$('table').innerHTML=S.players.map(p=>{let current=!S.over&&S.turn===p.id;let target=targetMode&&p.alive&&p.id!==0&&p.id!==targetMode.source;let roleVisible=p.id===0||p.role==='lord'&&S.players[0].role==='lord'||!p.alive;let backs=p.id===0?'':`<div class="opponent-fan" aria-label="${p.hand.length} 张隐藏手牌">${Array.from({length:Math.min(5,p.hand.length)},(_,i)=>`<i style="--n:${i}"></i>`).join('')}</div>`;return `<div class="player ${seatClass[p.id]} ${current?'current':''} ${!p.alive?'dead':''} ${p.id===0?'you':''} ${target?'targetable':''}" data-player="${p.id}" data-seat="${seatClass[p.id]}"><div class="pname"><span>${escapeHtml(p.name)} ${p.id===0?'(你)':''}</span><span class="seat">${p.id===0?'玩家':p.brain||'角色'}</span></div><div class="role ${roleVisible?'':'unknown'}">${roleVisible?ROLE_NAMES[p.role]:(p.alive?'身份未知':'身份：'+ROLE_NAMES[p.role])} · ${p.hero}</div><div class="ink-row">${Array.from({length:3},(_,i)=>`<span class="ink ${i<p.hp?'full':''}"></span>`).join('')}</div><div class="pmeta"><span>手牌 ${p.hand.length}</span><span>${Object.keys(p.equip).length?'装备 '+Object.keys(p.equip).length:'无装备'}</span>${p.shield?`<span>护盾 ${p.shield}</span>`:''}${p.focus?'<span>专注</span>':''}${p.skipDraw?'<span>拖堂</span>':''}</div>${backs}</div>`}).join('');
-$('handCount').textContent=me().hand.length+' 张';const currentHandIds=new Set(me().hand.map(c=>c.id));$('hand').classList.toggle('has-selection',selectedCard!==null);$('hand').innerHTML=me().hand.map((c,i)=>`<button class="card ${c.style} ${selectedCard===i?'selected':''} ${selectedCard!==null&&i<selectedCard?'fan-left':''} ${selectedCard!==null&&i>selectedCard?'fan-right':''}" data-card="${i}" data-card-id="${c.id}" draggable="false" ${S.over||S.turn!==0||S.processing?'disabled':''}><span class="ctype">${c.type} · ${String(c.rank).padStart(2,'0')}</span><span class="pip">${c.suit}</span><span class="cname">${escapeHtml(c.name)}</span><span class="desc">${escapeHtml(c.desc)}</span></button>`).join('')||'<div class="empty">手牌空空如也。</div>';[...$('hand').querySelectorAll('.card')].forEach((el,i)=>{if(!renderedHandIds.has(el.dataset.cardId)){el.style.animationDelay=(Math.min(i,10)*24)+'ms';el.classList.add('fly-in')}});renderedHandIds=currentHandIds;$('endTurnBtn').disabled=S.over||S.turn!==0||S.processing||!!targetMode;$('restartBtn').disabled=false;$('cancelTargetBtn').classList.toggle('hidden',!targetMode);renderLog()}
+
+function render(){
+  if(!S)return;
+  $('roundText').textContent='第 '+S.round+' 轮';
+  $('deckText').textContent='牌堆 '+S.deck.length;
+  $('turnBanner').textContent=S.over?'对局结束':S.turn===0?'你的回合 · 出牌或调整手牌':'轮到 '+S.players[S.turn].name+' · '+S.players[S.turn].brain;
+  $('turnBanner').classList.toggle('thinking',!!S.processing&&S.turn!==0);
+  const seatClass={0:'south',1:'north',2:'west',3:'east'};
+  
+  $('table').innerHTML=S.players.map(p=>{
+    let current=!S.over&&S.turn===p.id;
+    let target=targetMode&&p.alive&&p.id!==0&&p.id!==targetMode.source;
+    let roleVisible=p.id===0||p.role==='lord'&&S.players[0].role==='lord'||!p.alive;
+    let backs=p.id===0?'':`<div class="opponent-fan" aria-label="${p.hand.length} 张隐藏手牌">${Array.from({length:Math.min(5,p.hand.length)},(_,i)=>`<i style="--n:${i}"></i>`).join('')}</div>`;
+    let lordIcon = p.role==='lord' ? '👑 ' : '';
+    return `<div class="player ${seatClass[p.id]} ${current?'current':''} ${!p.alive?'dead':''} ${p.id===0?'you':''} ${target?'targetable':''}" data-player="${p.id}" data-seat="${seatClass[p.id]}">
+      <div class="pname"><span>${lordIcon}${escapeHtml(p.name)} ${p.id===0?'(你)':''}</span><span class="seat">${p.id===0?'玩家':p.brain||'角色'}</span></div>
+      <div class="role ${roleVisible?'':'unknown'}">${roleVisible?ROLE_NAMES[p.role]:(p.alive?'身份未知':'身份：'+ROLE_NAMES[p.role])} · ${p.hero}</div>
+      <div class="ink-row">${Array.from({length:p.maxHp},(_,i)=>`<span class="ink ${i<p.hp?'full':''}"></span>`).join('')}</div>
+      <div class="pmeta">
+        <span>手牌 ${p.hand.length}</span>
+        <span class="view-status" style="cursor:pointer;text-decoration:underline;" data-status="${p.id}">${Object.keys(p.equip).length?'装备 '+Object.keys(p.equip).length:'无装备'}</span>
+        ${p.shield?`<span>护盾 ${p.shield}</span>`:''}${p.focus?'<span>专注</span>':''}${p.skipDraw?'<span>拖堂</span>':''}
+      </div>
+      ${backs}
+    </div>`
+  }).join('');
+  
+  $('handCount').textContent=me().hand.length+' 张';
+  const currentHandIds=new Set(me().hand.map(c=>c.id));
+  $('hand').classList.toggle('has-selection',selectedCard!==null);
+  $('hand').innerHTML=me().hand.map((c,i)=>`<button class="card ${c.style} ${selectedCard===i?'selected':''} ${selectedCard!==null&&i<selectedCard?'fan-left':''} ${selectedCard!==null&&i>selectedCard?'fan-right':''}" data-card="${i}" data-card-id="${c.id}" draggable="false" ${S.over||S.turn!==0||S.processing?'disabled':''}><span class="ctype">${c.type} · ${String(c.rank).padStart(2,'0')}</span><span class="pip">${c.suit}</span><span class="cname">${escapeHtml(c.name)}</span><span class="desc">${escapeHtml(c.desc)}</span></button>`).join('')||'<div class="empty">手牌空空如也。</div>';
+  [...$('hand').querySelectorAll('.card')].forEach((el,i)=>{if(!renderedHandIds.has(el.dataset.cardId)){el.style.animationDelay=(Math.min(i,10)*24)+'ms';el.classList.add('fly-in')}});
+  renderedHandIds=currentHandIds;
+  $('endTurnBtn').disabled=S.over||S.turn!==0||S.processing||!!targetMode;
+  $('restartBtn').disabled=false;
+  $('cancelTargetBtn').classList.toggle('hidden',!targetMode);
+  renderLog();
+  
+  document.querySelectorAll('.view-status').forEach(el => {
+    el.onclick = (e) => {
+      e.stopPropagation();
+      const pid = +el.dataset.status;
+      const targetP = byId(pid);
+      if(!targetP) return;
+      let statusHtml = `<p>血量：${targetP.hp} / ${targetP.maxHp}</p>`;
+      statusHtml += `<p>装备：${Object.values(targetP.equip).map(c=>`【${c.name}】`).join(' ') || '无'}</p>`;
+      if(targetP.shield) statusHtml += `<p>临时护盾：${targetP.shield}</p>`;
+      if(targetP.focus) statusHtml += `<p>状态：专注</p>`;
+      if(targetP.skipDraw) statusHtml += `<p>负面：下回合少摸牌</p>`;
+      showModal(`${targetP.name} 的状态`, statusHtml, [{text:'知道了', primary:true, fn:closeModal}]);
+    }
+  });
+}
+
 function relation(a,b){if(a.role==='spy'||b.role==='spy')return a.id===b.id?'self':'unknown';if(a.role==='lord'||a.role==='loyal')return (b.role==='lord'||b.role==='loyal')?'ally':'enemy';if(a.role==='rebel')return b.role==='rebel'?'ally':b.role==='lord'||b.role==='loyal'?'enemy':'unknown';return 'unknown'}
-function aliveRole(role){return alive().filter(p=>p.role===role)}
-function damage(target,source,amount=1,kind='普通攻击'){if(!target.alive||S.over)return false;let src=source||null;if(target.heroKey==='teacher'&&!target.heroUsedThisTurn&&amount>0&&Math.random()<.25){target.heroUsedThisTurn=true;amount=Math.max(0,amount-1);animateAction(target,'老师技能：减伤','#9edbff');combatToast(target.name+' 触发【临场点拨】减伤！');if(amount===0){log(target.name+' 触发「临场点拨」，抵消了这次伤害！','highlight');return false}}if(target.equip.shoes&&Math.random()<.22){log(target.name+' 的运动鞋触发，闪避了攻击！','highlight');combatToast(target.name+' 触发了【运动鞋】闪避！');return false}if(target.focus){target.focus=false;draw(target,1,'专注效果摸到');log(target.name+' 专注状态抵消了 1 点伤害。');combatToast(target.name+' 触发【专注】抵消伤害！');return false}if(target.shield>0){target.shield--;log(target.name+' 的临时护盾抵消了伤害。');combatToast(target.name+' 的【临时护盾】抵消了伤害！');return false}if(target.equip.eraser&&Math.random()<.25&&kind!=='普通攻击'){log(target.name+' 的黑板擦抵消了锦囊效果！');combatToast(target.name+' 触发【黑板擦】抵消了锦囊！');return false}if(target.equip.campuscard&&!target.usedCoupon){target.usedCoupon=true;log(target.name+' 的校园卡免除了一次负面效果。');combatToast(target.name+' 触发【校园卡】免除了负面效果！');return false}animateAction(target,'墨水 −'+amount,'#ff8871');target.hp-=amount;target.damageTaken+=amount;if(src){src.damageDealt+=amount;if(src.equip.pen&&!src.usedEquipBonus){src.usedEquipBonus=true;draw(src,1,'备用水笔效果摸到');combatToast(src.name+' 触发【备用水笔】摸牌！')}}log((src?src.name:'效果')+' 对 '+target.name+' 造成 '+amount+' 点伤害。','highlight');if(target.hp<=0){target.hp=0;target.alive=false;sfx('kill');const deadNode=playerNode(target);if(deadNode){deadNode.classList.add('death-burst');megaExplosion(deadNode,'击 破！');deadNode.classList.add('hit-flash');setTimeout(()=>deadNode.classList.remove('hit-flash'),650)}S.discard.push(...target.hand);target.hand=[];for(const c of Object.values(target.equip))S.discard.push(c);target.equip={};log(target.name+' 墨水耗尽，退场！','highlight');if(target.role==='rebel'&&src&&src.alive&&src.id!==target.id){draw(src,3,'击败反贼奖励摸到')}if(src&&src.role==='lord'&&target.role==='loyal'){src.hand=[];log('主公误伤忠臣，弃置全部手牌！')}}checkVictory();return true}
+
+function damage(target,source,amount=1,kind='普通攻击'){
+  if(!target.alive||S.over)return false;let src=source||null;
+  if(target.heroKey==='teacher'&&!target.heroUsedThisTurn&&amount>0&&Math.random()<.25){target.heroUsedThisTurn=true;amount=Math.max(0,amount-1);animateAction(target,'老师技能：减伤','#9edbff');combatToast(target.name+' 触发【临场点拨】减伤！');if(amount===0){log(target.name+' 触发「临场点拨」，抵消了这次伤害！','highlight');return false}}
+  if(target.equip.shoes&&Math.random()<.22){log(target.name+' 的运动鞋触发，闪避了攻击！','highlight');combatToast(target.name+' 触发了【运动鞋】闪避！');return false}
+  if(target.focus){target.focus=false;draw(target,1,'专注效果摸到');log(target.name+' 专注状态抵消了 1 点伤害。');combatToast(target.name+' 触发【专注】抵消伤害！');return false}
+  if(target.shield>0){target.shield--;log(target.name+' 的临时护盾抵消了伤害。');combatToast(target.name+' 的【临时护盾】抵消了伤害！');return false}
+  if(target.equip.eraser&&Math.random()<.25&&kind!=='普通攻击'){log(target.name+' 的黑板擦抵消了锦囊效果！');combatToast(target.name+' 触发【黑板擦】抵消了锦囊！');return false}
+  if(target.equip.campuscard&&!target.usedCoupon){target.usedCoupon=true;log(target.name+' 的校园卡免除了一次负面效果。');combatToast(target.name+' 触发【校园卡】免除了负面效果！');return false}
+  
+  animateAction(target,'墨水 −'+amount,'#ff8871');target.hp-=amount;target.damageTaken+=amount;
+  if(src){src.damageDealt+=amount;if(src.equip.pen&&!src.usedEquipBonus){src.usedEquipBonus=true;draw(src,1,'备用水笔效果摸到');combatToast(src.name+' 触发【备用水笔】摸牌！')}}
+  log((src?src.name:'效果')+' 对 '+target.name+' 造成 '+amount+' 点伤害。','highlight');
+
+  // 濒死求援
+  if(target.hp<=0){
+    const healIdx = target.hand.findIndex(x=>['heal','recess','nurse','pass','coupon','praise','topnotes'].includes(x.effect));
+    if (healIdx >= 0) {
+        if (target.id === 0) {
+            waiting = true; render();
+            showModal('🆘 濒死求援！', `<p>你的墨水即将耗尽！你可以打出一张【${escapeHtml(target.hand[healIdx].name)}】来自救。</p>`, [
+                {text: '放弃挣扎（退场）', fn: () => { closeModal(); waiting = false; resolveDeath(target, src); render(); }},
+                {text: `使用【${escapeHtml(target.hand[healIdx].name)}】自救`, primary: true, fn: () => {
+                    const used = target.hand.splice(healIdx, 1)[0]; S.discard.push(used);
+                    target.hp = 1; sfx('heal'); animateAction(target, '紧急自救！', '#9de2a3');
+                    log('你打出了「'+used.name+'」，将墨水恢复到 1 点，脱离濒死！', 'highlight');
+                    combatToast('你 触发【濒死求援】脱离危险！');
+                    closeModal(); waiting = false; render();
+                }}
+            ]);
+            return true;
+        } else {
+            if (target.brain !== '激进压制型' || Math.random() < 0.8) {
+                const used = target.hand.splice(healIdx, 1)[0]; S.discard.push(used);
+                target.hp = 1; sfx('heal'); animateAction(target, '紧急自救！', '#9de2a3');
+                log(target.name+' 处于濒死状态，打出了「'+used.name+'」自救！', 'highlight');
+                combatToast(target.name+' 触发【濒死求援】脱离危险！');
+                return true;
+            }
+        }
+    }
+    resolveDeath(target, src);
+  }
+  checkVictory();return true
+}
+
+function resolveDeath(target, src){
+    if(!target.alive) return;
+    target.hp=0;target.alive=false;sfx('kill');const deadNode=playerNode(target);
+    if(deadNode){deadNode.classList.add('death-burst');megaExplosion(deadNode,'击 破！');deadNode.classList.add('hit-flash');setTimeout(()=>deadNode.classList.remove('hit-flash'),650)}
+    S.discard.push(...target.hand);target.hand=[];for(const c of Object.values(target.equip))S.discard.push(c);target.equip={};
+    log(target.name+' 墨水耗尽，退场！','highlight');
+    if(target.role==='rebel'&&src&&src.alive&&src.id!==target.id){draw(src,3,'击败反贼奖励摸到')}
+    if(src&&src.role==='lord'&&target.role==='loyal'){src.hand=[];log('主公误伤忠臣，弃置全部手牌！')}
+    checkVictory();
+}
+
 function heal(p,n=1){if(!p.alive)return;let before=p.hp;p.hp=clamp(p.hp+n,0,p.maxHp);if(p.hp>before){animateAction(p,'恢复 +'+(p.hp-before),'#9de2a3');log(p.name+' 恢复 '+(p.hp-before)+' 段墨水。','highlight')}else draw(p,1,'墨水已满，改为摸到')}
 function discardRandom(p,n=1){if(!p||!p.alive||S.over)return;for(let i=0;i<n&&p.alive&&p.hand.length;i++)discardCard(p,rand(p.hand.length),'弃置')}
 function takeRandom(from,to){if(!from||!to||!from.alive||!to.alive||S.over||!from.hand.length)return false;let c=from.hand.splice(rand(from.hand.length),1)[0];to.hand.push(c);animateAction(from,'手牌 −1','#e6c47b');animateAction(to,'获得手牌 +1','#9edbff');sfx('draw');const toNode=playerNode(to);if(toNode){spawnSparks(toNode,'#9edbff',14)}log(to.name+' 从 '+from.name+' 处获得一张手牌。');return true}
-function checkVictory(){if(S.over)return;const ps=alive();if(!ps.length){finish('无人获胜，校园陷入混乱！');return}const lordAlive=ps.some(p=>p.role==='lord');const rebelsAlive=ps.some(p=>p.role==='rebel');const spies=ps.filter(p=>p.role==='spy');if(!lordAlive){if(ps.length===1&&ps[0].role==='spy')finish('内奸独自存活，获得胜利！');else finish('主公退场！反贼阵营获胜。');return}if(!rebelsAlive&&spies.length===0){finish('反贼与内奸均已退场！主公与忠臣获胜。');return}if(ps.length===1){let p=ps[0];if(p.role==='spy')finish('内奸独自存活，获得胜利！');else if(p.role==='rebel')finish('反贼存活至最后，获得胜利！');else finish('主公阵营获胜！');}}
-function finish(message){if(S.over)return;S.over=true;S.processing=false;const won=(message.includes('获胜')&&((me().role==='lord'||me().role==='loyal')&&message.includes('主公'))||(me().role==='rebel'&&message.includes('反贼'))||(me().role==='spy'&&message.includes('内奸独自存活')));const reward=won?60:20;profile=loadProfile();profile.gold+=reward;saveProfile();log('本局奖励：+'+reward+' 金币。','highlight');log('—— '+message+' ——','highlight');render();setTimeout(()=>showModal('本局结束',message+'<br><br>你的身份是：'+ROLE_NAMES[me().role]+'。<br>本局获得 <b>'+reward+' 金币</b>。'+(me().alive?'<br>你的墨水剩余 '+me().hp+' 段。':'<br>你已退场。'),[{text:'再来一局',primary:true,fn:()=>{closeModal();openHeroSelect()}},{text:'返回主菜单',fn:()=>{closeModal();showHome()}}]),250)}
+
+function checkVictory(){
+  if(S.over)return;const ps=alive();
+  if(!ps.length){finish('无人获胜，校园陷入混乱！');return}
+  const lordAlive=ps.some(p=>p.role==='lord');
+  const rebelsAlive=ps.some(p=>p.role==='rebel');
+  const spies=ps.filter(p=>p.role==='spy');
+  if(!lordAlive){
+    if(ps.length===1&&ps[0].role==='spy')finish('内奸独自存活，获得胜利！');
+    else finish('主公退场！反贼阵营获胜。');
+    return
+  }
+  if(!rebelsAlive&&spies.length===0){finish('反贼与内奸均已退场！主公与忠臣获胜。');return}
+  if(ps.length===1){
+    let p=ps[0];
+    if(p.role==='spy')finish('内奸独自存活，获得胜利！');
+    else if(p.role==='rebel')finish('反贼存活至最后，获得胜利！');
+    else finish('主公阵营获胜！');
+  }
+}
+
+function finish(message){
+  if(S.over)return;S.over=true;S.processing=false;
+  const won=(message.includes('获胜')&&((me().role==='lord'||me().role==='loyal')&&message.includes('主公'))||(me().role==='rebel'&&message.includes('反贼'))||(me().role==='spy'&&message.includes('内奸独自存活')));
+  const reward=won?60:20;profile=loadProfile();profile.gold+=reward;saveProfile();
+  log('本局奖励：+'+reward+' 金币。','highlight');log('—— '+message+' ——','highlight');render();
+  
+  let resultHtml = `<h3 style="color:#e7bd68;text-align:center;margin-bottom:5px;">${message}</h3>`;
+  resultHtml += `<p style="text-align:center;font-size:14px;color:#a8b7bf;">你的身份是：<b style="color:#f0d58e">${ROLE_NAMES[me().role]}</b><br>本局获得 <b style="color:#f0d58e">${reward} 金币</b>。</p><hr style="border-color:#5a4023;margin:15px 0;">`;
+  resultHtml += `<p style="text-align:center;margin-bottom:10px;font-weight:bold;color:#c0ad84;">【本局身份公布】</p>`;
+  resultHtml += `<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">`;
+  S.players.forEach(p => {
+      let roleColor = p.role==='lord'?'#e7bd68':p.role==='loyal'?'#86c99b':p.role==='rebel'?'#e36c68':'#8dbbe4';
+      resultHtml += `<span style="border:1px solid #5a4023;padding:4px 8px;border-radius:4px;background:#171109;">
+          ${escapeHtml(p.name)} : <b style="color:${roleColor}">${ROLE_NAMES[p.role]}</b> ${p.alive?'(存活)':'(已退场)'}
+      </span>`;
+  });
+  resultHtml += `</div>`;
+
+  setTimeout(()=>showModal('本局结束',resultHtml,[{text:'再来一局',primary:true,fn:()=>{closeModal();openHeroSelect()}},{text:'返回主菜单',fn:()=>{closeModal();showHome()}}]),250)}
+
 function isRed(c){return c.suit==='♥'||c.suit==='♦'}
 function cardPlayable(p,c){if(!p.alive||S.over)return false;if(c.effect==='damage'||c.effect==='assault'||c.effect==='chalk'||c.effect==='question'||c.effect==='test'||c.effect==='quiz'||c.effect==='rollcall')return !p.usedAttack||c.effect!=='damage';return true}
-function startHumanTurn(first=false){if(S.over)return;S.turn=0;S.processing=false;S.phase='play';const p=me();if(!first){p.turns++;p.usedAttack=false;p.usedDrawBonus=false;p.usedDiscardBonus=false;p.usedEquipBonus=false;p.usedCoupon=false;p.heroUsedThisTurn=false;}else {p.usedAttack=false;p.usedDrawBonus=false;p.usedDiscardBonus=false;p.usedEquipBonus=false;p.usedCoupon=false;p.heroUsedThisTurn=false;}if(p.skipDraw>0){p.skipDraw--;log('老师拖堂：你本回合少摸牌。');draw(p,1,'回合开始摸到')}else draw(p,2,first?'首回合摸到':'回合开始摸到');if(p.equip.cup&&p.hp<3&&Math.random()<.25){heal(p,1);combatToast('你 触发【保温杯】恢复墨水！')}if(p.equip.notebook&&p.hand.length<2){draw(p,1,'笔记本效果摸到');combatToast('你 触发【笔记本】摸牌！')}if(p.heroKey==='tech'&&p.hand.length<4&&!p.heroUsedThisTurn){p.heroUsedThisTurn=true;draw(p,1,'电教委员「设备支援」摸到');combatToast('你 触发【设备支援】摸牌！')}selectedCard=null;targetMode=null;render()}
-function endHumanTurn(){sfx('turn');if(S.over||S.turn!==0||S.processing||targetMode)return;const p=me();while(p.hand.length>p.hp+2)discardCard(p,chooseHumanDiscard(),'手动弃置');p.focus=false;selectedCard=null;S.turn=1;S.processing=true;render();setTimeout(()=>runAITurn(),1100+rand(700))}
+
+function startHumanTurn(first=false){
+  if(S.over)return;S.turn=0;S.processing=false;S.phase='play';const p=me();
+  if(!first){p.turns++;p.usedAttack=false;p.usedDrawBonus=false;p.usedDiscardBonus=false;p.usedEquipBonus=false;p.usedCoupon=false;p.heroUsedThisTurn=false;}
+  else {p.usedAttack=false;p.usedDrawBonus=false;p.usedDiscardBonus=false;p.usedEquipBonus=false;p.usedCoupon=false;p.heroUsedThisTurn=false;}
+  if(p.skipDraw>0){p.skipDraw--;log('老师拖堂：你本回合少摸牌。');draw(p,1,'回合开始摸到')}else draw(p,2,first?'首回合摸到':'回合开始摸到');
+  if(p.equip.cup&&p.hp<3&&Math.random()<.25){heal(p,1);combatToast('你 触发【保温杯】恢复墨水！')}
+  if(p.equip.notebook&&p.hand.length<2){draw(p,1,'笔记本效果摸到');combatToast('你 触发【笔记本】摸牌！')}
+  if(p.heroKey==='tech'&&p.hand.length<4&&!p.heroUsedThisTurn){p.heroUsedThisTurn=true;draw(p,1,'电教委员「设备支援」摸到');combatToast('你 触发【设备支援】摸牌！')}
+  selectedCard=null;targetMode=null;render()
+}
+
+function endHumanTurn(){
+  sfx('turn');if(S.over||S.turn!==0||S.processing||targetMode)return;
+  const p=me();while(p.hand.length>p.hp+2)discardCard(p,chooseHumanDiscard(),'手动弃置');
+  p.focus=false;selectedCard=null;S.turn=1;S.processing=true;render();setTimeout(()=>runAITurn(),1100+rand(700))
+}
 function chooseHumanDiscard(){let i=0,best=-Infinity;me().hand.forEach((c,j)=>{let v=cardValue(c,me());if(v>best){best=v;i=j}});return i}
+
 function cardValue(c,p){const base={damage:7,assault:8,quiz:6,rollcall:6,inspect:7, chalk:6,test:8,question:6,dodge:8,heal:p.hp<3?10:2,recess:p.hp<3?9:4,nurse:p.hp<3?10:6,pass:6,focus:5,correct:p.hp<3?8:4,chat:5,draw2:7,study:8,swap:3,detain:5,dictation:5,notice:7,sports:6,blackout:4,search:7,team:7,meeting:5,borrow:7,collectAll:5,schedule:5,exercise:6,midterm:7,eraser:5,pen:7,folder:6,badge:6,cup:5,shoes:7,marker:6,notebook:6,campuscard:6,earplugs:4,bonus:7,assembly:5,draft:5,coupon:7,later:5,roomchange:6,topnotes:8,praise:9,late:6,duty:6};let v=base[c.effect]??4;if(c.style==='equip'&&!p.equip[c.effect])v+=2;if(c.style==='heal'&&p.hp===3)v-=4;return v}
 function scoreTarget(actor,target,effect){if(!target.alive||target.id===actor.id)return -999;let rel=relation(actor,target);let score=0;if(actor.role==='lord'||actor.role==='loyal'){score+=target.role==='rebel'?9:target.role==='spy'?4:target.role==='lord'?-12:target.role==='loyal'?-20:0}else if(actor.role==='rebel'){score+=target.role==='lord'?15:target.role==='loyal'?7:target.role==='rebel'?-18:0}else if(actor.role==='spy'){score+=target.role==='lord'?4:target.role==='rebel'?3:target.role==='loyal'?2:0}
  score+=(3-target.hp)*2.8;score+=target.hand.length*.35;if(target.hp===1)score+=5;if(target.id===0)score+=actor.role==='rebel'?1:0;if(effect==='heal')score=-999;if(target.equip.eraser)score-=1;return score}
 function aiChooseTarget(actor,effect){let candidates=alive().filter(p=>p.id!==actor.id);if(!candidates.length)return null;return candidates.map(p=>({p,score:scoreTarget(actor,p,effect)+Math.random()*.6})).sort((a,b)=>b.score-a.score)[0].p}
-function aiChooseCard(actor){let best=null,bestScore=-Infinity;const cards=actor.hand;for(let i=0;i<cards.length;i++){let c=cards[i];let score=cardValue(c,actor);if(c.style==='equip'&&actor.equip[c.effect])score-=8;if(c.effect==='heal'&&actor.hp===3)score-=8;if(c.effect==='dodge'||c.effect==='pass'||c.effect==='coupon')score-=2;if(['damage','assault','chalk','question','test','quiz','rollcall'].includes(c.effect)&&actor.usedAttack)score-=12;if(c.effect==='draw2'||c.effect==='study'||c.effect==='notice')score+=actor.hand.length<3?3:0;if(c.effect==='bonus'&&actor.hand.some(x=>['damage','assault','chalk','test'].includes(x.effect)))score+=3;if(c.effect==='draft'&&!S.discard.some(x=>x.style!=='equip'))score-=8;if(c.effect==='swap'&&actor.hand.length>=3)score-=3;if(c.style==='equip'&&!actor.equip[c.effect])score+=2;
- if(actor.hp===1&&['dodge','pass','coupon','heal','recess','nurse','praise'].includes(c.effect))score+=4;if(actor.hp<3&&['heal','recess','nurse','correct','praise','topnotes'].includes(c.effect))score+=4;
+function aiChooseCard(actor){let best=null,bestScore=-Infinity;const cards=actor.hand;for(let i=0;i<cards.length;i++){let c=cards[i];let score=cardValue(c,actor);if(c.style==='equip'&&actor.equip[c.effect])score-=8;if(c.effect==='heal'&&actor.hp===actor.maxHp)score-=8;if(c.effect==='dodge'||c.effect==='pass'||c.effect==='coupon')score-=2;if(['damage','assault','chalk','question','test','quiz','rollcall'].includes(c.effect)&&actor.usedAttack)score-=12;if(c.effect==='draw2'||c.effect==='study'||c.effect==='notice')score+=actor.hand.length<3?3:0;if(c.effect==='bonus'&&actor.hand.some(x=>['damage','assault','chalk','test'].includes(x.effect)))score+=3;if(c.effect==='draft'&&!S.discard.some(x=>x.style!=='equip'))score-=8;if(c.effect==='swap'&&actor.hand.length>=3)score-=3;if(c.style==='equip'&&!actor.equip[c.effect])score+=2;
+ if(actor.hp===1&&['dodge','pass','coupon','heal','recess','nurse','praise'].includes(c.effect))score+=4;if(actor.hp<actor.maxHp&&['heal','recess','nurse','correct','praise','topnotes'].includes(c.effect))score+=4;
  if(score>bestScore){bestScore=score;best={i,c,score}}}return best}
-function aiShouldPlay(actor,c){if(c.effect==='dodge'||c.effect==='pass'||c.effect==='coupon')return false;if(c.effect==='damage'&&actor.usedAttack)return false;if(c.effect==='heal'&&actor.hp===3)return false;if(c.effect==='correct'&&actor.hp===3)return false;if(c.style==='equip'&&actor.equip[c.effect])return false;return true}
+function aiShouldPlay(actor,c){if(c.effect==='dodge'||c.effect==='pass'||c.effect==='coupon')return false;if(c.effect==='damage'&&actor.usedAttack)return false;if(c.effect==='heal'&&actor.hp===actor.maxHp)return false;if(c.effect==='correct'&&actor.hp===actor.maxHp)return false;if(c.style==='equip'&&actor.equip[c.effect])return false;return true}
 function aiPlayOne(actor,choice){if(!choice||!actor.alive||S.over)return false;let c=actor.hand[choice.i];if(!c||!aiShouldPlay(actor,c))return false;animateAction(actor,'出牌 '+c.name,'#f0d58e');actor.hand.splice(choice.i,1);S.discard.push(c);log(actor.name+' 使用「'+c.name+'」。');applyCard(actor,c,null,true);return true}
-function runAITurn(){if(S.over)return;let actor=S.players[S.turn];if(!actor||!actor.alive){advanceTurn();return}actor.turns++;actor.usedAttack=false;actor.usedDrawBonus=false;actor.usedDiscardBonus=false;actor.usedEquipBonus=false;actor.usedCoupon=false;actor.heroUsedThisTurn=false;actor.lastActions=[];if(actor.skipDraw>0){actor.skipDraw--;draw(actor,1,'拖堂影响下摸到')}else draw(actor,2,'回合开始摸到');if(actor.equip.cup&&actor.hp<3&&Math.random()<.25){heal(actor,1);combatToast(actor.name+' 触发【保温杯】恢复墨水！')}if(actor.equip.notebook&&actor.hand.length<2){draw(actor,1,'笔记本效果摸到');combatToast(actor.name+' 触发【笔记本】摸牌！')}if(actor.heroKey==='tech'&&actor.hand.length<4&&!actor.heroUsedThisTurn){actor.heroUsedThisTurn=true;draw(actor,1,'电教委员「设备支援」摸到');combatToast(actor.name+' 触发【设备支援】摸牌！')}render();let steps=0;const maxSteps=7;function step(){if(S.over)return;if(waiting){setTimeout(step,260);return}if(!actor.alive){advanceTurn();return}if(steps++>=maxSteps){aiEnd(actor);return}const choice=aiChooseCard(actor);if(!choice||choice.score<4){aiEnd(actor);return}if(!aiShouldPlay(actor,choice.c)){aiEnd(actor);return}const did=aiPlayOne(actor,choice);render();if(did)setTimeout(step,1150+rand(1000));else aiEnd(actor)}setTimeout(step,1450+rand(1100))}
+function runAITurn(){if(S.over)return;let actor=S.players[S.turn];if(!actor||!actor.alive){advanceTurn();return}actor.turns++;actor.usedAttack=false;actor.usedDrawBonus=false;actor.usedDiscardBonus=false;actor.usedEquipBonus=false;actor.usedCoupon=false;actor.heroUsedThisTurn=false;actor.lastActions=[];if(actor.skipDraw>0){actor.skipDraw--;draw(actor,1,'拖堂影响下摸到')}else draw(actor,2,'回合开始摸到');if(actor.equip.cup&&actor.hp<actor.maxHp&&Math.random()<.25){heal(actor,1);combatToast(actor.name+' 触发【保温杯】恢复墨水！')}if(actor.equip.notebook&&actor.hand.length<2){draw(actor,1,'笔记本效果摸到');combatToast(actor.name+' 触发【笔记本】摸牌！')}if(actor.heroKey==='tech'&&actor.hand.length<4&&!actor.heroUsedThisTurn){actor.heroUsedThisTurn=true;draw(actor,1,'电教委员「设备支援」摸到');combatToast(actor.name+' 触发【设备支援】摸牌！')}render();let steps=0;const maxSteps=7;function step(){if(S.over)return;if(waiting){setTimeout(step,260);return}if(!actor.alive){advanceTurn();return}if(steps++>=maxSteps){aiEnd(actor);return}const choice=aiChooseCard(actor);if(!choice||choice.score<4){aiEnd(actor);return}if(!aiShouldPlay(actor,choice.c)){aiEnd(actor);return}const did=aiPlayOne(actor,choice);render();if(did)setTimeout(step,1150+rand(1000));else aiEnd(actor)}setTimeout(step,1450+rand(1100))}
 function aiEnd(actor){if(!actor||!actor.alive){advanceTurn();return}while(actor.hand.length>actor.hp+2){let idx=0,score=Infinity;actor.hand.forEach((c,i)=>{let v=cardValue(c,actor);if(v<score){score=v;idx=i}});discardCard(actor,idx,'回合结束弃置')}actor.focus=false;advanceTurn()}
 function advanceTurn(){if(S.over)return;const alivePlayers=alive();if(!alivePlayers.length){checkVictory();return}let next=S.turn;for(let i=0;i<4;i++){next=(next+1)%4;if(S.players[next].alive)break}if(next<=S.turn)S.round++;S.turn=next;S.processing=false;selectedCard=null;targetMode=null;if(next===0){startHumanTurn();render()}else{render();setTimeout(()=>runAITurn(),1050+rand(700))}}
+
 function askTarget(source,effect,callback,opts={}){targetMode={source:source.id,effect,callback,opts};render()}
-let previewTimer=null;function useSelected(i,confirmed=false){if(S.over||S.turn!==0||S.processing||targetMode)return;const p=me(),c=p.hand[i];if(!c)return;if(!cardPlayable(p,c)){toast('这张牌本回合暂时无法使用');return}selectedCard=i;sfx('select');const el=$('hand').querySelector(`[data-card="${i}"]`);if(el){$('hand').querySelectorAll('.card').forEach((x,j)=>{x.classList.remove('selected','card-inspect-lift','fan-left','fan-right');if(j<i)x.classList.add('fan-left');else if(j>i)x.classList.add('fan-right')});el.classList.add('selected','card-inspect-lift');$('hand').classList.add('has-selection')}const effect=c.effect;const targetEffects=['damage','assault','quiz','rollcall','inspect','chalk','question','test','wrongbook','collect','detain','dictation','search','team','borrow','schedule','midterm','later','roomchange','late','swap','chat'];if(targetEffects.includes(effect)){targetMode={source:p.id,effect,callback:target=>playCardAt(i,target),opts:{}};render();return}playCardAt(i,null)}
+function useSelected(i,confirmed=false){if(S.over||S.turn!==0||S.processing||targetMode)return;const p=me(),c=p.hand[i];if(!c)return;if(!cardPlayable(p,c)){toast('这张牌本回合暂时无法使用');return}selectedCard=i;sfx('select');const el=$('hand').querySelector(`[data-card="${i}"]`);if(el){$('hand').querySelectorAll('.card').forEach((x,j)=>{x.classList.remove('selected','card-inspect-lift','fan-left','fan-right');if(j<i)x.classList.add('fan-left');else if(j>i)x.classList.add('fan-right')});el.classList.add('selected','card-inspect-lift');$('hand').classList.add('has-selection')}const effect=c.effect;const targetEffects=['damage','assault','quiz','rollcall','inspect','chalk','question','test','wrongbook','collect','detain','dictation','search','team','borrow','schedule','midterm','later','roomchange','late','swap','chat'];if(targetEffects.includes(effect)){targetMode={source:p.id,effect,callback:target=>playCardAt(i,target),opts:{}};render();return}playCardAt(i,null)}
+
 function animateCardPlay(index,target,source=me()){const card=$('hand').querySelector(`[data-card="${index}"]`);const node=target?playerNode(target):playerNode(source);if(!card||!node)return;const a=card.getBoundingClientRect(),b=node.getBoundingClientRect(),ghost=card.cloneNode(true);ghost.removeAttribute('data-card');ghost.removeAttribute('data-card-id');ghost.disabled=true;ghost.style.cssText+=`;position:fixed!important;left:${a.left}px!important;top:${a.top}px!important;width:${a.width}px!important;height:${a.height}px!important;min-height:0!important;z-index:9999!important;margin:0!important;pointer-events:none!important;transform:none;` ;document.body.appendChild(ghost);const dx=b.left+b.width/2-(a.left+a.width/2),dy=b.top+b.height/2-(a.top+a.height/2);if(ghost.animate)ghost.animate([{transform:'translate(0,0) scale(1) rotate(0deg)',opacity:1},{transform:`translate(${dx}px,${dy}px) scale(.22) rotate(9deg)`,opacity:.05}],{duration:390,easing:'cubic-bezier(.2,.75,.25,1)',fill:'forwards'});setTimeout(()=>ghost.remove(),430)}
-function playCardAt(index,target){const p=me(),c=p.hand[index];if(!c||S.over)return;animateCardPlay(index,target,p);targetMode=null;selectedCard=null;p.hand.splice(index,1);S.discard.push(c);log(p.name+' 使用「'+c.name+'」。');applyCard(p,c,target,false);render()}
-function applyCard(p,c,target,ai=false){if(!p||!p.alive||S.over)return; if(target&&!target.alive){log('目标已退场，卡牌效果取消。');return}const eff=c.effect;if(p.heroKey==='monitor'&&c.style==='trick'&&!p.heroUsedThisTurn){p.heroUsedThisTurn=true;draw(p,1,'班长「班级统筹」摸到');combatToast(p.name+' 触发【班级统筹】摸牌！')}const choose=()=>target&&target.alive?target:aiChooseTarget(p,eff);switch(eff){case'damage':case'assault':case'chalk':case'question':case'test':case'quiz':case'rollcall':{let t=choose();if(!t)return;if(p.usedAttack&&eff==='damage'){log(p.name+' 本回合已使用过普通作业。');return}p.usedAttack=true;resolveAttack(p,c,t,eff,ai);if(p.heroKey==='sports'&&!p.heroUsedThisTurn){p.heroUsedThisTurn=true;if(Math.random()<.35){draw(p,1,'体育委员「运动冲锋」摸到');combatToast(p.name+' 触发【运动冲锋】摸牌！')}}break}
- case'inspect':case'dictation':case'late':{let t=choose();if(!t)return;if(t.hand.length)discardRandom(t,1);else draw(p,1,'目标无手牌，额外摸到');if(eff==='late')t.skipDraw++;break}
- case'wrongbook':{let t=choose();if(!t)return;if(t.hand.length){let ix=rand(t.hand.length);let dc=discardCard(t,ix,'被错题本迫使弃置');if(dc&&dc.style==='attack')draw(p,1,'错题本效果摸到')}break}
- case'collect':{let t=choose();if(!t)return;let n=Math.min(2,t.hand.length);if(n)discardRandom(t,n);if(n<2)damage(t,p,1,'作业催交');break}
- case'detain':case'schedule':case'later':{let t=choose();if(!t)return;if(eff==='detain')t.skipDraw++;else if(eff==='schedule')t.skipDraw++;else t.skipPlay++;log(t.name+' 被校园规则限制了下回合行动。');break}
- case'sports':for(const t of alive().filter(x=>x.id!==p.id)){if(t.hand.length)discardRandom(t,1);else damage(t,p,1,'运动会');}break;
- case'search':{let t=choose();if(!t)return;if(t.hand.length){const ix=rand(t.hand.length);discardCard(t,ix,'被突发检查没收')}else draw(p,1);break}
- case'team':{let t=choose();if(!t)return;draw(p,2,'小组合作摸到');draw(t,2,'小组合作摸到');break}
- case'borrow':{let t=choose();if(t&&t.hand.length>p.hand.length)takeRandom(t,p);else draw(p,1,'借支笔摸到');break}
- case'swap':{let t=choose();if(t&&t.hand.length&&p.hand.length){let a=rand(p.hand.length),b=rand(t.hand.length),x=p.hand[a];p.hand[a]=t.hand[b];t.hand[b]=x;log(p.name+' 与 '+t.name+' 交换了一张随机手牌。')}break}
- case'chat':{let t=choose();if(t){draw(p,1,'课间聊天摸到');draw(t,1,'课间聊天摸到')}break}
- case'midterm':{let t=choose();if(!t)return;let red=Math.random()<.5;if(red){log('考试判定为红色！');if(t.hand.length)discardRandom(t,Math.min(2,t.hand.length))}else{log('考试判定为黑色！');damage(t,p,1,'期中考试')}break}
- case'heal':heal(p,1);break;case'recess':if(p.hp<3)heal(p,1);else draw(p,1,'课间操摸到');break;case'nurse':heal(p,1);draw(p,1,'医务室摸到');break;case'correct':if(p.hand.length)discardRandom(p,1);heal(p,1);break;case'pass':case'coupon':if(p.hp<3)heal(p,1);else draw(p,1,'免作业券摸到');break;case'praise':heal(p,1);draw(p,1,'老师表扬摸到');break;case'topnotes':if(p.hp<3){draw(p,1,'学霸笔记摸到');heal(p,1)}else draw(p,2,'学霸笔记摸到');break;
- case'draw2':draw(p,2,'早读摸到');break;case'study':draw(p,3,'图书馆自习摸到');if(p.hand.length>p.hp+3)discardRandom(p,1);break;case'notice':for(const t of alive())draw(t,1,'班级通知摸到');break;case'meeting':for(const t of alive().filter(x=>x.id!==p.id)){if(t.hand.length>1&&Math.random()<.5)discardRandom(t,1);else draw(t,1,'班会发言摸到')}break;case'blackout':for(const t of alive().filter(x=>x.id!==p.id))discardRandom(t,1);break;case'exercise':draw(p,1,'广播操摸到');p.shield++;break;case'bonus':draw(p,1,'临时加分摸到');p.bonusDamage++;break;case'assembly':{const max=Math.max(...alive().map(x=>x.hand.length));for(const t of alive().filter(x=>x.id!==p.id&&x.hand.length===max))discardRandom(t,1);break}
- case'draft':{let ix=S.discard.findIndex(x=>x.style!=='equip');if(ix>=0)p.hand.push(S.discard.splice(ix,1)[0]);else draw(p,1,'草稿纸摸到');break}case'roomchange':draw(p,2,'临时换教室摸到');{let t=choose();if(t)discardRandom(t,1)}break;case'duty':p.focus=false;p.skipDraw=0;draw(p,1,'值日生摸到');break;
- case'focus':p.focus=true;break;
- case'eraser':case'pen':case'folder':case'badge':case'cup':case'shoes':case'marker':case'notebook':case'campuscard':case'earplugs':p.equip[eff]=c;animateAction(p,'装备 '+c.name,'#f0d58e');log(p.name+' 装备了「'+c.name+'」。');break;
- case'collectAll':for(const t of alive().filter(x=>x.id!==p.id&&x.hand.length>p.hand.length))discardRandom(t,1);break;
- case'popquiz':{let max=0;for(const t of alive().filter(x=>x.id!==p.id)){if(t.hand.length>max)max=t.hand.length}for(const t of alive().filter(x=>x.id!==p.id&&x.hand.length===max&&max>0))discardRandom(t,1);break}
- default:draw(p,1,'卡牌效果摸到');}
- if(p.bonusDamage>0&&['damage','assault','chalk','question','test','quiz','rollcall'].includes(eff)){p.bonusDamage--;let t=target||null;if(t&&t.alive)damage(t,p,1,'临时加分')}checkVictory();}
+
+function playCardAt(index,target){
+  const p=me(),c=p.hand[index];if(!c||S.over)return;
+  animateCardPlay(index,target,p);targetMode=null;selectedCard=null;p.hand.splice(index,1);S.discard.push(c);log(p.name+' 使用「'+c.name+'」。');
+  applyCard(p,c,target,false);render()
+}
+
+function applyCard(p,c,target,ai=false){
+  if(!p||!p.alive||S.over)return; if(target&&!target.alive){log('目标已退场，卡牌效果取消。');return}
+  const eff=c.effect;
+  if(p.heroKey==='monitor'&&c.style==='trick'&&!p.heroUsedThisTurn){p.heroUsedThisTurn=true;draw(p,1,'班长「班级统筹」摸到');combatToast(p.name+' 触发【班级统筹】摸牌！')}
+  const choose=()=>target&&target.alive?target:aiChooseTarget(p,eff);
+  switch(eff){
+    case'damage':case'assault':case'chalk':case'question':case'test':case'quiz':case'rollcall':{
+      let t=choose();if(!t)return;if(p.usedAttack&&eff==='damage'){log(p.name+' 本回合已使用过普通作业。');return}p.usedAttack=true;
+      resolveAttack(p,c,t,eff,ai);
+      if(p.heroKey==='sports'&&!p.heroUsedThisTurn){p.heroUsedThisTurn=true;if(Math.random()<.35){draw(p,1,'体育委员「运动冲锋」摸到');combatToast(p.name+' 触发【运动冲锋】摸牌！')}}
+      break
+    }
+    case'inspect':case'dictation':case'late':{let t=choose();if(!t)return;if(t.hand.length)discardRandom(t,1);else draw(p,1,'目标无手牌，额外摸到');if(eff==='late')t.skipDraw++;break}
+    case'wrongbook':{let t=choose();if(!t)return;if(t.hand.length){let ix=rand(t.hand.length);let dc=discardCard(t,ix,'被错题本迫使弃置');if(dc&&dc.style==='attack')draw(p,1,'错题本效果摸到')}break}
+    case'collect':{let t=choose();if(!t)return;let n=Math.min(2,t.hand.length);if(n)discardRandom(t,n);if(n<2)damage(t,p,1,'作业催交');break}
+    case'detain':case'schedule':case'later':{let t=choose();if(!t)return;if(eff==='detain')t.skipDraw++;else if(eff==='schedule')t.skipDraw++;else t.skipPlay++;log(t.name+' 被校园规则限制了下回合行动。');break}
+    case'sports':for(const t of alive().filter(x=>x.id!==p.id)){if(t.hand.length)discardRandom(t,1);else damage(t,p,1,'运动会');}break;
+    case'search':{let t=choose();if(!t)return;if(t.hand.length){const ix=rand(t.hand.length);discardCard(t,ix,'被突发检查没收')}else draw(p,1);break}
+    case'team':{let t=choose();if(!t)return;draw(p,2,'小组合作摸到');draw(t,2,'小组合作摸到');break}
+    case'borrow':{let t=choose();if(t&&t.hand.length>p.hand.length)takeRandom(t,p);else draw(p,1,'借支笔摸到');break}
+    case'swap':{let t=choose();if(t&&t.hand.length&&p.hand.length){let a=rand(p.hand.length),b=rand(t.hand.length),x=p.hand[a];p.hand[a]=t.hand[b];t.hand[b]=x;log(p.name+' 与 '+t.name+' 交换了一张随机手牌。')}break}
+    case'chat':{let t=choose();if(t){draw(p,1,'课间聊天摸到');draw(t,1,'课间聊天摸到')}break}
+    case'midterm':{let t=choose();if(!t)return;let red=Math.random()<.5;if(red){log('考试判定为红色！');if(t.hand.length)discardRandom(t,Math.min(2,t.hand.length))}else{log('考试判定为黑色！');damage(t,p,1,'期中考试')}break}
+    case'heal':heal(p,1);break;case'recess':if(p.hp<p.maxHp)heal(p,1);else draw(p,1,'课间操摸到');break;case'nurse':heal(p,1);draw(p,1,'医务室摸到');break;case'correct':if(p.hand.length)discardRandom(p,1);heal(p,1);break;case'pass':case'coupon':if(p.hp<p.maxHp)heal(p,1);else draw(p,1,'免作业券摸到');break;case'praise':heal(p,1);draw(p,1,'老师表扬摸到');break;case'topnotes':if(p.hp<p.maxHp){draw(p,1,'学霸笔记摸到');heal(p,1)}else draw(p,2,'学霸笔记摸到');break;
+    case'draw2':draw(p,2,'早读摸到');break;case'study':draw(p,3,'图书馆自习摸到');if(p.hand.length>p.hp+3)discardRandom(p,1);break;case'notice':for(const t of alive())draw(t,1,'班级通知摸到');break;case'meeting':for(const t of alive().filter(x=>x.id!==p.id)){if(t.hand.length>1&&Math.random()<.5)discardRandom(t,1);else draw(t,1,'班会发言摸到')}break;case'blackout':for(const t of alive().filter(x=>x.id!==p.id))discardRandom(t,1);break;case'exercise':draw(p,1,'广播操摸到');p.shield++;break;case'bonus':draw(p,1,'临时加分摸到');p.bonusDamage++;break;case'assembly':{const max=Math.max(...alive().map(x=>x.hand.length));for(const t of alive().filter(x=>x.id!==p.id&&x.hand.length===max))discardRandom(t,1);break}
+    case'draft':{let ix=S.discard.findIndex(x=>x.style!=='equip');if(ix>=0)p.hand.push(S.discard.splice(ix,1)[0]);else draw(p,1,'草稿纸摸到');break}case'roomchange':draw(p,2,'临时换教室摸到');{let t=choose();if(t)discardRandom(t,1)}break;case'duty':p.focus=false;p.skipDraw=0;draw(p,1,'值日生摸到');break;
+    case'focus':p.focus=true;break;
+    case'eraser':case'pen':case'folder':case'badge':case'cup':case'shoes':case'marker':case'notebook':case'campuscard':case'earplugs':p.equip[eff]=c;animateAction(p,'装备 '+c.name,'#f0d58e');log(p.name+' 装备了「'+c.name+'」。');break;
+    case'collectAll':for(const t of alive().filter(x=>x.id!==p.id&&x.hand.length>p.hand.length))discardRandom(t,1);break;
+    case'popquiz':{let max=0;for(const t of alive().filter(x=>x.id!==p.id)){if(t.hand.length>max)max=t.hand.length}for(const t of alive().filter(x=>x.id!==p.id&&x.hand.length===max&&max>0))discardRandom(t,1);break}
+    default:draw(p,1,'卡牌效果摸到');
+  }
+  if(p.bonusDamage>0&&['damage','assault','chalk','question','test','quiz','rollcall'].includes(eff)){p.bonusDamage--;let t=target||null;if(t&&t.alive)damage(t,p,1,'临时加分')}checkVictory();
+}
+
 const ATTACK_FX={damage:{color:'#ff5a45',glyph:'✦',label:'作业'},assault:{color:'#ff3f32',glyph:'⚔',label:'突击'},chalk:{color:'#f4f1d6',glyph:'●',label:'粉笔'},question:{color:'#8ad8ff',glyph:'?',label:'提问'},test:{color:'#c6a4ff',glyph:'✧',label:'周测'},quiz:{color:'#78cfff',glyph:'▣',label:'小测'},rollcall:{color:'#ffd56f',glyph:'!',label:'点名'}};
 function animateAttack(source,target,c){sfx('attack');const a=$('table').querySelector(`[data-player="${source.id}"]`),b=$('table').querySelector(`[data-player="${target.id}"]`);if(!a||!b)return;const r1=a.getBoundingClientRect(),r2=b.getBoundingClientRect(),x1=r1.left+r1.width/2,y1=r1.top+r1.height/2,x2=r2.left+r2.width/2,y2=r2.top+r2.height/2;const cfg=ATTACK_FX[c.effect]||ATTACK_FX.damage;const dx=x2-x1,dy=y2-y1,cx=(x1+x2)/2-dy*.12,cy=(y1+y2)/2+dx*.12;const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox',`0 0 ${innerWidth} ${innerHeight}`);svg.setAttribute('class','combat-fx');svg.setAttribute('aria-hidden','true');svg.innerHTML=`<defs><filter id="fxGlow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><path d="M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}" stroke="${cfg.color}" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="10 8" opacity=".9" class="fx-trail"/><circle r="9" fill="${cfg.color}" stroke="#fff2c9" stroke-width="2" filter="url(#fxGlow)"><animateMotion dur=".48s" fill="freeze" path="M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}"/></circle><text x="${x2}" y="${y2-18}" text-anchor="middle" fill="${cfg.color}" font-size="22" font-weight="900" filter="url(#fxGlow)" class="fx-glyph">${cfg.glyph}</text><circle cx="${x2}" cy="${y2}" r="12" fill="none" stroke="${cfg.color}" stroke-width="4" class="fx-impact"/>`;document.body.appendChild(svg);setTimeout(()=>{const fresh=$('table').querySelector(`[data-player="${target.id}"]`);if(fresh){fresh.classList.add('hit-flash');spawnSparks(fresh,cfg.color,16);if(target.hp<=1){document.querySelector('.game')?.classList.add('screen-shake');setTimeout(()=>document.querySelector('.game')?.classList.remove('screen-shake'),320)}sfx('hit')}setTimeout(()=>{svg.remove();if(fresh)fresh.classList.remove('hit-flash')},760)},45)}
-function shouldAiDefend(t,attacker,defense){const rel=relation(t,attacker),lethal=t.hp<=1,highThreat=attacker.role==='rebel'&&t.role==='lord';let need=lethal||highThreat||t.hp<=2||t.hand.length>3;if(rel==='ally'&&!lethal&&!highThreat)need=false;if(defense.effect==='coupon'&&attacker.role!=='rebel'&&!lethal&&t.hp===3)return false;const reserve=t.hand.filter(x=>['dodge','pass','coupon'].includes(x.effect)).length;return need&&(t.brain==='谋略推理型'||lethal||Math.random()<(t.brain==='战术计算型'?.82:.64))&&(reserve>1||lethal||t.hp<=2||highThreat)}
-function resolveAttack(p,c,t,eff,ai){animateAttack(p,t,c);const defenseIndex=()=>t.hand.findIndex(x=>['dodge','pass','coupon'].includes(x.effect));const applyDamageEffect=()=>{if(eff==='assault'&&t.hand.length>0)discardRandom(t,1);if(eff==='quiz'){if(t.hand.length<2)damage(t,p,1,c.name);else discardRandom(t,1)}else if(eff==='rollcall'){if(t.hand.length)discardRandom(t,1);else damage(t,p,1,c.name)}else if(eff==='question'){const ix=t.hand.findIndex(x=>x.style==='trick');if(ix>=0&&Math.random()<.65)discardCard(t,ix,'弃牌应对老师提问');else damage(t,p,1,c.name)}else{damage(t,p,1,c.name);if(eff==='chalk'&&p.equip.eraser)draw(p,1,'黑板擦效果摸到');if(eff==='test'&&t.hp===1)discardRandom(t,1)}};
-const ix=defenseIndex();if(ix<0){applyDamageEffect();return}const dc=t.hand[ix];if(t.id===0&&p.id!==0){waiting=true;render();showModal('受到攻击：'+c.name,`<p>${escapeHtml(p.name)} 对你使用了「${escapeHtml(c.name)}」。</p><p>你可以打出「${escapeHtml(dc.name)}」抵消攻击，也可以选择承受效果。</p>`,[{text:'承受攻击',fn:()=>{closeModal();waiting=false;log('你选择承受「'+c.name+'」的效果。');applyDamageEffect();render()}},{text:'打出「'+dc.name+'」防御',primary:true,fn:()=>{const idx=defenseIndex();if(idx>=0){const used=t.hand.splice(idx,1)[0];S.discard.push(used);sfx('defend');animateAction(t,'防御成功','#a6ddff');log('你打出「'+used.name+'」，成功防御「'+c.name+'」。','highlight')}closeModal();waiting=false;render()}}]);return}
-if(t.id!==0&&shouldAiDefend(t,p,dc)){const used=t.hand.splice(ix,1)[0];S.discard.push(used);sfx('defend');animateAction(t,'防御成功','#a6ddff');log(t.name+' 判断威胁后打出「'+used.name+'」防御。','highlight');combatToast(t.name+' 打出了【'+used.name+'】防御！');return}applyDamageEffect()}
-function aiDefenseChance(t,attacker){let chance=.3;if(t.brain==='谋略推理型')chance=.78;else if(t.brain==='战术计算型')chance=.7;else if(t.brain==='激进压制型')chance=.56;if(t.hp===1)chance+=.18;if(t.hand.length<=1)chance-=.25;const rel=relation(t,attacker);if(rel==='ally')chance+=.1;return clamp(chance,.05,.95)}
+
+function shouldAiDefend(t,attacker,defense){const rel=relation(t,attacker),lethal=t.hp<=1,highThreat=attacker.role==='rebel'&&t.role==='lord';let need=lethal||highThreat||t.hp<=2||t.hand.length>3;if(rel==='ally'&&!lethal&&!highThreat)need=false;if(defense.effect==='coupon'&&attacker.role!=='rebel'&&!lethal&&t.hp===t.maxHp)return false;const reserve=t.hand.filter(x=>['dodge','pass','coupon'].includes(x.effect)).length;return need&&(t.brain==='谋略推理型'||lethal||Math.random()<(t.brain==='战术计算型'?.82:.64))&&(reserve>1||lethal||t.hp<=2||highThreat)}
+
+function resolveAttack(p,c,t,eff,ai){
+  animateAttack(p,t,c);
+  const defenseIndex=()=>t.hand.findIndex(x=>['dodge','pass','coupon'].includes(x.effect));
+  const applyDamageEffect=()=>{
+    if(eff==='assault'&&t.hand.length>0)discardRandom(t,1);
+    if(eff==='quiz'){if(t.hand.length<2)damage(t,p,1,c.name);else discardRandom(t,1)}
+    else if(eff==='rollcall'){if(t.hand.length)discardRandom(t,1);else damage(t,p,1,c.name)}
+    else if(eff==='question'){const ix=t.hand.findIndex(x=>x.style==='trick');if(ix>=0&&Math.random()<.65)discardCard(t,ix,'弃牌应对老师提问');else damage(t,p,1,c.name)}
+    else{damage(t,p,1,c.name);if(eff==='chalk'&&p.equip.eraser)draw(p,1,'黑板擦效果摸到');if(eff==='test'&&t.hp===1)discardRandom(t,1)}
+  };
+  const ix=defenseIndex();
+  if(ix<0){applyDamageEffect();return}
+  const dc=t.hand[ix];
+  if(t.id===0&&p.id!==0){
+    waiting=true;render();
+    showModal('受到攻击：'+c.name,`<p>${escapeHtml(p.name)} 对你使用了「${escapeHtml(c.name)}」。</p><p>你可以打出「${escapeHtml(dc.name)}」抵消攻击，也可以选择承受效果。</p>`,[
+      {text:'承受攻击',fn:()=>{closeModal();waiting=false;log('你选择承受「'+c.name+'」的效果。');applyDamageEffect();render()}},
+      {text:'打出「'+dc.name+'」防御',primary:true,fn:()=>{const idx=defenseIndex();if(idx>=0){const used=t.hand.splice(idx,1)[0];S.discard.push(used);sfx('defend');animateAction(t,'防御成功','#a6ddff');log('你打出「'+used.name+'」，成功防御「'+c.name+'」。','highlight')}closeModal();waiting=false;render()}}
+    ]);
+    return
+  }
+  if(t.id!==0&&shouldAiDefend(t,p,dc)){
+    const used=t.hand.splice(ix,1)[0];S.discard.push(used);sfx('defend');animateAction(t,'防御成功','#a6ddff');log(t.name+' 判断威胁后打出「'+used.name+'」防御。','highlight');combatToast(t.name+' 打出了【'+used.name+'】防御！');return
+  }
+  applyDamageEffect()
+}
+
 function showModal(title,html,buttons){$('modalRoot').innerHTML=`<div class="modalback"><div class="modal"><h2>${title}</h2><div class="overlaytext">${html}</div><div class="modal-buttons">${buttons.map((b,i)=>`<button data-modal="${i}" class="${b.primary?'primary':''}">${b.text}</button>`).join('')}</div></div></div>`;$('modalRoot').querySelectorAll('[data-modal]').forEach(el=>el.onclick=()=>buttons[+el.dataset.modal].fn())}
 function closeModal(){$('modalRoot').innerHTML=''}function showHome(){S=null;selectedCard=null;targetMode=null;$('gameScreen').classList.add('hidden');$('tutorialScreen').classList.add('hidden');$('heroSelectScreen').classList.add('hidden');$('home').classList.remove('hidden');closeModal()}
 function showTutorial(){ $('home').classList.add('hidden');$('gameScreen').classList.add('hidden');$('tutorialScreen').classList.remove('hidden') }
@@ -564,29 +769,36 @@ function openRedeemDialog(){
   showModal('兑换码','<p>输入兑换码，可解锁指定校园角色。</p><label for="redeemCodeInput">兑换码</label><input id="redeemCodeInput" class="redeem-input" inputmode="numeric" autocomplete="off" maxlength="24" placeholder="请输入兑换码">',[{text:'取消',fn:closeModal},{text:'确认兑换',primary:true,fn:()=>{const input=$('redeemCodeInput');const code=input?input.value.trim():'';if(/^<?\s*give\s+money\s+\d+\s*>?$/i.test(code)){const result=window.runGameCommand(code);if(result&&result.ok){closeModal();toast('金币兑换成功！+'+result.added+' 金币，当前余额 '+result.gold);return;}else{const box=$('modalRoot').querySelector('.modal .overlaytext');if(box){let msg=box.querySelector('.redeem-error');if(!msg){msg=document.createElement('p');msg.className='redeem-error';msg.style.color='#ff9d83';box.appendChild(msg)}msg.textContent=(result&&result.message)||'金币指令无效。'}if(input){input.value='';input.focus()}return;}}if(code==='7891'){profile=loadProfile();if(HEROES.tech.unlocked){closeModal();toast('电教委员已经解锁，无需重复兑换');return}HEROES.tech.unlocked=true;saveProfile();closeModal();sfx('equip');toast('兑换成功！已解锁电教委员');}else{const box=$('modalRoot').querySelector('.modal .overlaytext');if(box){let msg=box.querySelector('.redeem-error');if(!msg){msg=document.createElement('p');msg.className='redeem-error';msg.style.color='#ff9d83';box.appendChild(msg)}msg.textContent='兑换码无效，请检查后重试。'}if(input){input.value='';input.focus()}}}}]);setTimeout(()=>{const input=$('redeemCodeInput');if(input)input.focus()},0);
 }
 
-// 初始化静音按钮状态
 updateMuteBtn();
 $('muteBtn').onclick = toggleMute;
 $('redeemOpenBtn').onclick=openRedeemDialog;
-$('startBtn').onclick=()=>{unlockAudio();sfx('turn');openHeroSelect()};$('heroStartBtn').onclick=()=>{unlockAudio();sfx('turn');startSelectedGame()};$('tutorialBtn').onclick=showTutorial;$('tutorialStart').onclick=()=>{unlockAudio();sfx('turn');openHeroSelect()};$('backHome').onclick=showHome;$('heroBackBtn').onclick=showHome;$('helpBtn').onclick=()=>showModal('新手教程','<b>作业</b>可以攻击；<b>下课</b>可以恢复墨水；<b>翻开课本</b>可应对攻击。每回合摸 2 张牌，使用卡牌并在结束时弃至合理数量。身份与胜利目标见主菜单教程。',[{text:'知道了',primary:true,fn:closeModal}]);$('restartBtn').onclick=()=>showModal('重新开始？','当前对局将被清空，重新随机分配身份和手牌。此游戏不会保存进度。',[{text:'继续当前对局',fn:closeModal},{text:'重新开始',primary:true,fn:()=>{closeModal();newGame()}}]);$('menuBtn').onclick=()=>showModal('返回主菜单？','返回主菜单会结束当前对局；进度不会保存。',[{text:'继续游戏',fn:closeModal},{text:'返回主菜单',primary:true,fn:()=>{showHome()}}]);$('endTurnBtn').onclick=endHumanTurn;$('cancelTargetBtn').onclick=()=>{targetMode=null;selectedCard=null;render()};$('hand').addEventListener('click',e=>{const b=e.target.closest('[data-card]');if(!b)return;useSelected(+b.dataset.card,false)});$('table').addEventListener('click',e=>{const el=e.target.closest('[data-player]');if(!el)return;const id=+el.dataset.player;if(targetMode){const p=byId(id);if(p&&p.alive&&p.id!==targetMode.source){const cb=targetMode.callback;targetMode=null;cb(p);render()}return}if(S&&S.turn===0&&id!==0)toast('先选中一张需要指定目标的卡牌。')});
+$('startBtn').onclick=()=>{unlockAudio();sfx('turn');openHeroSelect()};
+$('heroStartBtn').onclick=()=>{unlockAudio();sfx('turn');startSelectedGame()};
+$('tutorialBtn').onclick=showTutorial;
+$('tutorialStart').onclick=()=>{unlockAudio();sfx('turn');openHeroSelect()};
+$('backHome').onclick=showHome;
+$('heroBackBtn').onclick=showHome;
+$('helpBtn').onclick=()=>showModal('新手教程','<b>作业</b>可以攻击；<b>下课</b>可以恢复墨水；<b>翻开课本</b>可应对攻击。每回合摸 2 张牌，使用卡牌并在结束时弃至合理数量。濒死时可以使用恢复牌自救。',[{text:'知道了',primary:true,fn:closeModal}]);
+$('restartBtn').onclick=()=>showModal('重新开始？','当前对局将被清空，重新随机分配身份和手牌。此游戏不会保存进度。',[{text:'继续当前对局',fn:closeModal},{text:'重新开始',primary:true,fn:()=>{closeModal();newGame()}}]);
+$('menuBtn').onclick=()=>showModal('返回主菜单？','返回主菜单会结束当前对局；进度不会保存。',[{text:'继续游戏',fn:closeModal},{text:'返回主菜单',primary:true,fn:()=>{showHome()}}]);
+$('endTurnBtn').onclick=endHumanTurn;
+$('cancelTargetBtn').onclick=()=>{targetMode=null;selectedCard=null;render()};
+$('hand').addEventListener('click',e=>{const b=e.target.closest('[data-card]');if(!b)return;useSelected(+b.dataset.card,false)});
+$('table').addEventListener('click',e=>{
+  const el=e.target.closest('[data-player]');if(!el)return;const id=+el.dataset.player;
+  if(targetMode){const p=byId(id);if(p&&p.alive&&p.id!==targetMode.source){const cb=targetMode.callback;targetMode=null;cb(p);render()}return}
+  if(S&&S.turn===0&&id!==0)toast('先选中一张需要指定目标的卡牌。')
+});
 
-// 点击空白处取消选牌
 $('gameScreen').addEventListener('click', (e) => {
   if (selectedCard !== null || targetMode) {
     if (!e.target.closest('.card') && !e.target.closest('[data-player]') && !e.target.closest('button')) {
-      selectedCard = null;
-      targetMode = null;
-      render();
+      selectedCard = null; targetMode = null; render();
     }
   }
 });
 
-// 每次打开单文件游戏都会展示版本公告，不依赖本地存储。
-setTimeout(()=>showModal('📣 开屏公告 · 1.0.0 正式版','<div class="version-stamp">VERSION <strong>1.0.0 Formal</strong></div><p><b>欢迎来到《实中杀》！</b></p><p>本次正式版重点更新：</p><ul><li>实装“压迫感 AI”，修正相关误导文案</li><li>新增中央浮动战斗播报，再也不用担心“莫名其妙”掉血了</li><li>新增全局音效静音开关</li><li>修复选牌卡手，现在点击空白处即可取消选牌</li></ul><p>当前版本：<b>1.0.0 正式版</b></p>',[{text:'进入游戏',primary:true,fn:closeModal}]),180);
+setTimeout(()=>showModal('📣 开屏公告 · 1.0.1 正式版','<div class="version-stamp">VERSION <strong>1.0.1 Formal</strong></div><p><b>欢迎来到《实中杀》！</b></p><p>本次更新重点：</p><ul><li>【重大】新增濒死求援机制，血量归零可用恢复牌自救</li><li>【重大】终局结算全面亮牌，明确公布胜负及所有人身份</li><li>主公获得专属👑标识，不再混淆</li><li>实装不同角色血量差异化</li><li>新增点击查看装备状态面板，放大结束回合按钮</li></ul>',[{text:'进入游戏',primary:true,fn:closeModal}]),180);
 
-function evaluateState(actor){let val=actor.hp*5+actor.hand.length*1.15+Object.keys(actor.equip).length*2+actor.shield*1.5;if(actor.hp===1)val-=4;for(const p of alive())if(p.id!==actor.id){const rel=relation(actor,p);val+=rel==='enemy'?(3-p.hp)*1.2:rel==='ally'?p.hp*.4:0}return val}
-function shallowSearch(actor){const candidates=actor.hand.map((c,i)=>({i,c,score:cardValue(c,actor)}));for(const item of candidates){let target=aiChooseTarget(actor,item.c.effect);if(target){item.score+=scoreTarget(actor,target,item.c.effect)*.12}if(item.c.style==='equip'&&!actor.equip[item.c.effect])item.score+=1.5;if(actor.hp===1&&['dodge','pass','coupon','heal','nurse','praise'].includes(item.c.effect))item.score+=4;if(item.c.effect==='damage'&&actor.usedAttack)item.score-=20;item.score+=evaluateState(actor)*.015}return candidates.sort((a,b)=>b.score-a.score)[0]||null}
-const originalAiChooseCard=aiChooseCard;
-aiChooseCard=function(actor){const c=shallowSearch(actor);if(!c)return originalAiChooseCard(actor);if(actor.brain==='激进压制型'){for(const x of actor.hand){if(['damage','assault','test','chalk','collect'].includes(x.effect)&&x!==c.c&&cardValue(x,actor)>=5)return {i:actor.hand.indexOf(x),c:x,score:cardValue(x,actor)+1.2}}}if(actor.brain==='谋略推理型'&&actor.hp<=1){const safe=actor.hand.map((x,i)=>({i,c:x,score:cardValue(x,actor)+(['heal','nurse','praise','recess','dodge','pass','coupon'].includes(x.effect)?5:0)})).sort((a,b)=>b.score-a.score)[0];if(safe)return safe}return c};
 })();
 </script></body></html>
